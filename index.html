@@ -1,1504 +1,3080 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Clarasta – Home Tutors You Can Trust</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
-<style>
-:root {
-  --bg:       #f7f5f0;
-  --bg2:      #efecea;
-  --ink:      #1a1714;
-  --ink2:     #4a4540;
-  --ink3:     #8a837a;
-  --gold:     #c8922a;
-  --gold2:    #e8b04a;
-  --goldbg:   #fdf3e0;
-  --teal:     #2a7a6a;
-  --tealbg:   #e0f2ee;
-  --white:    #ffffff;
-  --border:   #dedad4;
-  --shadow:   0 2px 24px rgba(26,23,20,0.08);
-  --shadow2:  0 8px 48px rgba(26,23,20,0.12);
-  --radius:   16px;
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  font-family:'Plus Jakarta Sans',sans-serif;
-  background:var(--bg);
-  color:var(--ink);
-  overflow-x:hidden;
-}
- 
-/* ── NAV ─────────────────────────────── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 5%;
-  background:rgba(247,245,240,0.92);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-}
-.logo{
-  font-family:'DM Serif Display',serif;
-  font-size:1.6rem;color:var(--ink);letter-spacing:-0.5px;
-  display:flex;align-items:center;gap:8px;
-}
-.logo-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--gold);display:inline-block;
-  margin-bottom:2px;
-}
-.nav-links{display:flex;gap:28px;list-style:none;}
-.nav-links a{
-  color:var(--ink2);text-decoration:none;
-  font-size:0.88rem;font-weight:500;transition:color 0.2s;
-}
-.nav-links a:hover{color:var(--ink);}
-.nav-btns{display:flex;gap:10px;align-items:center;}
-.btn{
-  padding:10px 22px;border-radius:10px;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.85rem;font-weight:700;cursor:pointer;
-  border:none;transition:all 0.22s;letter-spacing:0.1px;
-}
-.btn-ghost{
-  background:transparent;
-  border:1.5px solid var(--border);
-  color:var(--ink2);
-}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
-.btn-gold{
-  background:var(--gold);color:var(--white);
-  box-shadow:0 2px 12px rgba(200,146,42,0.3);
-}
-.btn-gold:hover{background:#b8821a;transform:translateY(-1px);}
- 
-/* ── HERO ─────────────────────────────── */
-.hero{
-  min-height:100vh;
-  display:grid;grid-template-columns:1fr 1fr;
-  align-items:center;gap:0;
-  padding:100px 5% 60px;
-  position:relative;overflow:hidden;
-}
-.hero-left{padding-right:48px;}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--goldbg);border:1px solid rgba(200,146,42,0.25);
-  border-radius:999px;padding:6px 16px;margin-bottom:28px;
-  font-size:0.78rem;font-weight:700;color:var(--gold);
-  letter-spacing:0.5px;text-transform:uppercase;
-  animation:fadeUp 0.6s ease both;
-}
-.hero-eyebrow span{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--gold);display:inline-block;
-  animation:blink 1.8s infinite;
-}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
- 
-h1{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2.4rem,4.5vw,3.8rem);
-  line-height:1.1;letter-spacing:-1px;
-  color:var(--ink);margin-bottom:22px;
-  animation:fadeUp 0.6s 0.1s ease both;
-}
-h1 em{color:var(--gold);font-style:italic;}
-.hero-sub{
-  font-size:1.05rem;color:var(--ink2);
-  line-height:1.75;max-width:460px;margin-bottom:36px;
-  font-weight:400;
-  animation:fadeUp 0.6s 0.2s ease both;
-}
-.hero-ctas{
-  display:flex;gap:12px;flex-wrap:wrap;
-  animation:fadeUp 0.6s 0.3s ease both;
-}
-.btn-large{padding:15px 34px;font-size:1rem;border-radius:12px;}
-.btn-outline-ink{
-  background:transparent;border:1.5px solid var(--ink);
-  color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:1rem;font-weight:700;cursor:pointer;
-  border-radius:12px;padding:15px 34px;transition:all 0.2s;
-}
-.btn-outline-ink:hover{background:var(--ink);color:var(--white);}
- 
-/* TRUST STRIP */
-.trust-strip{
-  display:flex;align-items:center;gap:20px;
-  margin-top:40px;flex-wrap:wrap;
-  animation:fadeUp 0.6s 0.4s ease both;
-}
-.trust-item{
-  display:flex;align-items:center;gap:6px;
-  font-size:0.82rem;color:var(--ink3);font-weight:500;
-}
-.trust-item .icon{font-size:1rem;}
-.trust-divider{width:1px;height:16px;background:var(--border);}
- 
-/* HERO RIGHT — floating card stack */
-.hero-right{
-  position:relative;height:500px;
-  animation:fadeIn 0.8s 0.4s ease both;
-}
-.hero-card{
-  position:absolute;background:var(--white);
-  border-radius:20px;box-shadow:var(--shadow2);
-  border:1px solid var(--border);padding:20px 24px;
-}
-.hc1{
-  top:0;right:0;width:300px;
-  animation:float1 4s ease-in-out infinite;
-}
-.hc2{
-  top:160px;left:0;width:280px;
-  animation:float2 4s 1s ease-in-out infinite;
-}
-.hc3{
-  bottom:0;right:40px;width:260px;
-  animation:float1 4s 2s ease-in-out infinite;
-}
-@keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes float2{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
- 
-.hc-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.hc-avatar{
-  width:40px;height:40px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:0.9rem;
-}
-.hc-name{font-weight:700;font-size:0.9rem;color:var(--ink);}
-.hc-sub{font-size:0.75rem;color:var(--ink3);margin-top:2px;}
-.hc-tags{display:flex;gap:6px;flex-wrap:wrap;}
-.hc-tag{
-  padding:4px 10px;border-radius:6px;
-  font-size:0.72rem;font-weight:700;
-}
-.tag-gold{background:var(--goldbg);color:var(--gold);}
-.tag-teal{background:var(--tealbg);color:var(--teal);}
-.tag-ink{background:#f0ede8;color:var(--ink2);}
-.hc-foot{
-  margin-top:12px;padding-top:12px;
-  border-top:1px solid var(--border);
-  display:flex;justify-content:space-between;align-items:center;
-}
-.hc-rate{font-size:0.9rem;font-weight:800;color:var(--teal);}
-.hc-loc{font-size:0.75rem;color:var(--ink3);}
-.hc-connect{
-  background:var(--gold);color:var(--white);
-  border:none;border-radius:7px;padding:6px 14px;
-  font-size:0.75rem;font-weight:700;cursor:pointer;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  transition:background 0.2s;
-}
-.hc-connect:hover{background:#b8821a;}
- 
-/* Notification card */
-.hc-notif{
-  display:flex;align-items:center;gap:12px;
-  background:var(--tealbg);border-radius:12px;padding:12px 16px;
-}
-.hc-notif-icon{font-size:1.6rem;}
-.hc-notif-text strong{display:block;font-size:0.85rem;color:var(--teal);font-weight:700;}
-.hc-notif-text span{font-size:0.75rem;color:var(--ink3);}
- 
-/* Earning card */
-.earn-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.earn-label{font-size:0.8rem;color:var(--ink3);font-weight:500;}
-.earn-val{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--teal);}
-.earn-sub{font-size:0.75rem;color:var(--ink3);}
-.earn-bar{height:6px;background:#e0ede8;border-radius:999px;overflow:hidden;margin-top:4px;}
-.earn-fill{height:100%;background:var(--teal);border-radius:999px;width:72%;}
- 
-/* hero bg */
-.hero-bg-blob{
-  position:absolute;top:-100px;right:-100px;
-  width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(rgba(200,146,42,0.08),transparent 70%);
-  z-index:-1;
-}
- 
-/* ── STATS ─────────────────────────────── */
-.stats{
-  background:var(--ink);color:var(--white);
-  display:flex;justify-content:center;flex-wrap:wrap;
-}
-.stat{
-  flex:1;min-width:160px;text-align:center;
-  padding:36px 20px;
-  border-right:1px solid rgba(255,255,255,0.08);
-}
-.stat:last-child{border-right:none;}
-.stat-num{
-  font-family:'DM Serif Display',serif;
-  font-size:2.4rem;color:var(--gold2);margin-bottom:4px;
-}
-.stat-label{font-size:0.82rem;color:rgba(255,255,255,0.5);font-weight:500;}
- 
-/* ── MISSION / VISION ─────────────────── */
-.mission{
-  padding:100px 5%;
-  background:var(--white);
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:80px;align-items:center;
-}
-.mission-left .section-tag{
-  font-size:0.72rem;font-weight:800;letter-spacing:3px;
-  text-transform:uppercase;color:var(--gold);margin-bottom:16px;
-}
-.mission-left h2{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2rem,3.5vw,3rem);
-  line-height:1.15;letter-spacing:-0.5px;margin-bottom:24px;
-}
-.mission-left h2 em{color:var(--gold);font-style:italic;}
-.mission-body{
-  font-size:1rem;color:var(--ink2);
-  line-height:1.8;margin-bottom:32px;
-}
-.mission-body strong{color:var(--ink);font-weight:700;}
-.mission-values{display:flex;flex-direction:column;gap:16px;}
-.mv{
-  display:flex;align-items:flex-start;gap:14px;
-  background:var(--bg);border:1px solid var(--border);
-  border-radius:12px;padding:16px 20px;
-  transition:border-color 0.2s,transform 0.2s;
-}
-.mv:hover{border-color:var(--gold);transform:translateX(4px);}
-.mv-icon{
-  font-size:1.4rem;flex-shrink:0;
-  background:var(--goldbg);border-radius:8px;
-  width:42px;height:42px;display:flex;
-  align-items:center;justify-content:center;
-}
-.mv-text h4{font-size:0.9rem;font-weight:700;color:var(--ink);margin-bottom:3px;}
-.mv-text p{font-size:0.82rem;color:var(--ink3);line-height:1.5;}
- 
-/* Mission right — quote block */
-.mission-right{
-  background:var(--ink);border-radius:24px;
-  padding:48px 40px;color:var(--white);
-  position:relative;overflow:hidden;
-}
-.mission-right::before{
-  content:'"';
-  font-family:'DM Serif Display',serif;
-  font-size:12rem;color:rgba(200,146,42,0.15);
-  position:absolute;top:-30px;left:20px;line-height:1;
-}
-.mission-quote{
-  font-family:'DM Serif Display',serif;
-  font-size:1.5rem;line-height:1.5;
-  color:var(--white);margin-bottom:28px;
-  position:relative;z-index:1;
-}
-.mission-quote em{color:var(--gold2);font-style:italic;}
-.mission-founder{
-  display:flex;align-items:center;gap:12px;
-  position:relative;z-index:1;
-}
-.founder-avatar{
-  width:48px;height:48px;border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),var(--gold2));
-  display:flex;align-items:center;justify-content:center;
-  font-family:'DM Serif Display',serif;font-size:1.1rem;
-  color:var(--white);font-weight:400;
-}
-.founder-name{font-weight:700;font-size:0.9rem;}
-.founder-role{font-size:0.78rem;color:rgba(255,255,255,0.5);margin-top:2px;}
-.mission-pillars{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:16px;margin-top:32px;position:relative;z-index:1;
-}
-.pillar{
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:12px;padding:16px;
-}
-.pillar-num{
-  font-family:'DM Serif Display',serif;
-  font-size:1.8rem;color:var(--gold2);line-height:1;margin-bottom:4px;
-}
-.pillar-label{font-size:0.78rem;color:rgba(255,255,255,0.5);font-weight:500;}
- 
-/* ── LOCATION SEARCH ──────────────────── */
-.find-section{
-  padding:100px 5%;background:var(--bg);
-}
-.find-section .section-tag{
-  font-size:0.72rem;font-weight:800;letter-spacing:3px;
-  text-transform:uppercase;color:var(--gold);margin-bottom:16px;
-}
-.find-section h2{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2rem,3.5vw,3rem);
-  letter-spacing:-0.5px;margin-bottom:10px;
-}
-.find-section h2 em{color:var(--gold);font-style:italic;}
-.find-section .sub{
-  color:var(--ink2);font-size:1rem;
-  line-height:1.7;max-width:520px;margin-bottom:48px;
-}
- 
-/* SEARCH WIDGET */
-.search-widget{
-  background:var(--white);border:1px solid var(--border);
-  border-radius:20px;padding:32px;
-  box-shadow:var(--shadow);margin-bottom:48px;
-}
-.search-row{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end;}
-.field{display:flex;flex-direction:column;gap:6px;flex:1;min-width:180px;position:relative;}
-.field label{
-  font-size:0.72rem;font-weight:800;color:var(--ink3);
-  letter-spacing:1px;text-transform:uppercase;
-}
- 
-/* LOCATION AUTOCOMPLETE */
-.loc-wrapper{position:relative;}
-.loc-input{
-  width:100%;background:var(--bg);
-  border:1.5px solid var(--border);border-radius:10px;
-  padding:12px 16px 12px 40px;
-  color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.9rem;outline:none;transition:border-color 0.2s;
-}
-.loc-input:focus{border-color:var(--gold);background:var(--white);}
-.loc-icon{
-  position:absolute;left:12px;top:50%;transform:translateY(-50%);
-  font-size:1rem;pointer-events:none;
-}
-.suggestions{
-  position:absolute;top:calc(100% + 6px);left:0;right:0;
-  background:var(--white);border:1px solid var(--border);
-  border-radius:12px;box-shadow:var(--shadow2);
-  z-index:100;overflow:hidden;display:none;max-height:280px;overflow-y:auto;
-}
-.suggestions.open{display:block;}
-.sug-group-label{
-  font-size:0.7rem;font-weight:800;color:var(--ink3);
-  letter-spacing:1.5px;text-transform:uppercase;
-  padding:10px 16px 4px;
-}
-.sug-item{
-  display:flex;align-items:center;gap:10px;
-  padding:10px 16px;cursor:pointer;transition:background 0.15s;
-}
-.sug-item:hover{background:var(--bg);}
-.sug-item-icon{font-size:0.9rem;color:var(--ink3);}
-.sug-item-main{font-size:0.87rem;font-weight:600;color:var(--ink);}
-.sug-item-sub{font-size:0.75rem;color:var(--ink3);}
-.sug-sep{height:1px;background:var(--border);margin:4px 0;}
- 
-.field select,.field input:not(.loc-input){
-  background:var(--bg);border:1.5px solid var(--border);
-  border-radius:10px;padding:12px 16px;
-  color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.9rem;outline:none;transition:border-color 0.2s;
-}
-.field select:focus,.field input:not(.loc-input):focus{border-color:var(--gold);}
-.search-btn{
-  background:var(--gold);color:var(--white);
-  border:none;border-radius:10px;
-  padding:12px 28px;font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.9rem;font-weight:700;cursor:pointer;
-  transition:all 0.2s;white-space:nowrap;align-self:flex-end;
-}
-.search-btn:hover{background:#b8821a;transform:translateY(-1px);}
- 
-/* TUTOR CARDS */
-.tutor-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;}
-.tutor-card{
-  background:var(--white);border:1px solid var(--border);
-  border-radius:var(--radius);padding:24px;
-  display:flex;flex-direction:column;gap:14px;
-  transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;
-  cursor:default;
-}
-.tutor-card:hover{
-  transform:translateY(-4px);
-  box-shadow:var(--shadow2);
-  border-color:rgba(200,146,42,0.3);
-}
-.t-top{display:flex;align-items:center;gap:12px;}
-.t-avatar{
-  width:50px;height:50px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:800;font-size:1rem;flex-shrink:0;
-}
-.t-name{font-weight:700;font-size:0.95rem;color:var(--ink);}
-.t-college{font-size:0.76rem;color:var(--ink3);margin-top:2px;}
-.t-badges{display:flex;flex-wrap:wrap;gap:6px;}
-.t-badge{
-  padding:4px 10px;border-radius:6px;
-  font-size:0.72rem;font-weight:700;
-}
-.t-info{display:flex;flex-direction:column;gap:5px;}
-.t-info-row{
-  display:flex;align-items:center;gap:6px;
-  font-size:0.8rem;color:var(--ink3);
-}
-.t-info-row span{font-size:0.85rem;}
-.t-footer{
-  display:flex;justify-content:space-between;align-items:center;
-  padding-top:14px;border-top:1px solid var(--border);
-}
-.t-rate{font-size:1rem;font-weight:800;color:var(--teal);}
-.t-avail{font-size:0.74rem;color:var(--ink3);}
-.t-btn{
-  background:var(--gold);color:var(--white);
-  border:none;border-radius:8px;
-  padding:8px 16px;font-size:0.8rem;font-weight:700;
-  cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;
-  transition:background 0.2s;
-}
-.t-btn:hover{background:#b8821a;}
-.verified-badge{
-  display:inline-flex;align-items:center;gap:4px;
-  background:var(--tealbg);color:var(--teal);
-  border-radius:6px;padding:3px 8px;
-  font-size:0.7rem;font-weight:700;
-}
- 
-/* ── HOW IT WORKS ─────────────────────── */
-.how{padding:100px 5%;background:var(--white);}
-.how .section-tag{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-.how h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-0.5px;margin-bottom:48px;}
-.how h2 em{color:var(--gold);font-style:italic;}
-.how-tabs{display:flex;gap:10px;margin-bottom:48px;border-bottom:2px solid var(--border);padding-bottom:0;}
-.htab{
-  padding:12px 28px;font-size:0.88rem;font-weight:700;
-  cursor:pointer;border:none;background:transparent;
-  color:var(--ink3);font-family:'Plus Jakarta Sans',sans-serif;
-  border-bottom:3px solid transparent;margin-bottom:-2px;
-  transition:all 0.2s;
-}
-.htab.active{color:var(--gold);border-bottom-color:var(--gold);}
-.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;position:relative;}
-.steps-grid::before{
-  content:'';position:absolute;top:30px;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--border),var(--border),transparent);
-  z-index:0;
-}
-.step{
-  padding:0 24px 32px;position:relative;z-index:1;
-  border-right:1px solid var(--border);
-}
-.step:last-child{border-right:none;}
-.step-circle{
-  width:60px;height:60px;border-radius:50%;
-  background:var(--white);border:2px solid var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'DM Serif Display',serif;font-size:1.4rem;
-  color:var(--gold);margin-bottom:20px;
-}
-.step h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:8px;}
-.step p{font-size:0.84rem;color:var(--ink3);line-height:1.65;}
- 
-/* ── JOIN / SIGNUP ────────────────────── */
-.join{padding:100px 5%;background:var(--bg2);}
-.join .section-tag{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-.join h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-0.5px;margin-bottom:10px;}
-.join h2 em{color:var(--gold);font-style:italic;}
-.join .sub{color:var(--ink2);font-size:1rem;line-height:1.7;max-width:520px;margin-bottom:48px;}
-.join-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
-.join-card{
-  background:var(--white);border:1.5px solid var(--border);
-  border-radius:20px;padding:36px;position:relative;overflow:hidden;
-}
-.join-card.parent-card{border-color:rgba(200,146,42,0.3);}
-.join-card.tutor-card{border-color:rgba(42,122,106,0.3);}
-.join-glow-p{
-  position:absolute;top:-60px;right:-60px;
-  width:200px;height:200px;border-radius:50%;
-  background:radial-gradient(rgba(200,146,42,0.1),transparent 70%);
-}
-.join-glow-t{
-  position:absolute;top:-60px;right:-60px;
-  width:200px;height:200px;border-radius:50%;
-  background:radial-gradient(rgba(42,122,106,0.1),transparent 70%);
-}
-.join-icon{font-size:2.2rem;margin-bottom:14px;}
-.join-card h3{
-  font-family:'DM Serif Display',serif;
-  font-size:1.6rem;margin-bottom:6px;
-}
-.join-card p{font-size:0.88rem;color:var(--ink3);line-height:1.6;margin-bottom:24px;}
-.perks{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:28px;}
-.perks li{
-  display:flex;align-items:center;gap:8px;
-  font-size:0.85rem;color:var(--ink2);
-}
-.perks li::before{
-  content:'✓';background:var(--tealbg);color:var(--teal);
-  width:20px;height:20px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.7rem;font-weight:800;flex-shrink:0;
-}
-.form-grp{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
-.form-grp input,.form-grp select{
-  background:var(--bg);border:1.5px solid var(--border);
-  border-radius:10px;padding:12px 16px;
-  color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.9rem;outline:none;transition:border-color 0.2s;
-}
-.form-grp input:focus,.form-grp select:focus{border-color:var(--gold);}
-.form-grp input::placeholder{color:var(--ink3);}
-.submit-p{
-  width:100%;padding:14px;border-radius:10px;
-  background:var(--gold);color:var(--white);
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.95rem;font-weight:700;border:none;cursor:pointer;
-  transition:all 0.2s;
-}
-.submit-p:hover{background:#b8821a;transform:translateY(-1px);}
-.submit-t{
-  width:100%;padding:14px;border-radius:10px;
-  background:var(--teal);color:var(--white);
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.95rem;font-weight:700;border:none;cursor:pointer;
-  transition:all 0.2s;
-}
-.submit-t:hover{background:#1f5e50;transform:translateY(-1px);}
-.success-box{
-  text-align:center;padding:20px 0;display:none;
-}
-.success-box .s-icon{font-size:2.8rem;margin-bottom:10px;}
-.success-box h4{font-family:'DM Serif Display',serif;font-size:1.3rem;margin-bottom:6px;}
-.success-box p{font-size:0.85rem;color:var(--ink3);}
- 
-/* ── TESTIMONIALS ─────────────────────── */
-.reviews{padding:100px 5%;background:var(--ink);}
-.reviews .section-tag{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold2);margin-bottom:16px;}
-.reviews h2{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2rem,3.5vw,3rem);letter-spacing:-0.5px;
-  color:var(--white);margin-bottom:48px;
-}
-.reviews h2 em{color:var(--gold2);font-style:italic;}
-.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-.review-card{
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(255,255,255,0.1);
-  border-radius:16px;padding:28px;
-  transition:border-color 0.2s;
-}
-.review-card:hover{border-color:rgba(200,146,42,0.4);}
-.stars{color:var(--gold2);font-size:0.9rem;letter-spacing:2px;margin-bottom:14px;}
-.review-text{
-  font-family:'DM Serif Display',serif;
-  font-size:1.05rem;line-height:1.65;
-  color:rgba(255,255,255,0.85);margin-bottom:20px;
-  font-style:italic;
-}
-.reviewer{display:flex;align-items:center;gap:10px;}
-.r-avatar{
-  width:36px;height:36px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-weight:700;font-size:0.82rem;
-}
-.r-name{font-size:0.85rem;font-weight:700;color:var(--white);}
-.r-role{font-size:0.74rem;color:rgba(255,255,255,0.4);}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Clarasta – Home Tutors You Can Trust</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --bg2: #efecea;
+      --ink: #1a1714;
+      --ink2: #4a4540;
+      --ink3: #8a837a;
+      --gold: #c8922a;
+      --gold2: #e8b04a;
+      --goldbg: #fdf3e0;
+      --teal: #2a7a6a;
+      --tealbg: #e0f2ee;
+      --white: #ffffff;
+      --border: #dedad4;
+      --shadow: 0 4px 30px rgba(26, 23, 20, 0.09);
+      --shadow2: 0 12px 60px rgba(26, 23, 20, 0.14);
+      --shadow3: 0 24px 80px rgba(26, 23, 20, 0.18);
+      --radius: 16px;
+    }
 
-/* ── TRUST SECTION ───────────────────── */
-.trust-section{padding:80px 5%;background:var(--white);border-top:1px solid var(--border);}
-.trust-section .section-tag{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-.trust-section h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.5px;margin-bottom:10px;}
-.trust-section h2 em{color:var(--gold);font-style:italic;}
-.trust-section .sub{color:var(--ink2);font-size:1rem;line-height:1.7;max-width:560px;margin-bottom:48px;}
-.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;}
-.trust-card{background:var(--bg);border:1.5px solid var(--border);border-radius:16px;padding:28px;transition:all 0.2s;}
-.trust-card:hover{border-color:var(--gold);box-shadow:var(--shadow2);transform:translateY(-3px);}
-.trust-card-icon{font-size:1.6rem;margin-bottom:14px;width:50px;height:50px;border-radius:14px;background:var(--goldbg);display:flex;align-items:center;justify-content:center;}
-.trust-card h3{font-size:0.95rem;font-weight:800;color:var(--ink);margin-bottom:8px;}
-.trust-card p{font-size:0.83rem;color:var(--ink3);line-height:1.65;}
-.trust-badges-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:22px;background:var(--bg);border-radius:16px;border:1px solid var(--border);}
-.trust-badge-pill{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;font-size:0.79rem;font-weight:700;border:1.5px solid var(--border);background:var(--white);color:var(--ink2);}
-.trust-badge-pill.gold{background:var(--goldbg);border-color:rgba(200,146,42,0.3);color:var(--gold);}
-.trust-badge-pill.teal{background:var(--tealbg);border-color:rgba(42,122,106,0.3);color:var(--teal);}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* ── FAQ SECTION ─────────────────────── */
-.faq-section{padding:80px 5%;background:var(--bg2);}
-.faq-section .section-tag{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-.faq-section h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.5px;margin-bottom:48px;}
-.faq-section h2 em{color:var(--gold);font-style:italic;}
-.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.faq-item{background:var(--white);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color 0.2s;}
-.faq-item:hover{border-color:rgba(200,146,42,0.3);}
-.faq-item.open{border-color:var(--gold);}
-.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;cursor:pointer;font-size:0.9rem;font-weight:700;color:var(--ink);gap:12px;user-select:none;}
-.faq-icon{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:0.82rem;color:var(--ink3);font-weight:800;transition:all 0.25s;}
-.faq-item.open .faq-icon{background:var(--goldbg);color:var(--gold);transform:rotate(45deg);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height 0.3s,padding 0.3s;padding:0 20px;font-size:0.85rem;color:var(--ink2);line-height:1.75;}
-.faq-item.open .faq-a{max-height:300px;padding:0 20px 18px;}
-.faq-more{text-align:center;margin-top:32px;}
-.faq-more a{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-weight:700;font-size:0.9rem;text-decoration:none;border:1.5px solid rgba(200,146,42,0.3);border-radius:10px;padding:12px 24px;background:var(--goldbg);transition:all 0.2s;}
-.faq-more a:hover{background:var(--gold);color:var(--white);}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* ── SUPPORT CTA ─────────────────────── */
-.support-cta{background:var(--ink);padding:56px 5%;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
-.sc-text h2{font-family:'DM Serif Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--white);letter-spacing:-0.3px;margin-bottom:8px;}
-.sc-text h2 em{color:var(--gold2);font-style:italic;}
-.sc-text p{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.6;}
-.sc-actions{display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
-.sc-wa-btn{display:flex;align-items:center;gap:10px;background:#25d366;color:var(--white);border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 16px rgba(37,211,102,0.3);}
-.sc-wa-btn:hover{background:#1aad54;transform:translateY(-1px);}
-.sc-email-btn{display:flex;align-items:center;gap:8px;justify-content:center;color:rgba(255,255,255,0.55);font-size:0.84rem;text-decoration:none;transition:color 0.2s;}
-.sc-email-btn:hover{color:var(--white);}
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
 
-/* ── FOOTER ───────────────────────────── */
-.f-logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
-.f-logo-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);}
-.f-trust-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
-.f-trust-pill{display:flex;align-items:center;gap:4px;font-size:0.69rem;font-weight:700;color:var(--ink3);background:var(--white);border:1px solid var(--border);border-radius:99px;padding:4px 10px;}
-.footer-bottom a{color:var(--ink3);text-decoration:none;transition:color 0.2s;}
-.footer-bottom a:hover{color:var(--gold);}
+    /* ── NAV ─────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 5%;
+      background: rgba(247, 245, 240, 0.88);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(222, 218, 212, 0.6);
+      transition: padding 0.3s, box-shadow 0.3s;
+    }
 
-/* ── FLOATING WA ─────────────────────── */
-.wa-float{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
-.wa-tooltip{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:12px 16px;max-width:200px;box-shadow:0 8px 32px rgba(26,23,20,0.14);font-size:0.8rem;color:var(--ink2);line-height:1.5;display:none;animation:ttFade 0.3s ease;}
-.wa-tooltip strong{display:block;color:var(--ink);margin-bottom:2px;font-size:0.85rem;}
-.wa-float:hover .wa-tooltip{display:block;}
-@keyframes ttFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.wa-circle{width:58px;height:58px;border-radius:50%;background:#25d366;color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 24px rgba(37,211,102,0.45);transition:transform 0.2s,box-shadow 0.2s;text-decoration:none;animation:waPulse 3s ease-in-out infinite;}
-.wa-circle:hover{transform:scale(1.1);}
-@keyframes waPulse{0%,100%{box-shadow:0 4px 24px rgba(37,211,102,0.45)}50%{box-shadow:0 4px 36px rgba(37,211,102,0.7)}}
+    nav.scrolled {
+      padding: 10px 5%;
+      box-shadow: 0 4px 30px rgba(26, 23, 20, 0.08);
+      background: rgba(247, 245, 240, 0.96);
+    }
 
-/* ── FOOTER (base) ───────────────────── */
+    .logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.65rem;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
 
-footer{
-  background:var(--bg2);border-top:1px solid var(--border);
-  padding:60px 5% 32px;
-}
-.footer-top{
-  display:grid;
-  grid-template-columns:1.5fr 1fr 1fr 1fr;
-  gap:40px;margin-bottom:48px;
-}
-.f-logo{
-  font-family:'DM Serif Display',serif;
-  font-size:1.5rem;color:var(--ink);margin-bottom:10px;
-}
-.f-desc{font-size:0.83rem;color:var(--ink3);line-height:1.65;max-width:240px;}
-.f-col h4{font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink3);margin-bottom:16px;}
-.f-col ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
-.f-col ul li a{color:var(--ink2);font-size:0.84rem;text-decoration:none;transition:color 0.2s;}
-.f-col ul li a:hover{color:var(--gold);}
-.footer-bottom{
-  border-top:1px solid var(--border);
-  padding-top:24px;display:flex;
-  justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
-}
-.footer-bottom p{font-size:0.78rem;color:var(--ink3);}
- 
-/* ── MODAL ────────────────────────────── */
-.overlay{
-  position:fixed;inset:0;background:rgba(26,23,20,0.6);
-  z-index:999;display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity 0.25s;padding:20px;
-  backdrop-filter:blur(4px);
-}
-.overlay.open{opacity:1;pointer-events:all;}
-.modal{
-  background:var(--white);border-radius:20px;
-  padding:36px;max-width:440px;width:100%;
-  position:relative;
-  transform:scale(0.96);transition:transform 0.25s;
-}
-.overlay.open .modal{transform:scale(1);}
-.modal-close{
-  position:absolute;top:16px;right:16px;
-  background:var(--bg);border:none;color:var(--ink3);
-  border-radius:8px;padding:6px 12px;cursor:pointer;
-  font-size:0.85rem;font-family:'Plus Jakarta Sans',sans-serif;
-}
- 
-/* ── SCROLL REVEAL ────────────────────── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.65s,transform 0.65s;}
-.reveal.visible{opacity:1;transform:translateY(0);}
- 
-/* ── RESPONSIVE ───────────────────────── */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;padding-top:120px;}
-  .hero-left{padding-right:0;}
-  .hero-right{display:none;}
-  .mission{grid-template-columns:1fr;}
-  .join-grid{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr 1fr;}
-  .steps-grid::before{display:none;}
-  .step{border-right:none;border-bottom:1px solid var(--border);padding:24px 0;}
-}
-@media(max-width:640px){
-  .nav-links{display:none;}
-  .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08);}
-  .stat:last-child{border-bottom:none;}
-  .footer-top{grid-template-columns:1fr;}
-}
-</style>
+    .logo-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      box-shadow: 0 3px 10px rgba(200, 146, 42, 0.35);
+      transition: transform 0.2s;
+    }
+
+    .logo:hover .logo-badge {
+      transform: rotate(10deg) scale(1.05);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--ink2);
+      text-decoration: none;
+      font-size: 0.87rem;
+      font-weight: 600;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 999px;
+      transform: scaleX(0);
+      transition: transform 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-btns {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 10px 22px;
+      border-radius: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.22s;
+      letter-spacing: 0.1px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--ink2);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: var(--goldbg);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #b8781a);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(200, 146, 42, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-gold::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200, 146, 42, 0.45);
+    }
+
+    .btn-gold:hover::before {
+      opacity: 1;
+    }
+
+    /* ── HERO ─────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 0;
+      padding: 100px 5% 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(200, 146, 42, 0.06), transparent),
+        radial-gradient(ellipse 60% 80% at 10% 90%, rgba(42, 122, 106, 0.04), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-left {
+      padding-right: 48px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--goldbg), #fff9ef);
+      border: 1px solid rgba(200, 146, 42, 0.3);
+      border-radius: 999px;
+      padding: 7px 18px;
+      margin-bottom: 32px;
+      font-size: 0.77rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      animation: fadeUp 0.6s ease both;
+      box-shadow: 0 2px 12px rgba(200, 146, 42, 0.12);
+    }
+
+    .hero-eyebrow span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: inline-block;
+      animation: blink 1.8s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.2
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+      line-height: 1.1;
+      letter-spacing: -1px;
+      color: var(--ink);
+      margin-bottom: 22px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    h1 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--ink2);
+      line-height: 1.75;
+      max-width: 460px;
+      margin-bottom: 36px;
+      font-weight: 400;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-large {
+      padding: 15px 34px;
+      font-size: 1rem;
+      border-radius: 12px;
+    }
+
+    .btn-outline-ink {
+      background: transparent;
+      border: 1.5px solid var(--ink);
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 12px;
+      padding: 15px 34px;
+      transition: all 0.2s;
+    }
+
+    .btn-outline-ink:hover {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    /* TRUST STRIP */
+    .trust-strip {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--ink3);
+      font-weight: 500;
+    }
+
+    .trust-item .icon {
+      font-size: 1rem;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 16px;
+      background: var(--border);
+    }
+
+    /* HERO RIGHT — floating card stack */
+    .hero-right {
+      position: relative;
+      height: 500px;
+      animation: fadeIn 0.8s 0.4s ease both;
+    }
+
+    .hero-card {
+      position: absolute;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: var(--shadow2);
+      border: 1px solid var(--border);
+      padding: 20px 24px;
+    }
+
+    .hc1 {
+      top: 0;
+      right: 0;
+      width: 300px;
+      animation: float1 4s ease-in-out infinite;
+    }
+
+    .hc2 {
+      top: 160px;
+      left: 0;
+      width: 280px;
+      animation: float2 4s 1s ease-in-out infinite;
+    }
+
+    .hc3 {
+      bottom: 0;
+      right: 40px;
+      width: 260px;
+      animation: float1 4s 2s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-10px)
+      }
+    }
+
+    @keyframes float2 {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(8px)
+      }
+    }
+
+    .hc-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .hc-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .hc-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--ink);
+    }
+
+    .hc-sub {
+      font-size: 0.75rem;
+      color: var(--ink3);
+      margin-top: 2px;
+    }
+
+    .hc-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .hc-tag {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .tag-gold {
+      background: var(--goldbg);
+      color: var(--gold);
+    }
+
+    .tag-teal {
+      background: var(--tealbg);
+      color: var(--teal);
+    }
+
+    .tag-ink {
+      background: #f0ede8;
+      color: var(--ink2);
+    }
+
+    .hc-foot {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hc-rate {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--teal);
+    }
+
+    .hc-loc {
+      font-size: 0.75rem;
+      color: var(--ink3);
+    }
+
+    .hc-connect {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      border-radius: 7px;
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: background 0.2s;
+    }
+
+    .hc-connect:hover {
+      background: #b8821a;
+    }
+
+    /* Notification card */
+    .hc-notif {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--tealbg);
+      border-radius: 12px;
+      padding: 12px 16px;
+    }
+
+    .hc-notif-icon {
+      font-size: 1.6rem;
+    }
+
+    .hc-notif-text strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--teal);
+      font-weight: 700;
+    }
+
+    .hc-notif-text span {
+      font-size: 0.75rem;
+      color: var(--ink3);
+    }
+
+    /* Earning card */
+    .earn-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .earn-label {
+      font-size: 0.8rem;
+      color: var(--ink3);
+      font-weight: 500;
+    }
+
+    .earn-val {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      color: var(--teal);
+    }
+
+    .earn-sub {
+      font-size: 0.75rem;
+      color: var(--ink3);
+    }
+
+    .earn-bar {
+      height: 6px;
+      background: #e0ede8;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+
+    .earn-fill {
+      height: 100%;
+      background: var(--teal);
+      border-radius: 999px;
+      width: 72%;
+    }
+
+    /* hero bg */
+    .hero-bg-blob {
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(rgba(200, 146, 42, 0.08), transparent 70%);
+      z-index: -1;
+    }
+
+    /* ── STATS ─────────────────────────────── */
+    .stats {
+      background: linear-gradient(135deg, #1a1714 0%, #0f0d0b 50%, #1d1a14 100%);
+      color: var(--white);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stats::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      width: 600px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(rgba(200, 146, 42, 0.08), transparent 70%);
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .stat {
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+      padding: 44px 20px;
+      border-right: 1px solid rgba(255, 255, 255, 0.07);
+      position: relative;
+      z-index: 1;
+      transition: background 0.3s;
+    }
+
+    .stat:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.6rem;
+      color: var(--gold2);
+      margin-bottom: 6px;
+      letter-spacing: -1px;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.45);
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── MISSION / VISION ─────────────────── */
+    .mission {
+      padding: 100px 5%;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .mission-left .section-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .mission-left h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 24px;
+    }
+
+    .mission-left h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .mission-body {
+      font-size: 1rem;
+      color: var(--ink2);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .mission-body strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .mission-values {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .mv {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .mv:hover {
+      border-color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    .mv-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      background: var(--goldbg);
+      border-radius: 8px;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mv-text h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .mv-text p {
+      font-size: 0.82rem;
+      color: var(--ink3);
+      line-height: 1.5;
+    }
+
+    /* Mission right — quote block */
+    .mission-right {
+      background: var(--ink);
+      border-radius: 24px;
+      padding: 48px 40px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-right::before {
+      content: '"';
+      font-family: 'DM Serif Display', serif;
+      font-size: 12rem;
+      color: rgba(200, 146, 42, 0.15);
+      position: absolute;
+      top: -30px;
+      left: 20px;
+      line-height: 1;
+    }
+
+    .mission-quote {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      line-height: 1.5;
+      color: var(--white);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mission-quote em {
+      color: var(--gold2);
+      font-style: italic;
+    }
+
+    .mission-founder {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .founder-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    .founder-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .founder-role {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    .mission-pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pillar {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .pillar-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--gold2);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .pillar-label {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 500;
+    }
+
+    /* ── LOCATION SEARCH ──────────────────── */
+    .find-section {
+      padding: 100px 5%;
+      background: var(--bg);
+    }
+
+    .find-section .section-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .find-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .find-section h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .find-section .sub {
+      color: var(--ink2);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    /* SEARCH WIDGET */
+    .search-widget {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      margin-bottom: 48px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex: 1;
+      min-width: 180px;
+      position: relative;
+    }
+
+    .field label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--ink3);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* LOCATION AUTOCOMPLETE */
+    .loc-wrapper {
+      position: relative;
+    }
+
+    .loc-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px 12px 40px;
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .loc-input:focus {
+      border-color: var(--gold);
+      background: var(--white);
+    }
+
+    .loc-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+
+    .suggestions {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      right: 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: var(--shadow2);
+      z-index: 100;
+      overflow: hidden;
+      display: none;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .suggestions.open {
+      display: block;
+    }
+
+    .sug-group-label {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--ink3);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 10px 16px 4px;
+    }
+
+    .sug-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .sug-item:hover {
+      background: var(--bg);
+    }
+
+    .sug-item-icon {
+      font-size: 0.9rem;
+      color: var(--ink3);
+    }
+
+    .sug-item-main {
+      font-size: 0.87rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .sug-item-sub {
+      font-size: 0.75rem;
+      color: var(--ink3);
+    }
+
+    .sug-sep {
+      height: 1px;
+      background: var(--border);
+      margin: 4px 0;
+    }
+
+    .field select,
+    .field input:not(.loc-input) {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field select:focus,
+    .field input:not(.loc-input):focus {
+      border-color: var(--gold);
+    }
+
+    .search-btn {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 28px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+      align-self: flex-end;
+    }
+
+    .search-btn:hover {
+      background: #b8821a;
+      transform: translateY(-1px);
+    }
+
+    /* TUTOR CARDS */
+    .tutor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .tutor-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+
+    .tutor-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow2);
+      border-color: rgba(200, 146, 42, 0.3);
+    }
+
+    .t-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .t-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .t-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .t-college {
+      font-size: 0.76rem;
+      color: var(--ink3);
+      margin-top: 2px;
+    }
+
+    .t-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .t-badge {
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .t-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .t-info-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--ink3);
+    }
+
+    .t-info-row span {
+      font-size: 0.85rem;
+    }
+
+    .t-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .t-rate {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--teal);
+    }
+
+    .t-avail {
+      font-size: 0.74rem;
+      color: var(--ink3);
+    }
+
+    .t-btn {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: background 0.2s;
+    }
+
+    .t-btn:hover {
+      background: #b8821a;
+    }
+
+    .verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--tealbg);
+      color: var(--teal);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    /* ── HOW IT WORKS ─────────────────────── */
+    .how {
+      padding: 100px 5%;
+      background: var(--white);
+    }
+
+    .how .section-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .how h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -0.5px;
+      margin-bottom: 48px;
+    }
+
+    .how h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .how-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 48px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0;
+    }
+
+    .htab {
+      padding: 12px 28px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--ink3);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.2s;
+    }
+
+    .htab.active {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+      z-index: 0;
+    }
+
+    .step {
+      padding: 0 24px 32px;
+      position: relative;
+      z-index: 1;
+      border-right: 1px solid var(--border);
+    }
+
+    .step:last-child {
+      border-right: none;
+    }
+
+    .step-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 2px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 0.84rem;
+      color: var(--ink3);
+      line-height: 1.65;
+    }
+
+    /* ── JOIN / SIGNUP ────────────────────── */
+    .join {
+      padding: 100px 5%;
+      background: var(--bg2);
+    }
+
+    .join .section-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .join h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .join h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .join .sub {
+      color: var(--ink2);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 520px;
+      margin-bottom: 48px;
+    }
+
+    .join-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .join-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .join-card.parent-card {
+      border-color: rgba(200, 146, 42, 0.3);
+    }
+
+    .join-card.tutor-card {
+      border-color: rgba(42, 122, 106, 0.3);
+    }
+
+    .join-glow-p {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(rgba(200, 146, 42, 0.1), transparent 70%);
+    }
+
+    .join-glow-t {
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(rgba(42, 122, 106, 0.1), transparent 70%);
+    }
+
+    .join-icon {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+
+    .join-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .join-card p {
+      font-size: 0.88rem;
+      color: var(--ink3);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .perks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-bottom: 28px;
+    }
+
+    .perks li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--ink2);
+    }
+
+    .perks li::before {
+      content: '✓';
+      background: var(--tealbg);
+      color: var(--teal);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .form-grp {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .form-grp input,
+    .form-grp select {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: var(--ink);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-grp input:focus,
+    .form-grp select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-grp input::placeholder {
+      color: var(--ink3);
+    }
+
+    .submit-p {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      background: var(--gold);
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .submit-p:hover {
+      background: #b8821a;
+      transform: translateY(-1px);
+    }
+
+    .submit-t {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .submit-t:hover {
+      background: #1f5e50;
+      transform: translateY(-1px);
+    }
+
+    .success-box {
+      text-align: center;
+      padding: 20px 0;
+      display: none;
+    }
+
+    .success-box .s-icon {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    .success-box h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+
+    .success-box p {
+      font-size: 0.85rem;
+      color: var(--ink3);
+    }
+
+    /* ── TESTIMONIALS ─────────────────────── */
+    .reviews {
+      padding: 100px 5%;
+      background: var(--ink);
+    }
+
+    .reviews .section-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold2);
+      margin-bottom: 16px;
+    }
+
+    .reviews h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -0.5px;
+      color: var(--white);
+      margin-bottom: 48px;
+    }
+
+    .reviews h2 em {
+      color: var(--gold2);
+      font-style: italic;
+    }
+
+    .review-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .review-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+
+    .review-card:hover {
+      border-color: rgba(200, 146, 42, 0.4);
+    }
+
+    .stars {
+      color: var(--gold2);
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .review-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .r-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    .r-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .r-role {
+      font-size: 0.74rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ── TRUST SECTION ───────────────────── */
+    .trust-section {
+      padding: 80px 5%;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+    }
+
+    .trust-section .section-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .trust-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .trust-section h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .trust-section .sub {
+      color: var(--ink2);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 560px;
+      margin-bottom: 48px;
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .trust-card {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: all 0.2s;
+    }
+
+    .trust-card:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow2);
+      transform: translateY(-3px);
+    }
+
+    .trust-card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 14px;
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      background: var(--goldbg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .trust-card h3 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .trust-card p {
+      font-size: 0.83rem;
+      color: var(--ink3);
+      line-height: 1.65;
+    }
+
+    .trust-badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      padding: 22px;
+      background: var(--bg);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .trust-badge-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 99px;
+      font-size: 0.79rem;
+      font-weight: 700;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      color: var(--ink2);
+    }
+
+    .trust-badge-pill.gold {
+      background: var(--goldbg);
+      border-color: rgba(200, 146, 42, 0.3);
+      color: var(--gold);
+    }
+
+    .trust-badge-pill.teal {
+      background: var(--tealbg);
+      border-color: rgba(42, 122, 106, 0.3);
+      color: var(--teal);
+    }
+
+    /* ── FAQ SECTION ─────────────────────── */
+    .faq-section {
+      padding: 80px 5%;
+      background: var(--bg2);
+    }
+
+    .faq-section .section-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .faq-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.5px;
+      margin-bottom: 48px;
+    }
+
+    .faq-section h2 em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(200, 146, 42, 0.3);
+    }
+
+    .faq-item.open {
+      border-color: var(--gold);
+    }
+
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--ink);
+      gap: 12px;
+      user-select: none;
+    }
+
+    .faq-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: var(--bg2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      color: var(--ink3);
+      font-weight: 800;
+      transition: all 0.25s;
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--goldbg);
+      color: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s, padding 0.3s;
+      padding: 0 20px;
+      font-size: 0.85rem;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 300px;
+      padding: 0 20px 18px;
+    }
+
+    .faq-more {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .faq-more a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1.5px solid rgba(200, 146, 42, 0.3);
+      border-radius: 10px;
+      padding: 12px 24px;
+      background: var(--goldbg);
+      transition: all 0.2s;
+    }
+
+    .faq-more a:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    /* ── SUPPORT CTA ─────────────────────── */
+    .support-cta {
+      background: var(--ink);
+      padding: 56px 5%;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .sc-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: var(--white);
+      letter-spacing: -0.3px;
+      margin-bottom: 8px;
+    }
+
+    .sc-text h2 em {
+      color: var(--gold2);
+      font-style: italic;
+    }
+
+    .sc-text p {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.5);
+      line-height: 1.6;
+    }
+
+    .sc-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .sc-wa-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #25d366;
+      color: var(--white);
+      border: none;
+      border-radius: 12px;
+      padding: 14px 24px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+    }
+
+    .sc-wa-btn:hover {
+      background: #1aad54;
+      transform: translateY(-1px);
+    }
+
+    .sc-email-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.84rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .sc-email-btn:hover {
+      color: var(--white);
+    }
+
+    /* ── FLOATING WA ─────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .wa-tooltip {
+      background: var(--ink);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 12px 16px;
+      max-width: 210px;
+      box-shadow: 0 12px 40px rgba(26, 23, 20, 0.25);
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.5;
+      display: none;
+      animation: ttFade 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .wa-tooltip strong {
+      display: block;
+      color: var(--white);
+      margin-bottom: 3px;
+      font-size: 0.86rem;
+    }
+
+    .wa-float:hover .wa-tooltip {
+      display: block;
+    }
+
+    @keyframes ttFade {
+      from {
+        opacity: 0;
+        transform: translateY(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .wa-circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #25d366, #1aad54);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      animation: waPulse 3s ease-in-out infinite;
+    }
+
+    .wa-circle:hover {
+      transform: scale(1.12);
+      box-shadow: 0 10px 40px rgba(37, 211, 102, 0.65);
+    }
+
+    @keyframes waPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 6px 28px rgba(37, 211, 102, 0.5)
+      }
+
+      50% {
+        box-shadow: 0 8px 40px rgba(37, 211, 102, 0.75)
+      }
+    }
+
+    /* ── FOOTER (base) ───────────────────── */
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 60px 5% 32px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .f-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--ink);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .f-logo-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .f-desc {
+      font-size: 0.83rem;
+      color: var(--ink3);
+      line-height: 1.65;
+      max-width: 240px;
+    }
+
+    .f-trust-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .f-trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.69rem;
+      font-weight: 700;
+      color: var(--ink3);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 99px;
+      padding: 4px 10px;
+    }
+
+    .f-col h4 {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink3);
+      margin-bottom: 16px;
+    }
+
+    .f-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .f-col ul li a {
+      color: var(--ink2);
+      font-size: 0.84rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .f-col ul li a:hover {
+      color: var(--gold);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.78rem;
+      color: var(--ink3);
+    }
+
+    .footer-bottom a {
+      color: var(--ink3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom a:hover {
+      color: var(--gold);
+    }
+
+    /* ── MODAL ────────────────────────────── */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26, 23, 20, 0.6);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s;
+      padding: 20px;
+      backdrop-filter: blur(4px);
+    }
+
+    .overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px;
+      max-width: 440px;
+      width: 100%;
+      position: relative;
+      transform: scale(0.96);
+      transition: transform 0.25s;
+    }
+
+    .overlay.open .modal {
+      transform: scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--bg);
+      border: none;
+      color: var(--ink3);
+      border-radius: 8px;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* ── SCROLL REVEAL ────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.65s, transform 0.65s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ───────────────────────── */
+    @media(max-width:900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 120px;
+      }
+
+      .hero-left {
+        padding-right: 0;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .mission {
+        grid-template-columns: 1fr;
+      }
+
+      .join-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .steps-grid::before {
+        display: none;
+      }
+
+      .step {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 24px 0;
+      }
+    }
+
+    @media(max-width:640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .stat:last-child {
+        border-bottom: none;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
- 
-<!-- NAV -->
-<nav>
-  <div class="logo">
-    <div class="logo-dot"></div>
-    Clarasta
-  </div>
-  <ul class="nav-links">
-    <li><a href="#mission">Our Mission</a></li>
-    <li><a href="#find">Find Tutor</a></li>
-    <li><a href="#how">How it Works</a></li>
-    <li><a href="#join">Join</a></li>
-    <li><a href="support.html">Support</a></li>
-  </ul>
-  <div class="nav-btns">
-    <a href="auth.html" class="btn btn-ghost" id="nav-login-btn">Login</a>
-    <a href="auth.html" class="btn btn-ghost" onclick="localStorage.setItem('auth_role','parent')" style="border-color:var(--gold);color:var(--gold);">For Parents</a>
-    <a href="auth.html" class="btn btn-gold" onclick="localStorage.setItem('auth_role','tutor')">Become a Tutor</a>
-  </div>
-</nav>
- 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-bg-blob"></div>
-  <div class="hero-left">
-    <div class="hero-eyebrow"><span></span> Crossing Republic · Gaur City · Ghaziabad</div>
-    <h1>Your Child Deserves a Tutor Who <em>Truly Cares</em></h1>
-    <p class="hero-sub">Clarasta connects families with verified BTech students for one-on-one home tutoring — in your society, at your time, at honest prices.</p>
-    <div class="hero-ctas">
-      <button class="btn btn-gold btn-large" onclick="document.getElementById('find').scrollIntoView({behavior:'smooth'})">Find a Tutor Near Me</button>
-      <button class="btn-outline-ink" onclick="openModal('tutor')">Earn as a Tutor →</button>
-    </div>
-    <div class="trust-strip">
-      <div class="trust-item"><span class="icon">✅</span> Verified IDs</div>
-      <div class="trust-divider"></div>
-      <div class="trust-item"><span class="icon">🏠</span> Home Service</div>
-      <div class="trust-divider"></div>
-      <div class="trust-item"><span class="icon">🆓</span> Free Demo</div>
-      <div class="trust-divider"></div>
-      <div class="trust-item"><span class="icon">💬</span> Direct WhatsApp</div>
-    </div>
-  </div>
- 
-  <div class="hero-right">
-    <!-- Card 1: Tutor profile -->
-    <div class="hero-card hc1">
-      <div class="hc-top">
-        <div class="hc-avatar" style="background:#fdf3e0;color:#c8922a;">AK</div>
-        <div>
-          <div class="hc-name">Arjun Kumar</div>
-          <div class="hc-sub">BTech CSE · ABES Engineering</div>
-        </div>
-      </div>
-      <div class="hc-tags">
-        <span class="hc-tag tag-gold">Maths</span>
-        <span class="hc-tag tag-teal">Physics</span>
-        <span class="hc-tag tag-ink">Class 9–12</span>
-      </div>
-      <div class="hc-foot">
-        <div>
-          <div class="hc-rate">₹300/hr</div>
-          <div class="hc-loc">📍 Crossing Republic</div>
-        </div>
-        <button class="hc-connect">Connect</button>
-      </div>
-    </div>
- 
-    <!-- Card 2: Notification -->
-    <div class="hero-card hc2">
-      <div class="hc-notif">
-        <div class="hc-notif-icon">🎉</div>
-        <div class="hc-notif-text">
-          <strong>New tutor match found!</strong>
-          <span>Priya S. — 0.3 km from you · Available now</span>
-        </div>
-      </div>
-    </div>
- 
-    <!-- Card 3: Earnings -->
-    <div class="hero-card hc3">
-      <div class="earn-row">
-        <div class="earn-label">This Month's Earnings</div>
-        <div style="font-size:0.75rem;color:var(--teal);font-weight:700;">+18% ↑</div>
-      </div>
-      <div class="earn-val">₹5,400</div>
-      <div class="earn-sub">Teaching 2 students · 1hr/day</div>
-      <div class="earn-bar"><div class="earn-fill"></div></div>
-    </div>
-  </div>
-</section>
- 
-<!-- STATS -->
-<div class="stats reveal">
-  <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Verified Tutors</div></div>
-  <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Families Served</div></div>
-  <div class="stat"><div class="stat-num">4.9★</div><div class="stat-label">Average Rating</div></div>
-  <div class="stat"><div class="stat-num">₹0</div><div class="stat-label">Platform Fee (ever)</div></div>
-</div>
- 
-<!-- MISSION / VISION -->
-<section class="mission" id="mission">
-  <div class="mission-left reveal">
-    <div class="section-tag">Our Mission</div>
-    <h2>Education That <em>Reaches Home</em></h2>
-    <p class="mission-body">
-      Most children in apartment societies like Crossing Republic struggle to find <strong>reliable, affordable tutors</strong> who live nearby and actually show up.<br/><br/>
-      Clarasta was built to fix this — by connecting parents directly with <strong>BTech students from nearby colleges</strong> who live in the same societies, understand local needs, and genuinely want to help.
-    </p>
-    <div class="mission-values">
-      <div class="mv">
-        <div class="mv-icon">🤝</div>
-        <div class="mv-text">
-          <h4>Trust First</h4>
-          <p>Every tutor is verified with college ID before going live. Parents always know who is coming home.</p>
-        </div>
-      </div>
-      <div class="mv">
-        <div class="mv-icon">📍</div>
-        <div class="mv-text">
-          <h4>Hyper Local</h4>
-          <p>We only show tutors who live in or near your society — shorter commute means more reliability.</p>
-        </div>
-      </div>
-      <div class="mv">
-        <div class="mv-icon">💸</div>
-        <div class="mv-text">
-          <h4>Fair for Everyone</h4>
-          <p>No hidden charges. Parents pay tutors directly. Clarasta never takes a cut from either side.</p>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-  <div class="mission-right reveal">
-    <div class="mission-quote">
-      "Every BTech student has the knowledge to change a child's academic journey. Every parent deserves to find that student <em>within walking distance.</em>"
-    </div>
-    <div class="mission-founder">
-      <div class="founder-avatar">C</div>
-      <div>
-        <div class="founder-name">Clarasta Founders</div>
-        <div class="founder-role">BTech Students · Crossing Republic, Ghaziabad</div>
-      </div>
-    </div>
-    <div class="mission-pillars">
-      <div class="pillar">
-        <div class="pillar-num">1:1</div>
-        <div class="pillar-label">Personal Attention</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">0%</div>
-        <div class="pillar-label">Commission Taken</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">24hr</div>
-        <div class="pillar-label">Tutor Verification</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-num">₹0</div>
-        <div class="pillar-label">Demo Session Cost</div>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<!-- FIND TUTORS -->
-<section class="find-section" id="find">
-  <div class="section-tag reveal">Search</div>
-  <h2 class="reveal">Find Tutors <em>Near You</em></h2>
-  <p class="sub reveal">Type your society or tower name and we'll show verified tutors walking distance from you.</p>
- 
-  <div class="search-widget reveal">
-    <div class="search-row">
-      <!-- LOCATION AUTOCOMPLETE -->
-      <div class="field" style="flex:1.5;">
-        <label>📍 Your Location</label>
-        <div class="loc-wrapper">
-          <span class="loc-icon">📍</span>
-          <input
-            class="loc-input"
-            id="locInput"
-            type="text"
-            placeholder="Type society, tower or area..."
-            autocomplete="off"
-            oninput="onLocInput(this.value)"
-            onfocus="onLocFocus()"
-            onblur="setTimeout(()=>closeSug(),200)"
-          />
-          <div class="suggestions" id="sugBox"></div>
-        </div>
-      </div>
-      <div class="field">
-        <label>🎓 Class</label>
-        <select id="classFilter">
-          <option value="">Any Class</option>
-          <option>Class 1–5</option>
-          <option>Class 6–8</option>
-          <option>Class 9–10</option>
-          <option>Class 11–12</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>📚 Subject</label>
-        <select id="subjectFilter">
-          <option value="">All Subjects</option>
-          <option>Mathematics</option>
-          <option>Physics</option>
-          <option>Chemistry</option>
-          <option>English</option>
-          <option>Computer Science</option>
-          <option>Biology</option>
-          <option>Hindi</option>
-        </select>
-      </div>
-      <button class="search-btn" onclick="searchTutors()">Search Tutors →</button>
-    </div>
-  </div>
- 
-  <div class="tutor-grid reveal" id="tutorGrid">
-    <!-- Default tutor cards -->
-    <div class="tutor-card">
-      <div class="t-top">
-        <div class="t-avatar" style="background:#fdf3e0;color:#c8922a;">AK</div>
-        <div>
-          <div class="t-name">Arjun Kumar <span class="verified-badge">✓ Verified</span></div>
-          <div class="t-college">BTech CSE · ABES Engineering College</div>
-        </div>
-      </div>
-      <div class="t-badges">
-        <span class="t-badge tag-gold">Mathematics</span>
-        <span class="t-badge tag-teal">Computer Science</span>
-        <span class="t-badge tag-ink">Class 9–12</span>
-      </div>
-      <div class="t-info">
-        <div class="t-info-row"><span>📍</span> Crossing Republic, Tower D-7</div>
-        <div class="t-info-row"><span>⏰</span> Evenings 6 PM – 8 PM</div>
-        <div class="t-info-row"><span>⭐</span> 4.9 rating · 38 sessions done</div>
-      </div>
-      <div class="t-footer">
-        <div><div class="t-rate">₹300/hr</div><div class="t-avail">Free demo available</div></div>
-        <button class="t-btn" onclick="openModal('parent')">Connect</button>
-      </div>
-    </div>
- 
-    <div class="tutor-card">
-      <div class="t-top">
-        <div class="t-avatar" style="background:#e0f2ee;color:#2a7a6a;">PS</div>
-        <div>
-          <div class="t-name">Priya Sharma <span class="verified-badge">✓ Verified</span></div>
-          <div class="t-college">BTech ECE · Galgotias University</div>
-        </div>
-      </div>
-      <div class="t-badges">
-        <span class="t-badge tag-teal">Physics</span>
-        <span class="t-badge tag-teal">Chemistry</span>
-        <span class="t-badge tag-gold">Mathematics</span>
-      </div>
-      <div class="t-info">
-        <div class="t-info-row"><span>📍</span> Gaur City 2, Sector 16C</div>
-        <div class="t-info-row"><span>⏰</span> Evenings 5 PM – 7 PM</div>
-        <div class="t-info-row"><span>⭐</span> 5.0 rating · 52 sessions done</div>
-      </div>
-      <div class="t-footer">
-        <div><div class="t-rate">₹350/hr</div><div class="t-avail">Free demo available</div></div>
-        <button class="t-btn" onclick="openModal('parent')">Connect</button>
-      </div>
-    </div>
- 
-    <div class="tutor-card">
-      <div class="t-top">
-        <div class="t-avatar" style="background:#f0ede8;color:#4a4540;">RV</div>
-        <div>
-          <div class="t-name">Rahul Verma <span class="verified-badge">✓ Verified</span></div>
-          <div class="t-college">BTech ME · KIET Group of Institutions</div>
-        </div>
-      </div>
-      <div class="t-badges">
-        <span class="t-badge tag-gold">Mathematics</span>
-        <span class="t-badge tag-teal">Physics</span>
-        <span class="t-badge tag-ink">Class 6–10</span>
-      </div>
-      <div class="t-info">
-        <div class="t-info-row"><span>📍</span> Raj Nagar Extension, Phase 1</div>
-        <div class="t-info-row"><span>⏰</span> Evenings 7 PM – 9 PM</div>
-        <div class="t-info-row"><span>⭐</span> 4.8 rating · 29 sessions done</div>
-      </div>
-      <div class="t-footer">
-        <div><div class="t-rate">₹250/hr</div><div class="t-avail">Free demo available</div></div>
-        <button class="t-btn" onclick="openModal('parent')">Connect</button>
-      </div>
-    </div>
- 
-    <div class="tutor-card">
-      <div class="t-top">
-        <div class="t-avatar" style="background:#fdf3e0;color:#c8922a;">SG</div>
-        <div>
-          <div class="t-name">Sneha Gupta <span class="verified-badge">✓ Verified</span></div>
-          <div class="t-college">BTech IT · Sharda University</div>
-        </div>
-      </div>
-      <div class="t-badges">
-        <span class="t-badge tag-ink">English</span>
-        <span class="t-badge tag-teal">Computer Science</span>
-        <span class="t-badge tag-ink">Class 1–8</span>
-      </div>
-      <div class="t-info">
-        <div class="t-info-row"><span>📍</span> Crossing Republic, Phase 2</div>
-        <div class="t-info-row"><span>⏰</span> Flexible timings</div>
-        <div class="t-info-row"><span>⭐</span> 4.9 rating · 44 sessions done</div>
-      </div>
-      <div class="t-footer">
-        <div><div class="t-rate">₹280/hr</div><div class="t-avail">Free demo available</div></div>
-        <button class="t-btn" onclick="openModal('parent')">Connect</button>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<!-- HOW IT WORKS -->
-<section class="how" id="how">
-  <div class="section-tag reveal">Process</div>
-  <h2 class="reveal">Simple as <em>1, 2, 3</em></h2>
-  <div class="how-tabs reveal">
-    <button class="htab active" onclick="switchHowTab('parent',this)">👨‍👩‍👧 For Parents</button>
-    <button class="htab" onclick="switchHowTab('tutor',this)">🎓 For BTech Students</button>
-  </div>
-  <div class="steps-grid" id="hw-parent">
-    <div class="step reveal"><div class="step-circle">1</div><h3>Search Near You</h3><p>Enter your society name. Filter by class and subject. See verified tutors who actually live nearby.</p></div>
-    <div class="step reveal"><div class="step-circle">2</div><h3>Book Free Demo</h3><p>Connect on WhatsApp. Schedule a free 30-minute demo session with zero commitment.</p></div>
-    <div class="step reveal"><div class="step-circle">3</div><h3>Learn at Home</h3><p>Tutor comes to your flat. 1-on-1 sessions, your timing, your pace. No commute, no stress.</p></div>
-    <div class="step reveal"><div class="step-circle">4</div><h3>Pay & Rate</h3><p>Pay directly after each session. Rate the tutor — this keeps quality consistently high.</p></div>
-  </div>
-  <div class="steps-grid" id="hw-tutor" style="display:none;">
-    <div class="step reveal"><div class="step-circle">1</div><h3>Sign Up Free</h3><p>Fill your profile — college, branch, subjects you can teach, your society, and available hours.</p></div>
-    <div class="step reveal"><div class="step-circle">2</div><h3>Get Verified</h3><p>Upload your college ID card. We verify within 24 hours and activate your profile.</p></div>
-    <div class="step reveal"><div class="step-circle">3</div><h3>Accept Requests</h3><p>Parents near you will send connection requests. Accept what fits your schedule — full control.</p></div>
-    <div class="step reveal"><div class="step-circle">4</div><h3>Earn Weekly</h3><p>Teach 1 hour a day near home. Earn ₹3,000–₹8,000/month. Payments to your UPI every week.</p></div>
-  </div>
-</section>
- 
-<!-- JOIN -->
-<section class="join" id="join">
-  <div class="section-tag reveal">Get Started</div>
-  <h2 class="reveal">Join <em>Clarasta</em> Today</h2>
-  <p class="sub reveal">Parents — find a trusted tutor in your society. Students — start earning from tomorrow.</p>
-  <div class="join-grid">
-    <div class="join-card parent-card reveal">
-      <div class="join-glow-p"></div>
-      <div class="join-icon">👨‍👩‍👧</div>
-      <h3>For Parents</h3>
-      <p>Find a verified home tutor near your society in under 2 hours.</p>
-      <ul class="perks">
-        <li>Verified BTech student tutors only</li>
-        <li>One-on-one attention at your home</li>
-        <li>Free first demo session</li>
-        <li>Pay directly — no middleman</li>
-      </ul>
-      <div class="form-grp" id="pform">
-        <input type="text" placeholder="Your Name" id="p-name"/>
-        <input type="tel" placeholder="WhatsApp Number (10 digits)" id="p-wa"/>
-        <input type="text" placeholder="Society / Tower Name" id="p-loc"/>
-        <select id="p-class"><option value="">Child's Class</option><option>Class 1–5</option><option>Class 6–8</option><option>Class 9–10</option><option>Class 11–12</option></select>
-        <select id="p-sub"><option value="">Subject Needed</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option><option>English</option><option>Computer Science</option><option>Biology</option><option>Hindi</option></select>
-      </div>
-      <button class="submit-p">Find My Tutor →</button>
-      <div class="success-box" id="p-success">
-        <div class="s-icon">🎉</div>
-        <h4>Request Sent!</h4>
-        <p>We'll WhatsApp you a tutor match within 2 hours.</p>
-      </div>
-    </div>
- 
-    <div class="join-card tutor-card reveal">
-      <div class="join-glow-t"></div>
-      <div class="join-icon">🎓</div>
-      <h3>For BTech Students</h3>
-      <p>Earn ₹3,000–₹8,000/month teaching just 1 hour a day near home.</p>
-      <ul class="perks">
-        <li>No teaching experience needed</li>
-        <li>Students in your own society</li>
-        <li>Weekly UPI payments</li>
-        <li>Flexible 1-hour time slots</li>
-      </ul>
-      <div class="form-grp" id="tform">
-        <input type="text" placeholder="Your Name" id="t-name"/>
-        <input type="tel" placeholder="WhatsApp Number (10 digits)" id="t-wa"/>
-        <input type="text" placeholder="College Name" id="t-college"/>
-        <select id="t-branch"><option value="">Your Branch</option><option>CSE</option><option>IT</option><option>ECE</option><option>ME</option><option>Civil</option><option>Other</option></select>
-        <input type="text" placeholder="Subjects you can teach (e.g. Maths, Physics)" id="t-subs"/>
-        <input type="text" placeholder="Your Society / Area" id="t-loc"/>
-      </div>
-      <button class="submit-t" onclick="submitTutor()">Sign Up as Tutor →</button>
-      <div class="success-box" id="t-success">
-        <div class="s-icon">✅</div>
-        <h4>Profile Submitted!</h4>
-        <p>We'll verify your college ID and activate your profile within 24 hours.</p>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<!-- REVIEWS -->
-<section class="reviews">
-  <div class="section-tag reveal">Reviews</div>
-  <h2 class="reveal">Families & Students <em>Trust Us</em></h2>
-  <div class="review-grid">
-    <div class="review-card reveal">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">Found a wonderful tutor for my daughter's Maths in just 2 hours. He lives in the same tower — so convenient and reliable!</p>
-      <div class="reviewer">
-        <div class="r-avatar" style="background:#fdf3e0;color:#c8922a;">SM</div>
-        <div><div class="r-name">Sunita Mehta</div><div class="r-role">Parent · Crossing Republic</div></div>
-      </div>
-    </div>
-    <div class="review-card reveal">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">I earn ₹5,400 extra every month teaching 2 kids in my building. Just 1 hour after college — best decision I made.</p>
-      <div class="reviewer">
-        <div class="r-avatar" style="background:#e0f2ee;color:#2a7a6a;">VT</div>
-        <div><div class="r-name">Varun Tyagi</div><div class="r-role">BTech CSE Tutor · ABES Engineering</div></div>
-      </div>
-    </div>
-    <div class="review-card reveal">
-      <div class="stars">★★★★★</div>
-      <p class="review-text">My son's Physics went from 55% to 82% in 3 months. The tutor explains so patiently — better than school coaching classes.</p>
-      <div class="reviewer">
-        <div class="r-avatar" style="background:#f0ede8;color:#4a4540;">RK</div>
-        <div><div class="r-name">Rakesh Kapoor</div><div class="r-role">Parent · Gaur City</div></div>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<!-- TRUST SECTION -->
-<section class="trust-section reveal">
-  <div class="section-tag">Why Trust Us</div>
-  <h2>Built on <em>Transparency</em> & Safety</h2>
-  <p class="sub">Every decision we make is designed to protect parents and empower tutors. Here's what makes Clarasta different.</p>
-  <div class="trust-grid">
-    <div class="trust-card">
-      <div class="trust-card-icon">🪪</div>
-      <h3>College ID Verified</h3>
-      <p>Every tutor submits their college ID card before going live. Our team manually reviews each ID — no automated approvals.</p>
-    </div>
-    <div class="trust-card">
-      <div class="trust-card-icon">📍</div>
-      <h3>Hyperlocal Only</h3>
-      <p>Tutors are matched within your society or within 1 km. You know your tutor is a neighbor — accountable and reachable.</p>
-    </div>
-    <div class="trust-card">
-      <div class="trust-card-icon">💰</div>
-      <h3>Zero Platform Fee</h3>
-      <p>Clarasta never takes a rupee from tutors or parents. Payments happen directly between families and tutors via UPI.</p>
-    </div>
-    <div class="trust-card">
-      <div class="trust-card-icon">🆓</div>
-      <h3>Free Demo Class</h3>
-      <p>Every tutor offers a free 30–45 min demo session. Evaluate fit before any commitment — no risk, no pressure.</p>
-    </div>
-    <div class="trust-card">
-      <div class="trust-card-icon">💬</div>
-      <h3>Direct WhatsApp</h3>
-      <p>No middlemen. After matching, parents and tutors connect directly. Faster communication, more trust, real relationships.</p>
-    </div>
-    <div class="trust-card">
-      <div class="trust-card-icon">🔄</div>
-      <h3>Free Replacement</h3>
-      <p>Not happy with a tutor? We'll find you a new match within 24 hours — completely free. Your satisfaction is guaranteed.</p>
-    </div>
-  </div>
-  <div class="trust-badges-row">
-    <span class="trust-badge-pill gold">✅ College ID Verified</span>
-    <span class="trust-badge-pill teal">🆓 Free Demo Session</span>
-    <span class="trust-badge-pill gold">💰 Zero Commission</span>
-    <span class="trust-badge-pill teal">📍 Hyperlocal Tutors</span>
-    <span class="trust-badge-pill">💬 WhatsApp Support</span>
-    <span class="trust-badge-pill">🔄 Free Replacement</span>
-    <span class="trust-badge-pill">🏠 Home Tutoring</span>
-    <span class="trust-badge-pill">⭐ 4.9 Avg Rating</span>
-  </div>
-</section>
 
-<!-- FAQ SECTION -->
-<section class="faq-section" id="faq">
-  <div class="section-tag">FAQ</div>
-  <h2>Frequently Asked <em>Questions</em></h2>
-  <div class="faq-grid">
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">How quickly will I get a tutor match?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Most parents receive a match within 2–4 hours of registering. In many cases it happens within 30 minutes. You'll get the tutor's name, college, and WhatsApp directly.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Is Clarasta free to use?<span class="faq-icon">+</span></div>
-      <div class="faq-a">100% free — for both parents and tutors. We don't charge registration fees, subscription fees, or any commission. Parents pay tutors directly via UPI.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">How are tutors verified?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Tutors submit their college ID card on WhatsApp. Our team manually verifies each ID within 24–48 hours before making the profile visible to parents.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">What if I'm not happy with my tutor?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Just WhatsApp us — no questions asked. We'll find a replacement tutor within 24 hours at zero cost. Your satisfaction is our guarantee.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">How much do tutors charge per hour?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Rates typically range from ₹200–₹400/hr depending on class level. Class 9–12 averages ₹300/hr. JEE/NEET tutors charge ₹400–₹600/hr. All agreed directly with the tutor.</div>
-    </div>
-    <div class="faq-item" onclick="toggleFaq(this)">
-      <div class="faq-q">Can a tutor teach multiple subjects?<span class="faq-icon">+</span></div>
-      <div class="faq-a">Yes! Many BTech tutors handle Maths, Physics, and Chemistry together. You can specify multiple subjects when registering and we'll match accordingly.</div>
-    </div>
-  </div>
-  <div class="faq-more">
-    <a href="support.html">View all FAQs in our Help Center →</a>
-  </div>
-</section>
-
-<!-- SUPPORT CTA -->
-<div class="support-cta">
-  <div class="sc-text">
-    <h2>Need help? We're <em>always here.</em></h2>
-    <p>Our founders answer every message personally. No bots, no scripts — real people who care about your child's education.</p>
-  </div>
-  <div class="sc-actions">
-    <a href="https://wa.me/919999999999?text=Hi%20Clarasta!%20I%20need%20help%20finding%20a%20tutor." target="_blank" class="sc-wa-btn">💬 Chat on WhatsApp</a>
-    <a href="support.html" class="sc-email-btn">📄 Visit Help Center →</a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <div class="f-logo"><div class="f-logo-dot"></div> Clarasta</div>
-      <p class="f-desc">Verified home tutors for apartment societies across Ghaziabad. 100% free, zero commission, always.</p>
-      <div class="f-trust-pills">
-        <span class="f-trust-pill">✅ Verified Tutors</span>
-        <span class="f-trust-pill">🆓 Free Demo</span>
-        <span class="f-trust-pill">💰 No Commission</span>
-      </div>
-    </div>
-    <div class="f-col"><h4>Platform</h4><ul>
-      <li><a href="#find">Find Tutors</a></li>
-      <li><a href="#join">Become a Tutor</a></li>
+  <!-- NAV -->
+  <nav id="mainNav">
+    <a href="index.html" class="logo">
+      <div class="logo-badge">✦</div>
+      Clarasta
+    </a>
+    <ul class="nav-links">
+      <li><a href="#mission">Our Mission</a></li>
+      <li><a href="#find">Find Tutor</a></li>
       <li><a href="#how">How it Works</a></li>
-      <li><a href="auth.html">Login / Register</a></li>
-      <li><a href="admin.html">Admin Panel</a></li>
-    </ul></div>
-    <div class="f-col"><h4>Support</h4><ul>
-      <li><a href="support.html">Help Center</a></li>
-      <li><a href="support.html#for-parents">For Parents</a></li>
-      <li><a href="support.html#for-tutors">For Tutors</a></li>
-      <li><a href="support.html#contact">Contact Us</a></li>
-      <li><a href="https://wa.me/919999999999" target="_blank">WhatsApp Us</a></li>
-    </ul></div>
-    <div class="f-col"><h4>Legal</h4><ul>
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Terms of Service</a></li>
-      <li><a href="#">Safety Guidelines</a></li>
-      <li><a href="support.html#safety">Trust & Safety</a></li>
-    </ul></div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Clarasta · Built with ❤️ in Crossing Republic, Ghaziabad</p>
-    <p><a href="support.html">Help Center</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a></p>
-  </div>
-</footer>
+      <li><a href="#join">Join</a></li>
+      <li><a href="support.html">Support</a></li>
+    </ul>
+    <div class="nav-btns">
+      <a href="auth.html" class="btn btn-ghost" id="nav-login-btn">Login</a>
+      <a href="auth.html?role=parent" class="btn btn-ghost"
+        style="border-color:var(--gold);color:var(--gold);background:var(--goldbg);">For Parents</a>
+      <a href="auth.html?role=tutor" class="btn btn-gold">Become a Tutor →</a>
+    </div>
+  </nav>
 
-<!-- FLOATING WHATSAPP -->
-<div class="wa-float">
-  <div class="wa-tooltip">
-    <strong>Need help? 👋</strong>
-    Chat with us — reply in ~15 min
-  </div>
-  <a href="https://wa.me/919999999999?text=Hi%20Clarasta!%20I%20need%20help." target="_blank" class="wa-circle" title="Chat on WhatsApp">💬</a>
-</div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-blob"></div>
+    <div class="hero-left">
+      <div class="hero-eyebrow"><span></span> Crossing Republic · Gaur City · Ghaziabad</div>
+      <h1>Your Child Deserves a Tutor Who <em>Truly Cares</em></h1>
+      <p class="hero-sub">Clarasta connects families with verified BTech students for one-on-one home tutoring — in your
+        society, at your time, at honest prices.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-gold btn-large"
+          onclick="document.getElementById('find').scrollIntoView({behavior:'smooth'})">Find a Tutor Near Me</button>
+        <button class="btn-outline-ink" onclick="openModal('tutor')">Earn as a Tutor →</button>
+      </div>
+      <div class="trust-strip">
+        <div class="trust-item"><span class="icon">✅</span> Verified IDs</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><span class="icon">🏠</span> Home Service</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><span class="icon">🆓</span> Free Demo</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><span class="icon">💬</span> Direct WhatsApp</div>
+      </div>
+    </div>
 
-<!-- MODAL -->
-<div class="overlay" id="modalOverlay" onclick="closeModalOut(event)">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()">✕ Close</button>
-    <div id="modalBody"></div>
+    <div class="hero-right">
+      <!-- Card 1: Tutor profile -->
+      <div class="hero-card hc1">
+        <div class="hc-top">
+          <div class="hc-avatar" style="background:#fdf3e0;color:#c8922a;">AK</div>
+          <div>
+            <div class="hc-name">Arjun Kumar</div>
+            <div class="hc-sub">BTech CSE · ABES Engineering</div>
+          </div>
+        </div>
+        <div class="hc-tags">
+          <span class="hc-tag tag-gold">Maths</span>
+          <span class="hc-tag tag-teal">Physics</span>
+          <span class="hc-tag tag-ink">Class 9–12</span>
+        </div>
+        <div class="hc-foot">
+          <div>
+            <div class="hc-rate">₹300/hr</div>
+            <div class="hc-loc">📍 Crossing Republic</div>
+          </div>
+          <button class="hc-connect">Connect</button>
+        </div>
+      </div>
+
+      <!-- Card 2: Notification -->
+      <div class="hero-card hc2">
+        <div class="hc-notif">
+          <div class="hc-notif-icon">🎉</div>
+          <div class="hc-notif-text">
+            <strong>New tutor match found!</strong>
+            <span>Priya S. — 0.3 km from you · Available now</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Earnings -->
+      <div class="hero-card hc3">
+        <div class="earn-row">
+          <div class="earn-label">This Month's Earnings</div>
+          <div style="font-size:0.75rem;color:var(--teal);font-weight:700;">+18% ↑</div>
+        </div>
+        <div class="earn-val">₹5,400</div>
+        <div class="earn-sub">Teaching 2 students · 1hr/day</div>
+        <div class="earn-bar">
+          <div class="earn-fill"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats reveal">
+    <div class="stat">
+      <div class="stat-num">200+</div>
+      <div class="stat-label">Verified Tutors</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">500+</div>
+      <div class="stat-label">Families Served</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">4.9★</div>
+      <div class="stat-label">Average Rating</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">₹0</div>
+      <div class="stat-label">Platform Fee (ever)</div>
+    </div>
   </div>
-</div>
- 
-<script>
-// ── LOCATION DATA ─────────────────────────────────────────────────
-const LOCATIONS = {
-  "Crossing Republic": [
-    "Crossing Republic – Tower A","Crossing Republic – Tower B","Crossing Republic – Tower C",
-    "Crossing Republic – Tower D","Crossing Republic – Tower E","Crossing Republic – Phase 1",
-    "Crossing Republic – Phase 2","Crossing Republic – Phase 3","Crossing Republic – Sector 1",
-    "Crossing Republic – Sector 2",
-  ],
-  "Gaur City": [
-    "Gaur City 1","Gaur City 2","Gaur City 7th Avenue","Gaur City 14th Avenue",
-    "Gaur Grandeur","Gaur Atulyam","Gaur Cascades","Gaur Saundaryam",
-  ],
-  "Raj Nagar Extension": [
-    "Raj Nagar Extension – Phase 1","Raj Nagar Extension – Phase 2",
-    "Raj Nagar Extension – Sector 1","Raj Nagar Extension – Sector 2",
-    "KW Srishti","Saya Zion","Wave City – Raj Nagar",
-  ],
-  "Indirapuram": [
-    "Indirapuram – Sector 1","Ahinsa Khand 1","Ahinsa Khand 2",
-    "Nyay Khand 1","Nyay Khand 2","Shipra Sun City","Shakti Khand",
-  ],
-  "Other Areas": [
-    "Vaibhav Khand","Vasundhara Sector 5","Vasundhara Sector 10",
-    "Vijay Nagar, Ghaziabad","Kaushambi","Wave City – NH9",
-    "Govindpuram","Pratap Vihar",
-  ],
-};
- 
-function onLocInput(val) {
-  const box = document.getElementById('sugBox');
-  if (!val.trim()) { box.classList.remove('open'); return; }
-  const q = val.toLowerCase();
-  let html = '';
-  let found = false;
-  for (const [group, items] of Object.entries(LOCATIONS)) {
-    const matched = items.filter(i => i.toLowerCase().includes(q));
-    if (matched.length) {
-      found = true;
-      html += `<div class="sug-group-label">${group}</div>`;
-      matched.slice(0,4).forEach(item => {
-        const hi = item.replace(new RegExp(val,'gi'), m => `<strong>${m}</strong>`);
-        html += `<div class="sug-item" onclick="selectLoc('${item}')">
+
+  <!-- MISSION / VISION -->
+  <section class="mission" id="mission">
+    <div class="mission-left reveal">
+      <div class="section-tag">Our Mission</div>
+      <h2>Education That <em>Reaches Home</em></h2>
+      <p class="mission-body">
+        Most children in apartment societies like Crossing Republic struggle to find <strong>reliable, affordable
+          tutors</strong> who live nearby and actually show up.<br /><br />
+        Clarasta was built to fix this — by connecting parents directly with <strong>BTech students from nearby
+          colleges</strong> who live in the same societies, understand local needs, and genuinely want to help.
+      </p>
+      <div class="mission-values">
+        <div class="mv">
+          <div class="mv-icon">🤝</div>
+          <div class="mv-text">
+            <h4>Trust First</h4>
+            <p>Every tutor is verified with college ID before going live. Parents always know who is coming home.</p>
+          </div>
+        </div>
+        <div class="mv">
+          <div class="mv-icon">📍</div>
+          <div class="mv-text">
+            <h4>Hyper Local</h4>
+            <p>We only show tutors who live in or near your society — shorter commute means more reliability.</p>
+          </div>
+        </div>
+        <div class="mv">
+          <div class="mv-icon">💸</div>
+          <div class="mv-text">
+            <h4>Fair for Everyone</h4>
+            <p>No hidden charges. Parents pay tutors directly. Clarasta never takes a cut from either side.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mission-right reveal">
+      <div class="mission-quote">
+        "Every BTech student has the knowledge to change a child's academic journey. Every parent deserves to find that
+        student <em>within walking distance.</em>"
+      </div>
+      <div class="mission-founder">
+        <div class="founder-avatar">C</div>
+        <div>
+          <div class="founder-name">Clarasta Founders</div>
+          <div class="founder-role">BTech Students · Crossing Republic, Ghaziabad</div>
+        </div>
+      </div>
+      <div class="mission-pillars">
+        <div class="pillar">
+          <div class="pillar-num">1:1</div>
+          <div class="pillar-label">Personal Attention</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">0%</div>
+          <div class="pillar-label">Commission Taken</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">24hr</div>
+          <div class="pillar-label">Tutor Verification</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">₹0</div>
+          <div class="pillar-label">Demo Session Cost</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIND TUTORS -->
+  <section class="find-section" id="find">
+    <div class="section-tag reveal">Search</div>
+    <h2 class="reveal">Find Tutors <em>Near You</em></h2>
+    <p class="sub reveal">Type your society or tower name and we'll show verified tutors walking distance from you.</p>
+
+    <div class="search-widget reveal">
+      <div class="search-row">
+        <!-- LOCATION AUTOCOMPLETE -->
+        <div class="field" style="flex:1.5;">
+          <label>📍 Your Location</label>
+          <div class="loc-wrapper">
+            <span class="loc-icon">📍</span>
+            <input class="loc-input" id="locInput" type="text" placeholder="Type society, tower or area..."
+              autocomplete="off" oninput="onLocInput(this.value)" onfocus="onLocFocus()"
+              onblur="setTimeout(()=>closeSug(),200)" />
+            <div class="suggestions" id="sugBox"></div>
+          </div>
+        </div>
+        <div class="field">
+          <label>🎓 Class</label>
+          <select id="classFilter">
+            <option value="">Any Class</option>
+            <option>Class 1–5</option>
+            <option>Class 6–8</option>
+            <option>Class 9–10</option>
+            <option>Class 11–12</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>📚 Subject</label>
+          <select id="subjectFilter">
+            <option value="">All Subjects</option>
+            <option>Mathematics</option>
+            <option>Physics</option>
+            <option>Chemistry</option>
+            <option>English</option>
+            <option>Computer Science</option>
+            <option>Biology</option>
+            <option>Hindi</option>
+          </select>
+        </div>
+        <button class="search-btn" onclick="searchTutors()">Search Tutors →</button>
+      </div>
+    </div>
+
+    <div class="tutor-grid reveal" id="tutorGrid">
+      <!-- Default tutor cards -->
+      <div class="tutor-card">
+        <div class="t-top">
+          <div class="t-avatar" style="background:#fdf3e0;color:#c8922a;">AK</div>
+          <div>
+            <div class="t-name">Arjun Kumar <span class="verified-badge">✓ Verified</span></div>
+            <div class="t-college">BTech CSE · ABES Engineering College</div>
+          </div>
+        </div>
+        <div class="t-badges">
+          <span class="t-badge tag-gold">Mathematics</span>
+          <span class="t-badge tag-teal">Computer Science</span>
+          <span class="t-badge tag-ink">Class 9–12</span>
+        </div>
+        <div class="t-info">
+          <div class="t-info-row"><span>📍</span> Crossing Republic, Tower D-7</div>
+          <div class="t-info-row"><span>⏰</span> Evenings 6 PM – 8 PM</div>
+          <div class="t-info-row"><span>⭐</span> 4.9 rating · 38 sessions done</div>
+        </div>
+        <div class="t-footer">
+          <div>
+            <div class="t-rate">₹300/hr</div>
+            <div class="t-avail">Free demo available</div>
+          </div>
+          <button class="t-btn" onclick="openModal('parent')">Connect</button>
+        </div>
+      </div>
+
+      <div class="tutor-card">
+        <div class="t-top">
+          <div class="t-avatar" style="background:#e0f2ee;color:#2a7a6a;">PS</div>
+          <div>
+            <div class="t-name">Priya Sharma <span class="verified-badge">✓ Verified</span></div>
+            <div class="t-college">BTech ECE · Galgotias University</div>
+          </div>
+        </div>
+        <div class="t-badges">
+          <span class="t-badge tag-teal">Physics</span>
+          <span class="t-badge tag-teal">Chemistry</span>
+          <span class="t-badge tag-gold">Mathematics</span>
+        </div>
+        <div class="t-info">
+          <div class="t-info-row"><span>📍</span> Gaur City 2, Sector 16C</div>
+          <div class="t-info-row"><span>⏰</span> Evenings 5 PM – 7 PM</div>
+          <div class="t-info-row"><span>⭐</span> 5.0 rating · 52 sessions done</div>
+        </div>
+        <div class="t-footer">
+          <div>
+            <div class="t-rate">₹350/hr</div>
+            <div class="t-avail">Free demo available</div>
+          </div>
+          <button class="t-btn" onclick="openModal('parent')">Connect</button>
+        </div>
+      </div>
+
+      <div class="tutor-card">
+        <div class="t-top">
+          <div class="t-avatar" style="background:#f0ede8;color:#4a4540;">RV</div>
+          <div>
+            <div class="t-name">Rahul Verma <span class="verified-badge">✓ Verified</span></div>
+            <div class="t-college">BTech ME · KIET Group of Institutions</div>
+          </div>
+        </div>
+        <div class="t-badges">
+          <span class="t-badge tag-gold">Mathematics</span>
+          <span class="t-badge tag-teal">Physics</span>
+          <span class="t-badge tag-ink">Class 6–10</span>
+        </div>
+        <div class="t-info">
+          <div class="t-info-row"><span>📍</span> Raj Nagar Extension, Phase 1</div>
+          <div class="t-info-row"><span>⏰</span> Evenings 7 PM – 9 PM</div>
+          <div class="t-info-row"><span>⭐</span> 4.8 rating · 29 sessions done</div>
+        </div>
+        <div class="t-footer">
+          <div>
+            <div class="t-rate">₹250/hr</div>
+            <div class="t-avail">Free demo available</div>
+          </div>
+          <button class="t-btn" onclick="openModal('parent')">Connect</button>
+        </div>
+      </div>
+
+      <div class="tutor-card">
+        <div class="t-top">
+          <div class="t-avatar" style="background:#fdf3e0;color:#c8922a;">SG</div>
+          <div>
+            <div class="t-name">Sneha Gupta <span class="verified-badge">✓ Verified</span></div>
+            <div class="t-college">BTech IT · Sharda University</div>
+          </div>
+        </div>
+        <div class="t-badges">
+          <span class="t-badge tag-ink">English</span>
+          <span class="t-badge tag-teal">Computer Science</span>
+          <span class="t-badge tag-ink">Class 1–8</span>
+        </div>
+        <div class="t-info">
+          <div class="t-info-row"><span>📍</span> Crossing Republic, Phase 2</div>
+          <div class="t-info-row"><span>⏰</span> Flexible timings</div>
+          <div class="t-info-row"><span>⭐</span> 4.9 rating · 44 sessions done</div>
+        </div>
+        <div class="t-footer">
+          <div>
+            <div class="t-rate">₹280/hr</div>
+            <div class="t-avail">Free demo available</div>
+          </div>
+          <button class="t-btn" onclick="openModal('parent')">Connect</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how" id="how">
+    <div class="section-tag reveal">Process</div>
+    <h2 class="reveal">Simple as <em>1, 2, 3</em></h2>
+    <div class="how-tabs reveal">
+      <button class="htab active" onclick="switchHowTab('parent',this)">👨‍👩‍👧 For Parents</button>
+      <button class="htab" onclick="switchHowTab('tutor',this)">🎓 For BTech Students</button>
+    </div>
+    <div class="steps-grid" id="hw-parent">
+      <div class="step reveal">
+        <div class="step-circle">1</div>
+        <h3>Search Near You</h3>
+        <p>Enter your society name. Filter by class and subject. See verified tutors who actually live nearby.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">2</div>
+        <h3>Book Free Demo</h3>
+        <p>Connect on WhatsApp. Schedule a free 30-minute demo session with zero commitment.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">3</div>
+        <h3>Learn at Home</h3>
+        <p>Tutor comes to your flat. 1-on-1 sessions, your timing, your pace. No commute, no stress.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">4</div>
+        <h3>Pay & Rate</h3>
+        <p>Pay directly after each session. Rate the tutor — this keeps quality consistently high.</p>
+      </div>
+    </div>
+    <div class="steps-grid" id="hw-tutor" style="display:none;">
+      <div class="step reveal">
+        <div class="step-circle">1</div>
+        <h3>Sign Up Free</h3>
+        <p>Fill your profile — college, branch, subjects you can teach, your society, and available hours.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">2</div>
+        <h3>Get Verified</h3>
+        <p>Upload your college ID card. We verify within 24 hours and activate your profile.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">3</div>
+        <h3>Accept Requests</h3>
+        <p>Parents near you will send connection requests. Accept what fits your schedule — full control.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-circle">4</div>
+        <h3>Earn Weekly</h3>
+        <p>Teach 1 hour a day near home. Earn ₹3,000–₹8,000/month. Payments to your UPI every week.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOIN -->
+  <section class="join" id="join">
+    <div class="section-tag reveal">Get Started</div>
+    <h2 class="reveal">Join <em>Clarasta</em> Today</h2>
+    <p class="sub reveal">Parents — find a trusted tutor in your society. Students — start earning from tomorrow.</p>
+    <div class="join-grid">
+      <div class="join-card parent-card reveal">
+        <div class="join-glow-p"></div>
+        <div class="join-icon">👨‍👩‍👧</div>
+        <h3>For Parents</h3>
+        <p>Find a verified home tutor near your society in under 2 hours.</p>
+        <ul class="perks">
+          <li>Verified BTech student tutors only</li>
+          <li>One-on-one attention at your home</li>
+          <li>Free first demo session</li>
+          <li>Pay directly — no middleman</li>
+        </ul>
+        <a href="auth.html?role=parent&mode=register" class="submit-p" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
+          Find My Tutor →
+        </a>
+        <p style="font-size:0.78rem;color:var(--ink3);text-align:center;margin-top:10px;">
+          Already registered? <a href="auth.html?role=parent&mode=login" style="color:var(--gold);font-weight:700;text-decoration:none;">Login here</a>
+        </p>
+      </div>
+
+      <div class="join-card tutor-card reveal">
+        <div class="join-glow-t"></div>
+        <div class="join-icon">🎓</div>
+        <h3>For BTech Students</h3>
+        <p>Earn ₹3,000–₹8,000/month teaching just 1 hour a day near home.</p>
+        <ul class="perks">
+          <li>No teaching experience needed</li>
+          <li>Students in your own society</li>
+          <li>Weekly UPI payments</li>
+          <li>Flexible 1-hour time slots</li>
+        </ul>
+        <a href="auth.html?role=tutor&mode=register" class="submit-t" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
+          Sign Up as Tutor →
+        </a>
+        <p style="font-size:0.78rem;color:var(--ink3);text-align:center;margin-top:10px;">
+          Already registered? <a href="auth.html?role=tutor&mode=login" style="color:var(--teal);font-weight:700;text-decoration:none;">Login here</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- REVIEWS -->
+  <section class="reviews">
+    <div class="section-tag reveal">Reviews</div>
+    <h2 class="reveal">Families & Students <em>Trust Us</em></h2>
+    <div class="review-grid">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Found a wonderful tutor for my daughter's Maths in just 2 hours. He lives in the same
+          tower — so convenient and reliable!</p>
+        <div class="reviewer">
+          <div class="r-avatar" style="background:#fdf3e0;color:#c8922a;">SM</div>
+          <div>
+            <div class="r-name">Sunita Mehta</div>
+            <div class="r-role">Parent · Crossing Republic</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">I earn ₹5,400 extra every month teaching 2 kids in my building. Just 1 hour after college
+          — best decision I made.</p>
+        <div class="reviewer">
+          <div class="r-avatar" style="background:#e0f2ee;color:#2a7a6a;">VT</div>
+          <div>
+            <div class="r-name">Varun Tyagi</div>
+            <div class="r-role">BTech CSE Tutor · ABES Engineering</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">My son's Physics went from 55% to 82% in 3 months. The tutor explains so patiently —
+          better than school coaching classes.</p>
+        <div class="reviewer">
+          <div class="r-avatar" style="background:#f0ede8;color:#4a4540;">RK</div>
+          <div>
+            <div class="r-name">Rakesh Kapoor</div>
+            <div class="r-role">Parent · Gaur City</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST SECTION -->
+  <section class="trust-section reveal">
+    <div class="section-tag">Why Trust Us</div>
+    <h2>Built on <em>Transparency</em> & Safety</h2>
+    <p class="sub">Every decision we make is designed to protect parents and empower tutors. Here's what makes Clarasta
+      different.</p>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-card-icon">🪪</div>
+        <h3>College ID Verified</h3>
+        <p>Every tutor submits their college ID card before going live. Our team manually reviews each ID — no automated
+          approvals.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">📍</div>
+        <h3>Hyperlocal Only</h3>
+        <p>Tutors are matched within your society or within 1 km. You know your tutor is a neighbor — accountable and
+          reachable.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">💰</div>
+        <h3>Zero Platform Fee</h3>
+        <p>Clarasta never takes a rupee from tutors or parents. Payments happen directly between families and tutors via
+          UPI.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">🆓</div>
+        <h3>Free Demo Class</h3>
+        <p>Every tutor offers a free 30–45 min demo session. Evaluate fit before any commitment — no risk, no pressure.
+        </p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">💬</div>
+        <h3>Direct WhatsApp</h3>
+        <p>No middlemen. After matching, parents and tutors connect directly. Faster communication, more trust, real
+          relationships.</p>
+      </div>
+      <div class="trust-card">
+        <div class="trust-card-icon">🔄</div>
+        <h3>Free Replacement</h3>
+        <p>Not happy with a tutor? We'll find you a new match within 24 hours — completely free. Your satisfaction is
+          guaranteed.</p>
+      </div>
+    </div>
+    <div class="trust-badges-row">
+      <span class="trust-badge-pill gold">✅ College ID Verified</span>
+      <span class="trust-badge-pill teal">🆓 Free Demo Session</span>
+      <span class="trust-badge-pill gold">💰 Zero Commission</span>
+      <span class="trust-badge-pill teal">📍 Hyperlocal Tutors</span>
+      <span class="trust-badge-pill">💬 WhatsApp Support</span>
+      <span class="trust-badge-pill">🔄 Free Replacement</span>
+      <span class="trust-badge-pill">🏠 Home Tutoring</span>
+      <span class="trust-badge-pill">⭐ 4.9 Avg Rating</span>
+    </div>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="faq-section" id="faq">
+    <div class="section-tag">FAQ</div>
+    <h2>Frequently Asked <em>Questions</em></h2>
+    <div class="faq-grid">
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How quickly will I get a tutor match?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Most parents receive a match within 2–4 hours of registering. In many cases it happens within
+          30 minutes. You'll get the tutor's name, college, and WhatsApp directly.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Is Clarasta free to use?<span class="faq-icon">+</span></div>
+        <div class="faq-a">100% free — for both parents and tutors. We don't charge registration fees, subscription
+          fees, or any commission. Parents pay tutors directly via UPI.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How are tutors verified?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Tutors submit their college ID card on WhatsApp. Our team manually verifies each ID within
+          24–48 hours before making the profile visible to parents.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">What if I'm not happy with my tutor?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Just WhatsApp us — no questions asked. We'll find a replacement tutor within 24 hours at zero
+          cost. Your satisfaction is our guarantee.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">How much do tutors charge per hour?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Rates typically range from ₹200–₹400/hr depending on class level. Class 9–12 averages
+          ₹300/hr. JEE/NEET tutors charge ₹400–₹600/hr. All agreed directly with the tutor.</div>
+      </div>
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-q">Can a tutor teach multiple subjects?<span class="faq-icon">+</span></div>
+        <div class="faq-a">Yes! Many BTech tutors handle Maths, Physics, and Chemistry together. You can specify
+          multiple subjects when registering and we'll match accordingly.</div>
+      </div>
+    </div>
+    <div class="faq-more">
+      <a href="support.html">View all FAQs in our Help Center →</a>
+    </div>
+  </section>
+
+  <!-- SUPPORT CTA -->
+  <div class="support-cta">
+    <div class="sc-text">
+      <h2>Need help? We're <em>always here.</em></h2>
+      <p>Our founders answer every message personally. No bots, no scripts — real people who care about your child's
+        education.</p>
+    </div>
+    <div class="sc-actions">
+      <a href="https://wa.me/919999999999?text=Hi%20Clarasta!%20I%20need%20help%20finding%20a%20tutor." target="_blank"
+        class="sc-wa-btn">💬 Chat on WhatsApp</a>
+      <a href="support.html" class="sc-email-btn">📄 Visit Help Center →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div>
+        <div class="f-logo">
+          <div class="f-logo-dot"></div> Clarasta
+        </div>
+        <p class="f-desc">Verified home tutors for apartment societies across Ghaziabad. 100% free, zero commission,
+          always.</p>
+        <div class="f-trust-pills">
+          <span class="f-trust-pill">✅ Verified Tutors</span>
+          <span class="f-trust-pill">🆓 Free Demo</span>
+          <span class="f-trust-pill">💰 No Commission</span>
+        </div>
+      </div>
+      <div class="f-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="#find">Find Tutors</a></li>
+          <li><a href="#join">Become a Tutor</a></li>
+          <li><a href="#how">How it Works</a></li>
+          <li><a href="auth.html">Login / Register</a></li>
+          <li><a href="admin.html">Admin Panel</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="support.html">Help Center</a></li>
+          <li><a href="support.html#for-parents">For Parents</a></li>
+          <li><a href="support.html#for-tutors">For Tutors</a></li>
+          <li><a href="support.html#contact">Contact Us</a></li>
+          <li><a href="https://wa.me/917906811491" target="_blank">WhatsApp Us</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Safety Guidelines</a></li>
+          <li><a href="support.html#safety">Trust & Safety</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Clarasta · Built with ❤️ in Crossing Republic, Ghaziabad</p>
+      <p><a href="support.html">Help Center</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a
+          href="#">Terms</a></p>
+    </div>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <div class="wa-float">
+    <div class="wa-tooltip">
+      <strong>Need help? 👋</strong>
+      Chat with us — reply in ~15 min
+    </div>
+    <a href="https://wa.me/917906811491?text=Hi%20Clarasta!%20I%20need%20help." target="_blank" class="wa-circle"
+      title="Chat on WhatsApp">💬</a>
+  </div>
+
+  <!-- MODAL -->
+  <div class="overlay" id="modalOverlay" onclick="closeModalOut(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">✕ Close</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    // ── LOCATION DATA ─────────────────────────────────────────────────
+    const LOCATIONS = {
+      "Crossing Republic": [
+        "Crossing Republic – Tower A", "Crossing Republic – Tower B", "Crossing Republic – Tower C",
+        "Crossing Republic – Tower D", "Crossing Republic – Tower E", "Crossing Republic – Phase 1",
+        "Crossing Republic – Phase 2", "Crossing Republic – Phase 3", "Crossing Republic – Sector 1",
+        "Crossing Republic – Sector 2",
+      ],
+      "Gaur City": [
+        "Gaur City 1", "Gaur City 2", "Gaur City 7th Avenue", "Gaur City 14th Avenue",
+        "Gaur Grandeur", "Gaur Atulyam", "Gaur Cascades", "Gaur Saundaryam",
+      ],
+      "Raj Nagar Extension": [
+        "Raj Nagar Extension – Phase 1", "Raj Nagar Extension – Phase 2",
+        "Raj Nagar Extension – Sector 1", "Raj Nagar Extension – Sector 2",
+        "KW Srishti", "Saya Zion", "Wave City – Raj Nagar",
+      ],
+      "Indirapuram": [
+        "Indirapuram – Sector 1", "Ahinsa Khand 1", "Ahinsa Khand 2",
+        "Nyay Khand 1", "Nyay Khand 2", "Shipra Sun City", "Shakti Khand",
+      ],
+      "Other Areas": [
+        "Vaibhav Khand", "Vasundhara Sector 5", "Vasundhara Sector 10",
+        "Vijay Nagar, Ghaziabad", "Kaushambi", "Wave City – NH9",
+        "Govindpuram", "Pratap Vihar",
+      ],
+    };
+
+    function onLocInput(val) {
+      const box = document.getElementById('sugBox');
+      if (!val.trim()) { box.classList.remove('open'); return; }
+      const q = val.toLowerCase();
+      let html = '';
+      let found = false;
+      for (const [group, items] of Object.entries(LOCATIONS)) {
+        const matched = items.filter(i => i.toLowerCase().includes(q));
+        if (matched.length) {
+          found = true;
+          html += `<div class="sug-group-label">${group}</div>`;
+          matched.slice(0, 4).forEach(item => {
+            const hi = item.replace(new RegExp(val, 'gi'), m => `<strong>${m}</strong>`);
+            html += `<div class="sug-item" onclick="selectLoc('${item}')">
           <span class="sug-item-icon">📍</span>
           <div><div class="sug-item-main">${hi}</div></div>
         </div>`;
-      });
-      html += '<div class="sug-sep"></div>';
-    }
-  }
-  if (!found) {
-    html = `<div class="sug-item"><span class="sug-item-icon">🔍</span>
+          });
+          html += '<div class="sug-sep"></div>';
+        }
+      }
+      if (!found) {
+        html = `<div class="sug-item"><span class="sug-item-icon">🔍</span>
       <div><div class="sug-item-main" style="color:var(--ink3)">No match — try typing society name</div></div></div>`;
-  }
-  box.innerHTML = html;
-  box.classList.add('open');
-}
- 
-function onLocFocus() {
-  const val = document.getElementById('locInput').value;
-  if (val) onLocInput(val);
-  else {
-    // Show popular areas
-    const box = document.getElementById('sugBox');
-    let html = '<div class="sug-group-label">Popular Areas</div>';
-    ['Crossing Republic', 'Gaur City', 'Raj Nagar Extension', 'Indirapuram'].forEach(a => {
-      html += `<div class="sug-item" onclick="selectLoc('${a}')">
+      }
+      box.innerHTML = html;
+      box.classList.add('open');
+    }
+
+    function onLocFocus() {
+      const val = document.getElementById('locInput').value;
+      if (val) onLocInput(val);
+      else {
+        // Show popular areas
+        const box = document.getElementById('sugBox');
+        let html = '<div class="sug-group-label">Popular Areas</div>';
+        ['Crossing Republic', 'Gaur City', 'Raj Nagar Extension', 'Indirapuram'].forEach(a => {
+          html += `<div class="sug-item" onclick="selectLoc('${a}')">
         <span class="sug-item-icon">📍</span>
         <div><div class="sug-item-main">${a}</div><div class="sug-item-sub">Ghaziabad</div></div>
       </div>`;
-    });
-    box.innerHTML = html;
-    box.classList.add('open');
-  }
-}
- 
-function selectLoc(val) {
-  document.getElementById('locInput').value = val;
-  document.getElementById('sugBox').classList.remove('open');
-}
-
-function closeSug() {
-  document.getElementById('sugBox').classList.remove('open');
-}
-
-// ── SEARCH ────────────────────────────────────────────────────────
-function searchTutors() {
-  const grid = document.getElementById('tutorGrid');
-  grid.style.opacity = '0.4';
-  setTimeout(() => { grid.style.opacity = '1'; }, 600);
-}
-
-// ── HOW IT WORKS TABS ─────────────────────────────────────────────
-function switchHowTab(type, el) {
-  document.querySelectorAll('.htab').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('hw-parent').style.display = type === 'parent' ? 'grid' : 'none';
-  document.getElementById('hw-tutor').style.display = type === 'tutor' ? 'grid' : 'none';
-}
-
-// ── FORM SUBMIT ───────────────────────────────────────────────────
-const API = "https://clarasta-server.vercel.app";
-
-async function submitParent() {
-  const name = document.getElementById('p-name').value.trim();
-  const whatsapp = document.getElementById('p-wa').value.trim();
-  const society = document.getElementById('p-loc').value.trim();
-  const childClass = document.getElementById('p-class').value;
-  const subject = document.getElementById('p-sub').value;
-  if (!name || !whatsapp || !society || !childClass || !subject) {
-    alert('Please fill all fields!'); return;
-  }
-  if (whatsapp.length !== 10 || !/^\d+$/.test(whatsapp)) {
-    alert('Please enter a valid 10-digit WhatsApp number.'); return;
-  }
-  try {
-    const res = await fetch(`${API}/api/parent/signup`, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({name,whatsapp,society,childClass,subject})
-    });
-    const data = await res.json();
-    if (data.success) {
-      const user = {role:'parent',name,whatsapp,society,childClass,subject,id:data.id,registeredAt:new Date().toISOString()};
-      localStorage.setItem('clarasta_user', JSON.stringify(user));
+        });
+        box.innerHTML = html;
+        box.classList.add('open');
+      }
     }
-    console.log('Parent signup:', data);
-  } catch(e) {
-    console.error('Error:', e);
-  }
-  document.getElementById('pform').style.display = 'none';
-  document.querySelector('.submit-p').style.display = 'none';
-  document.getElementById('p-success').style.display = 'block';
-}
 
-async function submitTutor() {
-  const name = document.getElementById('t-name').value.trim();
-  const whatsapp = document.getElementById('t-wa').value.trim();
-  const college = document.getElementById('t-college').value.trim();
-  const branch = document.getElementById('t-branch').value;
-  const subjects = document.getElementById('t-subs').value.trim();
-  const society = document.getElementById('t-loc').value.trim();
-  if (!name || !whatsapp || !college || !branch || !subjects || !society) {
-    alert('Please fill all fields!'); return;
-  }
-  if (whatsapp.length !== 10 || !/^\d+$/.test(whatsapp)) {
-    alert('Please enter a valid 10-digit WhatsApp number.'); return;
-  }
-  try {
-    const res = await fetch(`${API}/api/tutor/signup`, {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({name,whatsapp,college,branch,subjects,society})
-    });
-    const data = await res.json();
-    if (data.success) {
-      const user = {role:'tutor',name,whatsapp,college,branch,subjects:subjects.split(',').map(s=>s.trim()),society,id:data.id,verified:false,registeredAt:new Date().toISOString()};
-      localStorage.setItem('clarasta_user', JSON.stringify(user));
+    function selectLoc(val) {
+      document.getElementById('locInput').value = val;
+      document.getElementById('sugBox').classList.remove('open');
     }
-    console.log('Tutor signup:', data);
-  } catch(e) {
-    console.error('Error:', e);
-  }
-  document.getElementById('tform').style.display = 'none';
-  document.querySelector('.submit-t').style.display = 'none';
-  document.getElementById('t-success').style.display = 'block';
-}
-// ── MODAL ─────────────────────────────────────────────────────────
-function openModal(type) {
-  const body = document.getElementById('modalBody');
-  if (type === 'parent') {
-    body.innerHTML = `
+
+    function closeSug() {
+      document.getElementById('sugBox').classList.remove('open');
+    }
+
+    // ── SEARCH ────────────────────────────────────────────────────────
+    function searchTutors() {
+      const grid = document.getElementById('tutorGrid');
+      grid.style.opacity = '0.4';
+      setTimeout(() => { grid.style.opacity = '1'; }, 600);
+    }
+
+    // ── HOW IT WORKS TABS ─────────────────────────────────────────────
+    function switchHowTab(type, el) {
+      document.querySelectorAll('.htab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('hw-parent').style.display = type === 'parent' ? 'grid' : 'none';
+      document.getElementById('hw-tutor').style.display = type === 'tutor' ? 'grid' : 'none';
+    }
+
+    // ── FORM SUBMIT ───────────────────────────────────────────────────
+    const API = "https://clarasta-server.vercel.app";
+
+    async function submitParent() {
+      const name = document.getElementById('p-name').value.trim();
+      const whatsapp = document.getElementById('p-wa').value.trim();
+      const society = document.getElementById('p-loc').value.trim();
+      const childClass = document.getElementById('p-class').value;
+      const subject = document.getElementById('p-sub').value;
+      if (!name || !whatsapp || !society || !childClass || !subject) {
+        alert('Please fill all fields!'); return;
+      }
+      if (whatsapp.length !== 10 || !/^\d+$/.test(whatsapp)) {
+        alert('Please enter a valid 10-digit WhatsApp number.'); return;
+      }
+      try {
+        const res = await fetch(`${API}/api/parent/signup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, whatsapp, society, childClass, subject })
+        });
+        const data = await res.json();
+        if (data.success) {
+          const user = { role: 'parent', name, whatsapp, society, childClass, subject, id: data.id, registeredAt: new Date().toISOString() };
+          localStorage.setItem('clarasta_user', JSON.stringify(user));
+        }
+        console.log('Parent signup:', data);
+      } catch (e) {
+        console.error('Error:', e);
+      }
+      document.getElementById('pform').style.display = 'none';
+      document.querySelector('.submit-p').style.display = 'none';
+      document.getElementById('p-success').style.display = 'block';
+    }
+
+    async function submitTutor() {
+      const name = document.getElementById('t-name').value.trim();
+      const whatsapp = document.getElementById('t-wa').value.trim();
+      const college = document.getElementById('t-college').value.trim();
+      const branch = document.getElementById('t-branch').value;
+      const subjects = document.getElementById('t-subs').value.trim();
+      const society = document.getElementById('t-loc').value.trim();
+      if (!name || !whatsapp || !college || !branch || !subjects || !society) {
+        alert('Please fill all fields!'); return;
+      }
+      if (whatsapp.length !== 10 || !/^\d+$/.test(whatsapp)) {
+        alert('Please enter a valid 10-digit WhatsApp number.'); return;
+      }
+      try {
+        const res = await fetch(`${API}/api/tutor/signup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, whatsapp, college, branch, subjects, society })
+        });
+        const data = await res.json();
+        if (data.success) {
+          const user = { role: 'tutor', name, whatsapp, college, branch, subjects: subjects.split(',').map(s => s.trim()), society, id: data.id, verified: false, registeredAt: new Date().toISOString() };
+          localStorage.setItem('clarasta_user', JSON.stringify(user));
+        }
+        console.log('Tutor signup:', data);
+      } catch (e) {
+        console.error('Error:', e);
+      }
+      document.getElementById('tform').style.display = 'none';
+      document.querySelector('.submit-t').style.display = 'none';
+      document.getElementById('t-success').style.display = 'block';
+    }
+    // ── MODAL ─────────────────────────────────────────────────────────
+    function openModal(type) {
+      const body = document.getElementById('modalBody');
+      if (type === 'parent') {
+        body.innerHTML = `
       <div style="font-size:2rem;margin-bottom:12px;">👨‍👩‍👧</div>
       <h3 style="font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:6px;">Find a Tutor</h3>
       <p style="color:var(--ink3);font-size:0.87rem;margin-bottom:22px;">We'll match you with a verified tutor in 2 hours.</p>
@@ -1510,8 +3086,8 @@ function openModal(type) {
         <select id="mp-sub"><option>Subject Needed</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option><option>English</option><option>Computer Science</option></select>
       </div>
       <button class="submit-p" onclick="modalSuccess()">Send Request →</button>`;
-  } else {
-    body.innerHTML = `
+      } else {
+        body.innerHTML = `
       <div style="font-size:2rem;margin-bottom:12px;">🎓</div>
       <h3 style="font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:6px;">Become a Tutor</h3>
       <p style="color:var(--ink3);font-size:0.87rem;margin-bottom:22px;">Earn ₹3,000–₹8,000/month in 1 hour a day.</p>
@@ -1524,44 +3100,45 @@ function openModal(type) {
         <input type="text" placeholder="Your Society / Area" id="mt-loc"/>
       </div>
       <button class="submit-t" onclick="modalSuccess()">Sign Up as Tutor →</button>`;
-  }
-  document.getElementById('modalOverlay').classList.add('open');
-}
- 
-function modalSuccess() {
-  document.getElementById('modalBody').innerHTML = `
+      }
+      document.getElementById('modalOverlay').classList.add('open');
+    }
+
+    function modalSuccess() {
+      document.getElementById('modalBody').innerHTML = `
     <div style="text-align:center;padding:20px 0;">
       <div style="font-size:3rem;margin-bottom:12px;">🎉</div>
       <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:8px;">You're on the list!</h3>
       <p style="color:var(--ink3);font-size:0.87rem;margin-bottom:16px;">We'll reach out on WhatsApp within 2 hours. Keep an eye on your messages!</p>
       <a href="auth.html" style="display:inline-block;background:var(--gold);color:white;padding:10px 22px;border-radius:9px;font-size:0.85rem;font-weight:700;text-decoration:none;">Go to Dashboard →</a>
     </div>`;
-}
-function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
-function closeModalOut(e) { if(e.target.id==='modalOverlay') closeModal(); }
- 
-// ── SCROLL REVEAL ─────────────────────────────────────────────────
-const obs = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-document.addEventListener("DOMContentLoaded", function () {
-  const btn = document.querySelector(".submit-p");
+    }
+    function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
+    function closeModalOut(e) { if (e.target.id === 'modalOverlay') closeModal(); }
 
-  if (btn) {
-    btn.addEventListener("click", function () {
-      submitParent();
+    // ── SCROLL REVEAL ─────────────────────────────────────────────────
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    document.addEventListener("DOMContentLoaded", function () {
+      const btn = document.querySelector(".submit-p");
+
+      if (btn) {
+        btn.addEventListener("click", function () {
+          submitParent();
+        });
+      }
+
+      const tutorBtn = document.querySelector(".submit-t");
+
+      if (tutorBtn) {
+        tutorBtn.addEventListener("click", function () {
+          submitTutor();
+        });
+      }
     });
-  }
-
-  const tutorBtn = document.querySelector(".submit-t");
-
-  if (tutorBtn) {
-    tutorBtn.addEventListener("click", function () {
-      submitTutor();
-    });
-  }
-});
-</script>
+  </script>
 </body>
+
 </html>

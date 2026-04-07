@@ -39,7 +39,7 @@ body{
 
 /* ── LEFT PANEL ── */
 .auth-left{
-  background:var(--ink);
+  background: linear-gradient(145deg, #1a1714 0%, #0f0d0b 60%, #1d1a14 100%);
   min-height:100vh;
   display:flex;
   flex-direction:column;
@@ -50,73 +50,114 @@ body{
 }
 .auth-left::before{
   content:'';
-  position:absolute;top:-120px;right:-120px;
-  width:500px;height:500px;border-radius:50%;
-  background:radial-gradient(rgba(200,146,42,0.15),transparent 65%);
+  position:absolute;top:-150px;right:-150px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(rgba(200,146,42,0.18),transparent 60%);
+  animation:blobMove1 8s ease-in-out infinite;
 }
 .auth-left::after{
   content:'';
-  position:absolute;bottom:-80px;left:-80px;
-  width:350px;height:350px;border-radius:50%;
-  background:radial-gradient(rgba(42,122,106,0.12),transparent 65%);
+  position:absolute;bottom:-100px;left:-100px;
+  width:450px;height:450px;border-radius:50%;
+  background:radial-gradient(rgba(42,122,106,0.15),transparent 60%);
+  animation:blobMove2 10s ease-in-out infinite;
 }
+@keyframes blobMove1{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,20px)}}
+@keyframes blobMove2{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-15px)}}
+
+/* Noise texture overlay */
+.auth-left-noise{
+  position:absolute;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:0.5;pointer-events:none;z-index:0;
+}
+
 .al-logo{
   display:flex;align-items:center;gap:10px;
   font-family:'DM Serif Display',serif;
-  font-size:1.6rem;color:var(--white);
+  font-size:1.7rem;color:var(--white);
   text-decoration:none;
   position:relative;z-index:1;
+  letter-spacing:-0.3px;
 }
-.al-logo-dot{
-  width:9px;height:9px;border-radius:50%;
-  background:var(--gold);display:inline-block;
-  margin-bottom:2px;
+.al-logo-badge{
+  background:linear-gradient(135deg,var(--gold),var(--gold2));
+  border-radius:8px;
+  width:34px;height:34px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;
+  box-shadow:0 4px 12px rgba(200,146,42,0.4);
 }
-.al-content{position:relative;z-index:1;}
+.al-content{position:relative;z-index:1;margin:auto 0;}
 .al-tag{
   display:inline-flex;align-items:center;gap:8px;
-  background:rgba(200,146,42,0.15);
-  border:1px solid rgba(200,146,42,0.3);
-  border-radius:999px;padding:6px 16px;
-  font-size:0.74rem;font-weight:700;color:var(--gold2);
-  letter-spacing:0.5px;text-transform:uppercase;
-  margin-bottom:24px;
+  background:rgba(200,146,42,0.12);
+  border:1px solid rgba(200,146,42,0.25);
+  border-radius:999px;padding:7px 18px;
+  font-size:0.73rem;font-weight:700;color:var(--gold2);
+  letter-spacing:0.8px;text-transform:uppercase;
+  margin-bottom:28px;
+  backdrop-filter:blur(8px);
 }
 .al-tag-dot{
-  width:5px;height:5px;border-radius:50%;
+  width:6px;height:6px;border-radius:50%;
   background:var(--gold2);
   animation:blink 1.8s infinite;
 }
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
 .al-headline{
   font-family:'DM Serif Display',serif;
-  font-size:clamp(2rem,3.5vw,3rem);
-  line-height:1.15;letter-spacing:-0.5px;
-  color:var(--white);margin-bottom:20px;
+  font-size:clamp(2.2rem,3.5vw,3.2rem);
+  line-height:1.12;letter-spacing:-0.8px;
+  color:var(--white);margin-bottom:22px;
 }
-.al-headline em{color:var(--gold2);font-style:italic;}
+.al-headline em{
+  color:var(--gold2);font-style:italic;
+  position:relative;
+}
 .al-desc{
-  font-size:0.95rem;color:rgba(255,255,255,0.55);
-  line-height:1.75;max-width:400px;margin-bottom:36px;
+  font-size:0.93rem;color:rgba(255,255,255,0.5);
+  line-height:1.8;max-width:400px;margin-bottom:40px;
 }
-.al-perks{display:flex;flex-direction:column;gap:12px;}
+.al-perks{display:flex;flex-direction:column;gap:14px;}
 .al-perk{
-  display:flex;align-items:center;gap:12px;
-  font-size:0.85rem;color:rgba(255,255,255,0.7);
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:12px;padding:14px 18px;
+  font-size:0.84rem;color:rgba(255,255,255,0.7);
+  transition:all 0.3s;
 }
+.al-perk:hover{background:rgba(255,255,255,0.07);transform:translateX(4px);}
 .al-perk-icon{
-  width:34px;height:34px;border-radius:10px;
-  background:rgba(255,255,255,0.07);
-  border:1px solid rgba(255,255,255,0.1);
+  width:36px;height:36px;border-radius:10px;
+  background:rgba(200,146,42,0.15);
+  border:1px solid rgba(200,146,42,0.2);
   display:flex;align-items:center;justify-content:center;
   font-size:0.9rem;flex-shrink:0;
 }
 .al-footer{
   position:relative;z-index:1;
-  font-size:0.78rem;color:rgba(255,255,255,0.3);
+  font-size:0.77rem;color:rgba(255,255,255,0.25);
 }
-.al-footer a{color:rgba(255,255,255,0.5);text-decoration:none;}
+.al-footer a{color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s;}
 .al-footer a:hover{color:var(--gold2);}
+
+/* Glassmorphism stat pills */
+.al-stats{
+  display:flex;gap:12px;margin-bottom:36px;position:relative;z-index:1;
+}
+.al-stat{
+  flex:1;background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:14px;padding:16px;
+  backdrop-filter:blur(10px);
+}
+.al-stat-val{
+  font-family:'DM Serif Display',serif;
+  font-size:1.6rem;color:var(--gold2);margin-bottom:2px;
+}
+.al-stat-lab{font-size:0.73rem;color:rgba(255,255,255,0.4);font-weight:500;}
 
 /* ── RIGHT PANEL ── */
 .auth-right{
@@ -124,38 +165,60 @@ body{
   padding:48px 56px;
   overflow-y:auto;
   min-height:100vh;
+  background:var(--bg);
+  position:relative;
 }
-.auth-box{width:100%;max-width:440px;}
+.auth-right::before{
+  content:'';
+  position:absolute;bottom:-100px;right:-100px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(rgba(200,146,42,0.05),transparent 70%);
+  pointer-events:none;
+}
+.auth-box{width:100%;max-width:440px;position:relative;z-index:1;}
 .auth-back{
   display:inline-flex;align-items:center;gap:6px;
   color:var(--ink3);font-size:0.82rem;font-weight:600;
-  text-decoration:none;margin-bottom:32px;
-  transition:color 0.2s;
+  text-decoration:none;margin-bottom:36px;
+  transition:all 0.2s;
+  padding:8px 14px;border-radius:8px;
+  border:1.5px solid var(--border);background:var(--white);
 }
-.auth-back:hover{color:var(--gold);}
-.auth-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;}
+.auth-back:hover{color:var(--gold);border-color:var(--gold);background:var(--goldbg);}
+.auth-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;}
 
 /* Role selector */
 .role-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
 .role-btn{
-  padding:14px 16px;border-radius:12px;
+  padding:16px;border-radius:14px;
   border:2px solid var(--border);
   background:var(--white);cursor:pointer;
   font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.88rem;font-weight:700;color:var(--ink3);
+  font-size:0.87rem;font-weight:700;color:var(--ink3);
   transition:all 0.2s;display:flex;align-items:center;
-  justify-content:center;gap:8px;text-align:center;
+  justify-content:center;gap:10px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.role-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,transparent,rgba(255,255,255,0.5));
+  opacity:0;transition:opacity 0.2s;
 }
 .role-btn:hover{border-color:var(--gold);color:var(--ink);}
+.role-btn:hover::before{opacity:1;}
 .role-btn.active-parent{
-  border-color:var(--gold);background:var(--goldbg);
+  border-color:var(--gold);
+  background:linear-gradient(135deg,var(--goldbg),#fff9ef);
   color:var(--gold);
+  box-shadow:0 4px 16px rgba(200,146,42,0.15);
 }
 .role-btn.active-tutor{
-  border-color:var(--teal);background:var(--tealbg);
+  border-color:var(--teal);
+  background:linear-gradient(135deg,var(--tealbg),#f0faf8);
   color:var(--teal);
+  box-shadow:0 4px 16px rgba(42,122,106,0.15);
 }
-.role-emoji{font-size:1.1rem;}
+.role-emoji{font-size:1.2rem;}
 
 /* Mode tabs */
 .mode-tabs{
@@ -171,13 +234,13 @@ body{
 }
 .mode-tab.active{
   background:var(--white);color:var(--ink);
-  box-shadow:0 2px 8px rgba(26,23,20,0.08);
+  box-shadow:0 2px 10px rgba(26,23,20,0.08);
 }
 
 /* Auth heading */
 .auth-heading{
   font-family:'DM Serif Display',serif;
-  font-size:1.7rem;color:var(--ink);
+  font-size:1.75rem;color:var(--ink);
   letter-spacing:-0.3px;margin-bottom:6px;
 }
 .auth-subheading{
@@ -190,8 +253,8 @@ body{
 /* Form */
 .form-field{margin-bottom:14px;}
 .form-field label{
-  display:block;font-size:0.72rem;font-weight:800;
-  color:var(--ink3);letter-spacing:1px;text-transform:uppercase;
+  display:block;font-size:0.71rem;font-weight:800;
+  color:var(--ink3);letter-spacing:1.2px;text-transform:uppercase;
   margin-bottom:6px;
 }
 .form-field input,
@@ -215,7 +278,7 @@ body{
   box-shadow:0 0 0 3px rgba(42,122,106,0.1);
 }
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.input-hint{font-size:0.73rem;color:var(--ink3);margin-top:4px;}
+.input-hint{font-size:0.72rem;color:var(--ink3);margin-top:4px;}
 
 /* Subjects multi-select chip input */
 .subjects-chips{
@@ -234,10 +297,7 @@ body{
   border-radius:6px;padding:3px 9px;
   font-size:0.78rem;font-weight:700;
 }
-.chip-remove{
-  cursor:pointer;
-  font-size:0.7rem;opacity:0.7;
-}
+.chip-remove{cursor:pointer;font-size:0.7rem;opacity:0.7;}
 .chip-remove:hover{opacity:1;}
 .subjects-input{
   border:none;outline:none;background:transparent;
@@ -249,44 +309,46 @@ body{
 
 /* Submit button */
 .submit-btn{
-  width:100%;padding:14px 24px;border-radius:10px;
+  width:100%;padding:15px 24px;border-radius:12px;
   font-family:'Plus Jakarta Sans',sans-serif;
   font-size:0.95rem;font-weight:700;border:none;cursor:pointer;
-  transition:all 0.22s;letter-spacing:0.1px;
-  margin-top:4px;
+  transition:all 0.25s;letter-spacing:0.2px;
+  margin-top:6px;
   display:flex;align-items:center;justify-content:center;gap:8px;
+  position:relative;overflow:hidden;
 }
+.submit-btn::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent);
+  opacity:0;transition:opacity 0.2s;
+}
+.submit-btn:hover::after{opacity:1;}
 .submit-btn.parent-btn{
-  background:var(--gold);color:var(--white);
-  box-shadow:0 4px 16px rgba(200,146,42,0.3);
+  background:linear-gradient(135deg,var(--gold),#b8821a);
+  color:var(--white);
+  box-shadow:0 6px 20px rgba(200,146,42,0.35);
 }
-.submit-btn.parent-btn:hover{background:#b8821a;transform:translateY(-1px);}
+.submit-btn.parent-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(200,146,42,0.45);}
 .submit-btn.tutor-btn{
-  background:var(--teal);color:var(--white);
-  box-shadow:0 4px 16px rgba(42,122,106,0.3);
+  background:linear-gradient(135deg,var(--teal),#1f5e50);
+  color:var(--white);
+  box-shadow:0 6px 20px rgba(42,122,106,0.35);
 }
-.submit-btn.tutor-btn:hover{background:#1f5e50;transform:translateY(-1px);}
+.submit-btn.tutor-btn:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(42,122,106,0.45);}
 .submit-btn:disabled{opacity:0.7;cursor:not-allowed;transform:none!important;}
-
-/* Divider */
-.auth-divider{
-  display:flex;align-items:center;gap:12px;
-  margin:20px 0;color:var(--ink3);font-size:0.78rem;
-}
-.auth-divider::before,.auth-divider::after{
-  content:'';flex:1;height:1px;background:var(--border);
-}
 
 /* Alert boxes */
 .alert{
-  padding:12px 16px;border-radius:10px;
+  padding:13px 16px;border-radius:10px;
   font-size:0.84rem;font-weight:500;
   margin-bottom:16px;display:none;
-  line-height:1.4;
+  line-height:1.5;align-items:center;gap:8px;
+  border-left:4px solid;
 }
-.alert.error{background:var(--errorbg);color:var(--error);border:1px solid rgba(192,57,43,0.2);}
-.alert.success{background:var(--tealbg);color:var(--teal);border:1px solid rgba(42,122,106,0.2);}
-.alert.show{display:block;}
+.alert.error{background:var(--errorbg);color:var(--error);border-color:var(--error);}
+.alert.success{background:var(--tealbg);color:var(--teal);border-color:var(--teal);}
+.alert.show{display:flex;}
+.alert-icon{font-size:1rem;flex-shrink:0;}
 
 /* Loading spinner */
 .spinner{
@@ -303,11 +365,14 @@ body{
 
 /* Terms */
 .terms-note{
-  font-size:0.74rem;color:var(--ink3);
+  font-size:0.73rem;color:var(--ink3);
   text-align:center;margin-top:14px;line-height:1.5;
 }
 .terms-note a{color:var(--gold);text-decoration:none;}
 .terms-note a:hover{text-decoration:underline;}
+
+/* Divider */
+.auth-divider{text-align:center;margin:4px 0;font-size:0.78rem;color:var(--ink3);}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
@@ -319,21 +384,42 @@ body{
   .form-row{grid-template-columns:1fr;}
   .auth-right{padding:32px 20px;}
 }
+
+/* Animations */
+.auth-box{animation:slideUp 0.5s ease both;}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 
 <!-- LEFT BRAND PANEL -->
 <div class="auth-left">
+  <div class="auth-left-noise"></div>
   <a href="index.html" class="al-logo">
-    <div class="al-logo-dot"></div>
+    <div class="al-logo-badge">✦</div>
     Clarasta
   </a>
 
   <div class="al-content">
     <div class="al-tag"><div class="al-tag-dot"></div>Crossing Republic · Gaur City · GZB</div>
     <h1 class="al-headline">Trusted Tutors,<br/><em>Right at Home</em></h1>
-    <p class="al-desc">Join Clarasta's growing community of parents and BTech tutors. Connect directly, no middlemen, no platform fees — ever.</p>
+    <p class="al-desc">Join Clarasta's growing community of parents and BTech tutors. Connect directly — no middlemen, no platform fees, ever.</p>
+
+    <div class="al-stats">
+      <div class="al-stat">
+        <div class="al-stat-val">50+</div>
+        <div class="al-stat-lab">Active Tutors</div>
+      </div>
+      <div class="al-stat">
+        <div class="al-stat-val">200+</div>
+        <div class="al-stat-lab">Happy Families</div>
+      </div>
+      <div class="al-stat">
+        <div class="al-stat-val">4.9★</div>
+        <div class="al-stat-lab">Avg Rating</div>
+      </div>
+    </div>
+
     <div class="al-perks">
       <div class="al-perk">
         <div class="al-perk-icon">✅</div>
@@ -385,8 +471,8 @@ body{
     </div>
 
     <!-- Alert Box -->
-    <div class="alert error" id="alert-error"></div>
-    <div class="alert success" id="alert-success"></div>
+    <div class="alert error" id="alert-error"><span class="alert-icon">⚠️</span><span id="alert-error-msg"></span></div>
+    <div class="alert success" id="alert-success"><span class="alert-icon">✅</span><span id="alert-success-msg"></span></div>
 
     <!-- ===== PARENT REGISTER ===== -->
     <div class="form-panel active" id="panel-parent-register">
@@ -439,7 +525,7 @@ body{
         </div>
         <button type="submit" class="submit-btn parent-btn" id="btn-parent-register">
           <div class="spinner" id="spin-pr"></div>
-          <span id="btn-pr-text">Register as Parent</span>
+          <span id="btn-pr-text">Register as Parent →</span>
         </button>
       </form>
       <p class="terms-note">By registering, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
@@ -447,12 +533,13 @@ body{
 
     <!-- ===== PARENT LOGIN ===== -->
     <div class="form-panel" id="panel-parent-login">
-      <h2 class="auth-heading">Welcome back</h2>
+      <h2 class="auth-heading">Welcome back 👋</h2>
       <p class="auth-subheading">Enter your registered WhatsApp number to access your parent dashboard. New here? <span onclick="setMode('register')">Register now</span></p>
       <form id="form-parent-login" onsubmit="submitParentLogin(event)">
         <div class="form-field">
           <label>Registered WhatsApp Number</label>
           <input type="tel" id="pl-whatsapp" placeholder="10-digit number" maxlength="10" required/>
+          <div class="input-hint">The number you used during registration</div>
         </div>
         <button type="submit" class="submit-btn parent-btn" id="btn-parent-login">
           <div class="spinner" id="spin-pl"></div>
@@ -514,7 +601,7 @@ body{
         </div>
         <button type="submit" class="submit-btn tutor-btn" id="btn-tutor-register">
           <div class="spinner" id="spin-tr"></div>
-          <span id="btn-tr-text">Submit Profile</span>
+          <span id="btn-tr-text">Submit Profile →</span>
         </button>
       </form>
       <p class="terms-note">By registering, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
@@ -522,12 +609,13 @@ body{
 
     <!-- ===== TUTOR LOGIN ===== -->
     <div class="form-panel" id="panel-tutor-login">
-      <h2 class="auth-heading">Tutor Login</h2>
+      <h2 class="auth-heading">Tutor Login 🎓</h2>
       <p class="auth-subheading">Access your tutor dashboard. New here? <span onclick="setMode('register')">Register your profile</span></p>
       <form id="form-tutor-login" onsubmit="submitTutorLogin(event)">
         <div class="form-field teal-focus">
           <label>Registered WhatsApp Number</label>
           <input type="tel" id="tl-whatsapp" placeholder="10-digit number" maxlength="10" required/>
+          <div class="input-hint">The number you used during registration</div>
         </div>
         <button type="submit" class="submit-btn tutor-btn" id="btn-tutor-login">
           <div class="spinner" id="spin-tl"></div>
@@ -572,15 +660,13 @@ function showPanel() {
 
 // ── ALERTS ────────────────────────────────────
 function showError(msg) {
-  const el = document.getElementById('alert-error');
-  el.textContent = msg;
-  el.classList.add('show');
+  document.getElementById('alert-error-msg').textContent = msg;
+  document.getElementById('alert-error').classList.add('show');
   document.getElementById('alert-success').classList.remove('show');
 }
 function showSuccess(msg) {
-  const el = document.getElementById('alert-success');
-  el.textContent = msg;
-  el.classList.add('show');
+  document.getElementById('alert-success-msg').textContent = msg;
+  document.getElementById('alert-success').classList.add('show');
   document.getElementById('alert-error').classList.remove('show');
 }
 function clearAlerts() {
@@ -614,10 +700,10 @@ async function submitParentRegister(e) {
     });
     const data = await res.json();
     if(data.success) {
-      const user = {role:'parent',name,whatsapp,society,childClass,subject,id:data.id,registeredAt:new Date().toISOString()};
-      localStorage.setItem('clarasta_user', JSON.stringify(user));
-      showSuccess('Registration successful! Redirecting to your dashboard…');
-      setTimeout(() => window.location.href = 'parent-dashboard.html', 1500);
+      // ✅ Show success, then switch to Login tab — don't auto-redirect yet
+      showSuccess('✅ Registration successful! Please login below with your WhatsApp number.');
+      document.getElementById('form-parent-register').reset();
+      setTimeout(() => setMode('login'), 2000);
     } else {
       showError(data.message || 'Registration failed. Please try again.');
     }
@@ -627,7 +713,7 @@ async function submitParentRegister(e) {
   setLoading('spin-pr','btn-pr-text',false);
 }
 
-// ── PARENT LOGIN ──────────────────────────────
+// ── PARENT LOGIN ─────────────────────────────
 async function submitParentLogin(e) {
   e.preventDefault();
   clearAlerts();
@@ -635,13 +721,22 @@ async function submitParentLogin(e) {
   if(whatsapp.length !== 10 || !/^\d+$/.test(whatsapp))
     return showError('Please enter a valid 10-digit WhatsApp number.');
   setLoading('spin-pl','btn-pl-text',true);
-  const stored = JSON.parse(localStorage.getItem('clarasta_user') || 'null');
-  await new Promise(r => setTimeout(r, 800)); // natural feel
-  if(stored && stored.role === 'parent' && stored.whatsapp === whatsapp) {
-    showSuccess('Login successful! Redirecting…');
-    setTimeout(() => window.location.href = 'parent-dashboard.html', 1200);
-  } else {
-    showError('No parent account found with this number. Please register first.');
+  try {
+    const res = await fetch(`${API}/api/parent/login`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({whatsapp})
+    });
+    const data = await res.json();
+    if(data.success) {
+      localStorage.setItem('clarasta_user', JSON.stringify({...data.user, role:'parent'}));
+      showSuccess('Login successful! Redirecting to your dashboard…');
+      setTimeout(() => window.location.href = 'parent-dashboard.html', 1200);
+    } else {
+      showError(data.message || 'No account found. Please register first.');
+    }
+  } catch(err) {
+    showError('Network error. Please check your connection and try again.');
   }
   setLoading('spin-pl','btn-pl-text',false);
 }
@@ -726,10 +821,12 @@ async function submitTutorRegister(e) {
     });
     const data = await res.json();
     if(data.success) {
-      const user = {role:'tutor',name,whatsapp,college,branch,subjects:subjects,society,id:data.id,verified:false,registeredAt:new Date().toISOString()};
-      localStorage.setItem('clarasta_user', JSON.stringify(user));
-      showSuccess('Profile submitted! Redirecting to your dashboard…');
-      setTimeout(() => window.location.href = 'tutor-dashboard.html', 1500);
+      // ✅ Show success, switch to Login — don't auto-redirect yet
+      showSuccess('✅ Profile submitted! Now login below with your WhatsApp number.');
+      subjects = [];
+      document.getElementById('form-tutor-register').reset();
+      renderChips();
+      setTimeout(() => setMode('login'), 2000);
     } else {
       showError(data.message || 'Registration failed.');
     }
@@ -747,24 +844,44 @@ async function submitTutorLogin(e) {
   if(whatsapp.length !== 10 || !/^\d+$/.test(whatsapp))
     return showError('Please enter a valid 10-digit WhatsApp number.');
   setLoading('spin-tl','btn-tl-text',true);
-  const stored = JSON.parse(localStorage.getItem('clarasta_user') || 'null');
-  await new Promise(r => setTimeout(r, 800));
-  if(stored && stored.role === 'tutor' && stored.whatsapp === whatsapp) {
-    showSuccess('Login successful! Redirecting…');
-    setTimeout(() => window.location.href = 'tutor-dashboard.html', 1200);
-  } else {
-    showError('No tutor account found with this number. Please register first.');
+  try {
+    const res = await fetch(`${API}/api/tutor/login`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({whatsapp})
+    });
+    const data = await res.json();
+    if(data.success) {
+      localStorage.setItem('clarasta_user', JSON.stringify({...data.user, role:'tutor'}));
+      showSuccess('Login successful! Redirecting to your dashboard…');
+      setTimeout(() => window.location.href = 'tutor-dashboard.html', 1200);
+    } else {
+      showError(data.message || 'No tutor account found. Please register first.');
+    }
+  } catch(err) {
+    showError('Network error. Please check your connection and try again.');
   }
   setLoading('spin-tl','btn-tl-text',false);
 }
 
-// ── INIT: check if already logged in ──────────
+// ── INIT ──────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
-  const user = JSON.parse(localStorage.getItem('clarasta_user') || 'null');
-  if(user) {
-    if(user.role === 'parent') window.location.href = 'parent-dashboard.html';
-    else if(user.role === 'tutor') window.location.href = 'tutor-dashboard.html';
+  const params = new URLSearchParams(window.location.search);
+  const forceMode = params.get('mode'); // 'login' or 'register'
+  const forceRole = params.get('role');
+
+  // Only auto-redirect if logged in AND no explicit mode in URL
+  // (so auth.html?mode=login always shows login form)
+  if(!forceMode) {
+    const user = JSON.parse(localStorage.getItem('clarasta_user') || 'null');
+    if(user) {
+      if(user.role === 'parent') { window.location.href = 'parent-dashboard.html'; return; }
+      else if(user.role === 'tutor') { window.location.href = 'tutor-dashboard.html'; return; }
+    }
   }
+
+  if(forceRole) setRole(forceRole);
+  if(forceMode) setMode(forceMode);
 });
 </script>
 </body>
