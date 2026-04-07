@@ -1039,7 +1039,7 @@ footer{
         <select id="p-class"><option value="">Child's Class</option><option>Class 1–5</option><option>Class 6–8</option><option>Class 9–10</option><option>Class 11–12</option></select>
         <select id="p-sub"><option value="">Subject Needed</option><option>Mathematics</option><option>Physics</option><option>Chemistry</option><option>English</option><option>Computer Science</option><option>Biology</option><option>Hindi</option></select>
       </div>
-      <button class="submit-p" onclick="submitParent()">Find My Tutor →</button>
+      <button class="submit-p">Find My Tutor →</button>
       <div class="success-box" id="p-success">
         <div class="s-icon">🎉</div>
         <h4>Request Sent!</h4>
@@ -1239,7 +1239,7 @@ function switchHowTab(type, el) {
 }
  
 // ── FORM SUBMIT ───────────────────────────────────────────────────
-const API = 'https://clarasta-server.vercel.app';
+const API = "https://clarasta-server.vercel.app";
  
 async function submitParent() {
   const name = document.getElementById('p-name').value.trim();
@@ -1251,7 +1251,7 @@ async function submitParent() {
     alert('Sab fields bharo!'); return;
   }
   try {
-    const res = await fetch(`${API}/api/parent/signup`, {
+    const res = await fetch(`${API}/api/parent`, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({name,whatsapp,society,childClass,subject})
@@ -1277,7 +1277,7 @@ async function submitTutor() {
     alert('Sab fields bharo!'); return;
   }
   try {
-    const res = await fetch(`${API}/api/tutor/signup`, {
+    const res = await fetch(`${API}/api/tutor`, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({name,whatsapp,college,branch,subjects,society})
@@ -1341,6 +1341,23 @@ const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.querySelector(".submit-p");
+
+  if (btn) {
+    btn.addEventListener("click", function () {
+      submitParent();
+    });
+  }
+
+  const tutorBtn = document.querySelector(".submit-t");
+
+  if (tutorBtn) {
+    tutorBtn.addEventListener("click", function () {
+      submitTutor();
+    });
+  }
+});
 </script>
 </body>
 </html>
