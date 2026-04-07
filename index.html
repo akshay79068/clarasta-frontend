@@ -1251,16 +1251,21 @@ async function submitParent() {
     alert('Sab fields bharo!'); return;
   }
   try {
-    await fetch(`${API}/api/parent/signup`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
+    const res = await fetch(`${API}/api/parent/signup`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
       body: JSON.stringify({name,whatsapp,society,childClass,subject})
     });
-  } catch(e) {}
+    const data = await res.json();
+    console.log('Parent signup:', data);
+  } catch(e) {
+    console.error('Error:', e);
+  }
   document.getElementById('pform').style.display = 'none';
   document.querySelector('.submit-p').style.display = 'none';
   document.getElementById('p-success').style.display = 'block';
 }
- 
+
 async function submitTutor() {
   const name = document.getElementById('t-name').value.trim();
   const whatsapp = document.getElementById('t-wa').value.trim();
@@ -1272,16 +1277,20 @@ async function submitTutor() {
     alert('Sab fields bharo!'); return;
   }
   try {
-    await fetch(`${API}/api/tutor/signup`, {
-      method:'POST', headers:{'Content-Type':'application/json'},
+    const res = await fetch(`${API}/api/tutor/signup`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
       body: JSON.stringify({name,whatsapp,college,branch,subjects,society})
     });
-  } catch(e) {}
+    const data = await res.json();
+    console.log('Tutor signup:', data);
+  } catch(e) {
+    console.error('Error:', e);
+  }
   document.getElementById('tform').style.display = 'none';
   document.querySelector('.submit-t').style.display = 'none';
   document.getElementById('t-success').style.display = 'block';
 }
- 
 // ── MODAL ─────────────────────────────────────────────────────────
 function openModal(type) {
   const body = document.getElementById('modalBody');
