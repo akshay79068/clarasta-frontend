@@ -604,8 +604,73 @@ h1 em{color:var(--gold);font-style:italic;}
 }
 .r-name{font-size:0.85rem;font-weight:700;color:var(--white);}
 .r-role{font-size:0.74rem;color:rgba(255,255,255,0.4);}
- 
+
+/* ── TRUST SECTION ───────────────────── */
+.trust-section{padding:80px 5%;background:var(--white);border-top:1px solid var(--border);}
+.trust-section .section-tag{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.trust-section h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.5px;margin-bottom:10px;}
+.trust-section h2 em{color:var(--gold);font-style:italic;}
+.trust-section .sub{color:var(--ink2);font-size:1rem;line-height:1.7;max-width:560px;margin-bottom:48px;}
+.trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:40px;}
+.trust-card{background:var(--bg);border:1.5px solid var(--border);border-radius:16px;padding:28px;transition:all 0.2s;}
+.trust-card:hover{border-color:var(--gold);box-shadow:var(--shadow2);transform:translateY(-3px);}
+.trust-card-icon{font-size:1.6rem;margin-bottom:14px;width:50px;height:50px;border-radius:14px;background:var(--goldbg);display:flex;align-items:center;justify-content:center;}
+.trust-card h3{font-size:0.95rem;font-weight:800;color:var(--ink);margin-bottom:8px;}
+.trust-card p{font-size:0.83rem;color:var(--ink3);line-height:1.65;}
+.trust-badges-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:22px;background:var(--bg);border-radius:16px;border:1px solid var(--border);}
+.trust-badge-pill{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;font-size:0.79rem;font-weight:700;border:1.5px solid var(--border);background:var(--white);color:var(--ink2);}
+.trust-badge-pill.gold{background:var(--goldbg);border-color:rgba(200,146,42,0.3);color:var(--gold);}
+.trust-badge-pill.teal{background:var(--tealbg);border-color:rgba(42,122,106,0.3);color:var(--teal);}
+
+/* ── FAQ SECTION ─────────────────────── */
+.faq-section{padding:80px 5%;background:var(--bg2);}
+.faq-section .section-tag{font-size:0.72rem;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.faq-section h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.5px;margin-bottom:48px;}
+.faq-section h2 em{color:var(--gold);font-style:italic;}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.faq-item{background:var(--white);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color 0.2s;}
+.faq-item:hover{border-color:rgba(200,146,42,0.3);}
+.faq-item.open{border-color:var(--gold);}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;cursor:pointer;font-size:0.9rem;font-weight:700;color:var(--ink);gap:12px;user-select:none;}
+.faq-icon{width:26px;height:26px;border-radius:50%;flex-shrink:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:0.82rem;color:var(--ink3);font-weight:800;transition:all 0.25s;}
+.faq-item.open .faq-icon{background:var(--goldbg);color:var(--gold);transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.3s,padding 0.3s;padding:0 20px;font-size:0.85rem;color:var(--ink2);line-height:1.75;}
+.faq-item.open .faq-a{max-height:300px;padding:0 20px 18px;}
+.faq-more{text-align:center;margin-top:32px;}
+.faq-more a{display:inline-flex;align-items:center;gap:8px;color:var(--gold);font-weight:700;font-size:0.9rem;text-decoration:none;border:1.5px solid rgba(200,146,42,0.3);border-radius:10px;padding:12px 24px;background:var(--goldbg);transition:all 0.2s;}
+.faq-more a:hover{background:var(--gold);color:var(--white);}
+
+/* ── SUPPORT CTA ─────────────────────── */
+.support-cta{background:var(--ink);padding:56px 5%;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+.sc-text h2{font-family:'DM Serif Display',serif;font-size:clamp(1.5rem,3vw,2.2rem);color:var(--white);letter-spacing:-0.3px;margin-bottom:8px;}
+.sc-text h2 em{color:var(--gold2);font-style:italic;}
+.sc-text p{font-size:0.9rem;color:rgba(255,255,255,0.5);line-height:1.6;}
+.sc-actions{display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
+.sc-wa-btn{display:flex;align-items:center;gap:10px;background:#25d366;color:var(--white);border:none;border-radius:12px;padding:14px 24px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all 0.2s;box-shadow:0 4px 16px rgba(37,211,102,0.3);}
+.sc-wa-btn:hover{background:#1aad54;transform:translateY(-1px);}
+.sc-email-btn{display:flex;align-items:center;gap:8px;justify-content:center;color:rgba(255,255,255,0.55);font-size:0.84rem;text-decoration:none;transition:color 0.2s;}
+.sc-email-btn:hover{color:var(--white);}
+
 /* ── FOOTER ───────────────────────────── */
+.f-logo{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.f-logo-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);}
+.f-trust-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.f-trust-pill{display:flex;align-items:center;gap:4px;font-size:0.69rem;font-weight:700;color:var(--ink3);background:var(--white);border:1px solid var(--border);border-radius:99px;padding:4px 10px;}
+.footer-bottom a{color:var(--ink3);text-decoration:none;transition:color 0.2s;}
+.footer-bottom a:hover{color:var(--gold);}
+
+/* ── FLOATING WA ─────────────────────── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:9999;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+.wa-tooltip{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:12px 16px;max-width:200px;box-shadow:0 8px 32px rgba(26,23,20,0.14);font-size:0.8rem;color:var(--ink2);line-height:1.5;display:none;animation:ttFade 0.3s ease;}
+.wa-tooltip strong{display:block;color:var(--ink);margin-bottom:2px;font-size:0.85rem;}
+.wa-float:hover .wa-tooltip{display:block;}
+@keyframes ttFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.wa-circle{width:58px;height:58px;border-radius:50%;background:#25d366;color:var(--white);display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 24px rgba(37,211,102,0.45);transition:transform 0.2s,box-shadow 0.2s;text-decoration:none;animation:waPulse 3s ease-in-out infinite;}
+.wa-circle:hover{transform:scale(1.1);}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 24px rgba(37,211,102,0.45)}50%{box-shadow:0 4px 36px rgba(37,211,102,0.7)}}
+
+/* ── FOOTER (base) ───────────────────── */
+
 footer{
   background:var(--bg2);border-top:1px solid var(--border);
   padding:60px 5% 32px;
@@ -689,10 +754,12 @@ footer{
     <li><a href="#find">Find Tutor</a></li>
     <li><a href="#how">How it Works</a></li>
     <li><a href="#join">Join</a></li>
+    <li><a href="support.html">Support</a></li>
   </ul>
   <div class="nav-btns">
-    <button class="btn btn-ghost" onclick="openModal('parent')">For Parents</button>
-    <button class="btn btn-gold" onclick="openModal('tutor')">Become a Tutor</button>
+    <a href="auth.html" class="btn btn-ghost" id="nav-login-btn">Login</a>
+    <a href="auth.html" class="btn btn-ghost" onclick="localStorage.setItem('auth_role','parent')" style="border-color:var(--gold);color:var(--gold);">For Parents</a>
+    <a href="auth.html" class="btn btn-gold" onclick="localStorage.setItem('auth_role','tutor')">Become a Tutor</a>
   </div>
 </nav>
  
@@ -1108,23 +1175,150 @@ footer{
   </div>
 </section>
  
+<!-- TRUST SECTION -->
+<section class="trust-section reveal">
+  <div class="section-tag">Why Trust Us</div>
+  <h2>Built on <em>Transparency</em> & Safety</h2>
+  <p class="sub">Every decision we make is designed to protect parents and empower tutors. Here's what makes Clarasta different.</p>
+  <div class="trust-grid">
+    <div class="trust-card">
+      <div class="trust-card-icon">🪪</div>
+      <h3>College ID Verified</h3>
+      <p>Every tutor submits their college ID card before going live. Our team manually reviews each ID — no automated approvals.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">📍</div>
+      <h3>Hyperlocal Only</h3>
+      <p>Tutors are matched within your society or within 1 km. You know your tutor is a neighbor — accountable and reachable.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">💰</div>
+      <h3>Zero Platform Fee</h3>
+      <p>Clarasta never takes a rupee from tutors or parents. Payments happen directly between families and tutors via UPI.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">🆓</div>
+      <h3>Free Demo Class</h3>
+      <p>Every tutor offers a free 30–45 min demo session. Evaluate fit before any commitment — no risk, no pressure.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">💬</div>
+      <h3>Direct WhatsApp</h3>
+      <p>No middlemen. After matching, parents and tutors connect directly. Faster communication, more trust, real relationships.</p>
+    </div>
+    <div class="trust-card">
+      <div class="trust-card-icon">🔄</div>
+      <h3>Free Replacement</h3>
+      <p>Not happy with a tutor? We'll find you a new match within 24 hours — completely free. Your satisfaction is guaranteed.</p>
+    </div>
+  </div>
+  <div class="trust-badges-row">
+    <span class="trust-badge-pill gold">✅ College ID Verified</span>
+    <span class="trust-badge-pill teal">🆓 Free Demo Session</span>
+    <span class="trust-badge-pill gold">💰 Zero Commission</span>
+    <span class="trust-badge-pill teal">📍 Hyperlocal Tutors</span>
+    <span class="trust-badge-pill">💬 WhatsApp Support</span>
+    <span class="trust-badge-pill">🔄 Free Replacement</span>
+    <span class="trust-badge-pill">🏠 Home Tutoring</span>
+    <span class="trust-badge-pill">⭐ 4.9 Avg Rating</span>
+  </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section" id="faq">
+  <div class="section-tag">FAQ</div>
+  <h2>Frequently Asked <em>Questions</em></h2>
+  <div class="faq-grid">
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">How quickly will I get a tutor match?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Most parents receive a match within 2–4 hours of registering. In many cases it happens within 30 minutes. You'll get the tutor's name, college, and WhatsApp directly.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Is Clarasta free to use?<span class="faq-icon">+</span></div>
+      <div class="faq-a">100% free — for both parents and tutors. We don't charge registration fees, subscription fees, or any commission. Parents pay tutors directly via UPI.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">How are tutors verified?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Tutors submit their college ID card on WhatsApp. Our team manually verifies each ID within 24–48 hours before making the profile visible to parents.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">What if I'm not happy with my tutor?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Just WhatsApp us — no questions asked. We'll find a replacement tutor within 24 hours at zero cost. Your satisfaction is our guarantee.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">How much do tutors charge per hour?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Rates typically range from ₹200–₹400/hr depending on class level. Class 9–12 averages ₹300/hr. JEE/NEET tutors charge ₹400–₹600/hr. All agreed directly with the tutor.</div>
+    </div>
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">Can a tutor teach multiple subjects?<span class="faq-icon">+</span></div>
+      <div class="faq-a">Yes! Many BTech tutors handle Maths, Physics, and Chemistry together. You can specify multiple subjects when registering and we'll match accordingly.</div>
+    </div>
+  </div>
+  <div class="faq-more">
+    <a href="support.html">View all FAQs in our Help Center →</a>
+  </div>
+</section>
+
+<!-- SUPPORT CTA -->
+<div class="support-cta">
+  <div class="sc-text">
+    <h2>Need help? We're <em>always here.</em></h2>
+    <p>Our founders answer every message personally. No bots, no scripts — real people who care about your child's education.</p>
+  </div>
+  <div class="sc-actions">
+    <a href="https://wa.me/919999999999?text=Hi%20Clarasta!%20I%20need%20help%20finding%20a%20tutor." target="_blank" class="sc-wa-btn">💬 Chat on WhatsApp</a>
+    <a href="support.html" class="sc-email-btn">📄 Visit Help Center →</a>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
     <div>
-      <div class="f-logo">Clarasta</div>
-      <p class="f-desc">Connecting families with verified BTech student tutors across Ghaziabad's apartment communities.</p>
+      <div class="f-logo"><div class="f-logo-dot"></div> Clarasta</div>
+      <p class="f-desc">Verified home tutors for apartment societies across Ghaziabad. 100% free, zero commission, always.</p>
+      <div class="f-trust-pills">
+        <span class="f-trust-pill">✅ Verified Tutors</span>
+        <span class="f-trust-pill">🆓 Free Demo</span>
+        <span class="f-trust-pill">💰 No Commission</span>
+      </div>
     </div>
-    <div class="f-col"><h4>Platform</h4><ul><li><a href="#find">Find Tutors</a></li><li><a href="#join">Become a Tutor</a></li><li><a href="#how">How it Works</a></li><li><a href="#mission">Our Mission</a></li></ul></div>
-    <div class="f-col"><h4>Areas</h4><ul><li><a href="#">Crossing Republic</a></li><li><a href="#">Gaur City</a></li><li><a href="#">Raj Nagar Extension</a></li><li><a href="#">Wave City</a></li><li><a href="#">Indirapuram</a></li></ul></div>
-    <div class="f-col"><h4>Contact</h4><ul><li><a href="#">WhatsApp Us</a></li><li><a href="#">clarasta.in</a></li><li><a href="#">Instagram</a></li><li><a href="#">support@clarasta.in</a></li></ul></div>
+    <div class="f-col"><h4>Platform</h4><ul>
+      <li><a href="#find">Find Tutors</a></li>
+      <li><a href="#join">Become a Tutor</a></li>
+      <li><a href="#how">How it Works</a></li>
+      <li><a href="auth.html">Login / Register</a></li>
+      <li><a href="admin.html">Admin Panel</a></li>
+    </ul></div>
+    <div class="f-col"><h4>Support</h4><ul>
+      <li><a href="support.html">Help Center</a></li>
+      <li><a href="support.html#for-parents">For Parents</a></li>
+      <li><a href="support.html#for-tutors">For Tutors</a></li>
+      <li><a href="support.html#contact">Contact Us</a></li>
+      <li><a href="https://wa.me/919999999999" target="_blank">WhatsApp Us</a></li>
+    </ul></div>
+    <div class="f-col"><h4>Legal</h4><ul>
+      <li><a href="#">Privacy Policy</a></li>
+      <li><a href="#">Terms of Service</a></li>
+      <li><a href="#">Safety Guidelines</a></li>
+      <li><a href="support.html#safety">Trust & Safety</a></li>
+    </ul></div>
   </div>
   <div class="footer-bottom">
     <p>© 2025 Clarasta · Built with ❤️ in Crossing Republic, Ghaziabad</p>
-    <p>Privacy Policy · Terms of Service</p>
+    <p><a href="support.html">Help Center</a> &nbsp;·&nbsp; <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms</a></p>
   </div>
 </footer>
- 
+
+<!-- FLOATING WHATSAPP -->
+<div class="wa-float">
+  <div class="wa-tooltip">
+    <strong>Need help? 👋</strong>
+    Chat with us — reply in ~15 min
+  </div>
+  <a href="https://wa.me/919999999999?text=Hi%20Clarasta!%20I%20need%20help." target="_blank" class="wa-circle" title="Chat on WhatsApp">💬</a>
+</div>
+
 <!-- MODAL -->
 <div class="overlay" id="modalOverlay" onclick="closeModalOut(event)">
   <div class="modal">
@@ -1213,23 +1407,18 @@ function selectLoc(val) {
   document.getElementById('locInput').value = val;
   document.getElementById('sugBox').classList.remove('open');
 }
- 
+
 function closeSug() {
   document.getElementById('sugBox').classList.remove('open');
 }
- 
+
 // ── SEARCH ────────────────────────────────────────────────────────
 function searchTutors() {
-  const loc = document.getElementById('locInput').value;
-  const cls = document.getElementById('classFilter').value;
-  const sub = document.getElementById('subjectFilter').value;
-  // In production: fetch from /api/tutors?society=...&subject=...
-  // For now just show visual feedback
   const grid = document.getElementById('tutorGrid');
   grid.style.opacity = '0.4';
   setTimeout(() => { grid.style.opacity = '1'; }, 600);
 }
- 
+
 // ── HOW IT WORKS TABS ─────────────────────────────────────────────
 function switchHowTab(type, el) {
   document.querySelectorAll('.htab').forEach(t => t.classList.remove('active'));
@@ -1237,10 +1426,10 @@ function switchHowTab(type, el) {
   document.getElementById('hw-parent').style.display = type === 'parent' ? 'grid' : 'none';
   document.getElementById('hw-tutor').style.display = type === 'tutor' ? 'grid' : 'none';
 }
- 
+
 // ── FORM SUBMIT ───────────────────────────────────────────────────
 const API = "https://clarasta-server.vercel.app";
- 
+
 async function submitParent() {
   const name = document.getElementById('p-name').value.trim();
   const whatsapp = document.getElementById('p-wa').value.trim();
@@ -1248,15 +1437,22 @@ async function submitParent() {
   const childClass = document.getElementById('p-class').value;
   const subject = document.getElementById('p-sub').value;
   if (!name || !whatsapp || !society || !childClass || !subject) {
-    alert('Sab fields bharo!'); return;
+    alert('Please fill all fields!'); return;
+  }
+  if (whatsapp.length !== 10 || !/^\d+$/.test(whatsapp)) {
+    alert('Please enter a valid 10-digit WhatsApp number.'); return;
   }
   try {
-    const res = await fetch(`${API}/api/parent`, {
+    const res = await fetch(`${API}/api/parent/signup`, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({name,whatsapp,society,childClass,subject})
     });
     const data = await res.json();
+    if (data.success) {
+      const user = {role:'parent',name,whatsapp,society,childClass,subject,id:data.id,registeredAt:new Date().toISOString()};
+      localStorage.setItem('clarasta_user', JSON.stringify(user));
+    }
     console.log('Parent signup:', data);
   } catch(e) {
     console.error('Error:', e);
@@ -1274,15 +1470,22 @@ async function submitTutor() {
   const subjects = document.getElementById('t-subs').value.trim();
   const society = document.getElementById('t-loc').value.trim();
   if (!name || !whatsapp || !college || !branch || !subjects || !society) {
-    alert('Sab fields bharo!'); return;
+    alert('Please fill all fields!'); return;
+  }
+  if (whatsapp.length !== 10 || !/^\d+$/.test(whatsapp)) {
+    alert('Please enter a valid 10-digit WhatsApp number.'); return;
   }
   try {
-    const res = await fetch(`${API}/api/tutor`, {
+    const res = await fetch(`${API}/api/tutor/signup`, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({name,whatsapp,college,branch,subjects,society})
     });
     const data = await res.json();
+    if (data.success) {
+      const user = {role:'tutor',name,whatsapp,college,branch,subjects:subjects.split(',').map(s=>s.trim()),society,id:data.id,verified:false,registeredAt:new Date().toISOString()};
+      localStorage.setItem('clarasta_user', JSON.stringify(user));
+    }
     console.log('Tutor signup:', data);
   } catch(e) {
     console.error('Error:', e);
@@ -1330,7 +1533,8 @@ function modalSuccess() {
     <div style="text-align:center;padding:20px 0;">
       <div style="font-size:3rem;margin-bottom:12px;">🎉</div>
       <h3 style="font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:8px;">You're on the list!</h3>
-      <p style="color:var(--ink3);font-size:0.87rem;">We'll reach out on WhatsApp within 2 hours. Keep an eye on your messages!</p>
+      <p style="color:var(--ink3);font-size:0.87rem;margin-bottom:16px;">We'll reach out on WhatsApp within 2 hours. Keep an eye on your messages!</p>
+      <a href="auth.html" style="display:inline-block;background:var(--gold);color:white;padding:10px 22px;border-radius:9px;font-size:0.85rem;font-weight:700;text-decoration:none;">Go to Dashboard →</a>
     </div>`;
 }
 function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }

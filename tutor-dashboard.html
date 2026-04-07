@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Clarasta – Tutor Dashboard</title>
+<meta name="description" content="Your Clarasta tutor dashboard – manage your profile and track your sessions."/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:       #f7f5f0;
+  --bg2:      #efecea;
+  --ink:      #1a1714;
+  --ink2:     #4a4540;
+  --ink3:     #8a837a;
+  --gold:     #c8922a;
+  --gold2:    #e8b04a;
+  --goldbg:   #fdf3e0;
+  --teal:     #2a7a6a;
+  --tealbg:   #e0f2ee;
+  --white:    #ffffff;
+  --border:   #dedad4;
+  --shadow:   0 2px 24px rgba(26,23,20,0.08);
+  --shadow2:  0 8px 48px rgba(26,23,20,0.12);
+  --radius:   16px;
+  --sidebar:  260px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);color:var(--ink);
+  display:flex;min-height:100vh;
+}
+
+/* ── SIDEBAR ── */
+.sidebar{
+  width:var(--sidebar);min-height:100vh;
+  background:var(--ink);
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;bottom:0;
+  z-index:100;
+}
+.sb-logo{
+  display:flex;align-items:center;gap:10px;
+  padding:28px 24px;border-bottom:1px solid rgba(255,255,255,0.08);
+  font-family:'DM Serif Display',serif;font-size:1.4rem;
+  color:var(--white);text-decoration:none;
+}
+.sb-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);}
+.sb-user{
+  padding:20px 24px;border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.sb-avatar-wrap{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
+.sb-avatar{
+  width:46px;height:46px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,var(--teal),#3aa88e);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Serif Display',serif;font-size:1.1rem;
+  color:var(--white);
+}
+.sb-info{}
+.sb-name{font-weight:700;font-size:0.93rem;color:var(--white);}
+.sb-role{font-size:0.74rem;color:rgba(255,255,255,0.4);margin-top:2px;}
+.sb-verified{
+  display:inline-flex;align-items:center;gap:4px;
+  border-radius:6px;padding:3px 8px;
+  font-size:0.68rem;font-weight:700;margin-top:6px;
+}
+.verified-yes{background:rgba(42,122,106,0.25);color:#4dbb9f;}
+.verified-no{background:rgba(200,146,42,0.2);color:var(--gold2);border:1px solid rgba(200,146,42,0.2);}
+
+.sb-nav{flex:1;padding:16px 12px;display:flex;flex-direction:column;gap:2px;}
+.sb-nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;border-radius:10px;
+  font-size:0.87rem;font-weight:600;
+  color:rgba(255,255,255,0.55);
+  cursor:pointer;text-decoration:none;transition:all 0.2s;
+}
+.sb-nav-item:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.9);}
+.sb-nav-item.active{background:rgba(42,122,106,0.2);color:#4dbb9f;}
+.sb-nav-icon{font-size:1rem;width:22px;text-align:center;}
+.sb-nav-divider{height:1px;background:rgba(255,255,255,0.07);margin:8px 0;}
+.sb-bottom{padding:16px 12px;border-top:1px solid rgba(255,255,255,0.08);}
+.sb-logout{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 14px;border-radius:10px;
+  font-size:0.87rem;font-weight:600;
+  color:rgba(255,100,100,0.8);
+  cursor:pointer;transition:all 0.2s;border:none;
+  background:transparent;font-family:'Plus Jakarta Sans',sans-serif;width:100%;
+}
+.sb-logout:hover{background:rgba(255,0,0,0.08);}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sidebar);flex:1;padding:40px 48px;min-height:100vh;}
+
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;}
+.topbar-left h1{
+  font-family:'DM Serif Display',serif;font-size:1.8rem;
+  color:var(--ink);letter-spacing:-0.3px;
+}
+.topbar-left p{font-size:0.88rem;color:var(--ink3);margin-top:4px;}
+.topbar-right{display:flex;gap:10px;}
+.top-btn{
+  padding:10px 20px;border-radius:10px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.85rem;font-weight:700;cursor:pointer;border:none;transition:all 0.2s;
+}
+.top-btn-teal{background:var(--teal);color:var(--white);box-shadow:0 2px 12px rgba(42,122,106,0.28);}
+.top-btn-teal:hover{background:#1f5e50;}
+.top-btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--ink2);}
+.top-btn-outline:hover{border-color:var(--teal);color:var(--teal);}
+
+/* Verification alert */
+.verify-alert{
+  background:var(--goldbg);border:1.5px solid rgba(200,146,42,0.28);
+  border-radius:var(--radius);padding:18px 24px;margin-bottom:28px;
+  display:flex;align-items:flex-start;gap:14px;
+}
+.verify-alert.verified{background:var(--tealbg);border-color:rgba(42,122,106,0.25);}
+.verify-alert-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px;}
+.verify-alert-text strong{display:block;font-size:0.9rem;font-weight:700;margin-bottom:2px;}
+.verify-alert:not(.verified) .verify-alert-text strong{color:var(--gold);}
+.verify-alert.verified .verify-alert-text strong{color:var(--teal);}
+.verify-alert-text span{font-size:0.82rem;color:var(--ink3);line-height:1.5;}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.stat-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:22px 24px;
+  transition:box-shadow 0.2s,transform 0.2s;
+}
+.stat-card:hover{box-shadow:var(--shadow2);transform:translateY(-2px);}
+.stat-card-icon{font-size:1.5rem;margin-bottom:10px;}
+.stat-card-num{font-family:'DM Serif Display',serif;font-size:1.9rem;color:var(--ink);line-height:1;margin-bottom:4px;}
+.stat-card-label{font-size:0.78rem;color:var(--ink3);font-weight:500;}
+.stat-card-sub{font-size:0.73rem;margin-top:4px;font-weight:600;}
+.good{color:var(--teal);}
+.warn{color:var(--gold);}
+
+/* Section card */
+.section-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:var(--radius);padding:28px;margin-bottom:24px;
+}
+.sc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+.sc-title{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);letter-spacing:-0.2px;}
+.sc-sub{font-size:0.8rem;color:var(--ink3);margin-top:2px;}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;border-radius:6px;font-size:0.72rem;font-weight:700;}
+.badge-teal{background:var(--tealbg);color:var(--teal);}
+.badge-gold{background:var(--goldbg);color:var(--gold);}
+.badge-gray{background:var(--bg2);color:var(--ink3);}
+
+/* Profile card */
+.profile-grid{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;}
+.profile-avatar-lg{
+  width:80px;height:80px;border-radius:20px;
+  background:linear-gradient(135deg,var(--teal),#3aa88e);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'DM Serif Display',serif;font-size:2rem;
+  color:var(--white);flex-shrink:0;
+}
+.profile-main{}
+.profile-name{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--ink);letter-spacing:-0.3px;margin-bottom:4px;}
+.profile-college{font-size:0.88rem;color:var(--ink3);margin-bottom:12px;}
+.profile-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.ptag{
+  padding:4px 10px;border-radius:7px;
+  font-size:0.75rem;font-weight:700;
+}
+.ptag-teal{background:var(--tealbg);color:var(--teal);}
+.ptag-gold{background:var(--goldbg);color:var(--gold);}
+.ptag-gray{background:var(--bg2);color:var(--ink2);}
+.profile-info-row{display:flex;flex-wrap:wrap;gap:16px;}
+.pi-item{display:flex;align-items:center;gap:6px;font-size:0.83rem;color:var(--ink3);}
+.pi-item strong{color:var(--ink);font-weight:600;}
+
+/* Earning timeline */
+.earn-timeline{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;align-items:end;height:80px;}
+.earn-bar-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;}
+.earn-bar-col{
+  width:100%;border-radius:4px 4px 0 0;
+  background:var(--tealbg);min-height:8px;transition:height 0.5s;
+}
+.earn-bar-col.today{background:var(--teal);}
+.earn-bar-label{font-size:0.62rem;color:var(--ink3);text-align:center;}
+
+/* Checklist */
+.checklist{display:flex;flex-direction:column;gap:10px;}
+.check-item{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:14px 16px;border-radius:10px;
+  border:1px solid var(--border);background:var(--bg);
+}
+.check-item.done{border-color:rgba(42,122,106,0.2);background:var(--tealbg);}
+.check-icon{
+  width:28px;height:28px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;
+}
+.check-item.done .check-icon{background:var(--teal);color:var(--white);}
+.check-item:not(.done) .check-icon{background:var(--bg2);color:var(--ink3);}
+.check-text strong{display:block;font-size:0.87rem;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.check-text span{font-size:0.78rem;color:var(--ink3);}
+
+/* Quick actions */
+.qa-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.qa-item{
+  padding:18px;border-radius:12px;border:1.5px solid var(--border);
+  background:var(--white);cursor:pointer;text-align:center;
+  transition:all 0.2s;text-decoration:none;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.qa-item:hover{border-color:var(--teal);box-shadow:var(--shadow);transform:translateY(-2px);}
+.qa-icon{font-size:1.5rem;margin-bottom:8px;}
+.qa-label{font-size:0.83rem;font-weight:700;color:var(--ink);}
+.qa-sub{font-size:0.73rem;color:var(--ink3);margin-top:4px;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){.stats-row{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:860px){
+  .sidebar{width:72px;}
+  .sb-name,.sb-role,.sb-verified,.sb-info,.sb-nav span:not(.sb-nav-icon){display:none;}
+  .main{margin-left:72px;padding:28px 24px;}
+  .profile-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  .sidebar{display:none;}
+  .main{margin-left:0;padding:20px 16px;}
+  .qa-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR (Dark) -->
+<aside class="sidebar">
+  <a href="index.html" class="sb-logo">
+    <div class="sb-logo-dot"></div>
+    <span>Clarasta</span>
+  </a>
+  <div class="sb-user">
+    <div class="sb-avatar-wrap">
+      <div class="sb-avatar" id="sb-avatar">—</div>
+      <div class="sb-info">
+        <div class="sb-name" id="sb-name">Loading…</div>
+        <div class="sb-role">Tutor Account</div>
+        <div class="sb-verified verified-no" id="sb-verified-badge">⏳ Pending Verification</div>
+      </div>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <a class="sb-nav-item active" href="tutor-dashboard.html">
+      <span class="sb-nav-icon">🏠</span>
+      <span>Dashboard</span>
+    </a>
+    <a class="sb-nav-item" href="#profile-section">
+      <span class="sb-nav-icon">👤</span>
+      <span>My Profile</span>
+    </a>
+    <a class="sb-nav-item" href="#checklist-section">
+      <span class="sb-nav-icon">✅</span>
+      <span>Checklist</span>
+    </a>
+    <div class="sb-nav-divider"></div>
+    <a class="sb-nav-item" href="index.html">
+      <span class="sb-nav-icon">🌐</span>
+      <span>Main Website</span>
+    </a>
+  </nav>
+  <div class="sb-bottom">
+    <button class="sb-logout" onclick="logout()">
+      <span>🚪</span>
+      <span>Logout</span>
+    </button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1 id="welcome-msg">Tutor Dashboard 🎓</h1>
+      <p id="welcome-sub">Manage your profile and track your earnings</p>
+    </div>
+    <div class="topbar-right">
+      <button class="top-btn top-btn-outline" onclick="window.open('https://wa.me/919999999999?text=Hi!%20I%E2%80%99d%20like%20to%20know%20my%20verification%20status.','_blank')">📋 Check Verification</button>
+      <button class="top-btn top-btn-teal" onclick="window.open('https://wa.me/919999999999','_blank')">💬 Contact Team</button>
+    </div>
+  </div>
+
+  <!-- VERIFICATION ALERT -->
+  <div class="verify-alert" id="verify-alert">
+    <div class="verify-alert-icon">⏳</div>
+    <div class="verify-alert-text">
+      <strong>Verification Pending</strong>
+      <span>Our team will verify your college ID and activate your profile within 24–48 hours. You'll get a WhatsApp notification once verified and visible to parents.</span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-card-icon">📅</div>
+      <div class="stat-card-num">0</div>
+      <div class="stat-card-label">Total Sessions</div>
+      <div class="stat-card-sub warn">Start teaching!</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">💰</div>
+      <div class="stat-card-num">₹0</div>
+      <div class="stat-card-label">Total Earned</div>
+      <div class="stat-card-sub warn">Get verified first</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">👨‍👧</div>
+      <div class="stat-card-num">0</div>
+      <div class="stat-card-label">Active Students</div>
+      <div class="stat-card-sub warn">Pending match</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-card-icon">⭐</div>
+      <div class="stat-card-num">—</div>
+      <div class="stat-card-label">Your Rating</div>
+      <div class="stat-card-sub" id="rating-sub">After first session</div>
+    </div>
+  </div>
+
+  <!-- PROFILE -->
+  <div class="section-card" id="profile-section">
+    <div class="sc-header">
+      <div>
+        <div class="sc-title">My Tutor Profile</div>
+        <div class="sc-sub">Visible to parents once verified</div>
+      </div>
+      <span class="badge badge-gray" id="profile-status-badge">⏳ Under Review</span>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-avatar-lg" id="profile-avatar">—</div>
+      <div class="profile-main">
+        <div class="profile-name" id="profile-name">—</div>
+        <div class="profile-college" id="profile-college">—</div>
+        <div class="profile-tags" id="profile-subjects"></div>
+        <div class="profile-info-row">
+          <div class="pi-item">📍 <strong id="pi-society">—</strong></div>
+          <div class="pi-item">📱 <strong id="pi-whatsapp">—</strong></div>
+          <div class="pi-item">🗓 <strong id="pi-date">—</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ESTIMATED EARNINGS -->
+  <div class="section-card">
+    <div class="sc-header">
+      <div>
+        <div class="sc-title">Earning Potential</div>
+        <div class="sc-sub">Based on 2 students × 1 hr/day</div>
+      </div>
+      <span class="badge badge-teal">Est. Monthly</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div style="background:var(--tealbg);border-radius:12px;padding:18px;">
+        <div style="font-size:0.75rem;color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">2 Students</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--teal);">₹2,400</div>
+        <div style="font-size:0.75rem;color:var(--ink3);margin-top:4px;">@₹300/hr · 4 hrs/day</div>
+      </div>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px;">
+        <div style="font-size:0.75rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">3 Students</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--ink);">₹5,400</div>
+        <div style="font-size:0.75rem;color:var(--ink3);margin-top:4px;">@₹300/hr · 6 hrs/day</div>
+      </div>
+      <div style="background:var(--goldbg);border-radius:12px;padding:18px;">
+        <div style="font-size:0.75rem;color:var(--gold);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">4+ Students</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--gold);">₹8,000+</div>
+        <div style="font-size:0.75rem;color:var(--ink3);margin-top:4px;">@₹300–400/hr</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;font-size:0.8rem;color:var(--ink3);line-height:1.5;">
+      💡 <strong>Tip:</strong> Rates shown are typical starting rates. Experienced tutors or those teaching JEE/NEET level earn ₹400–600/hr.
+    </div>
+  </div>
+
+  <!-- PROFILE CHECKLIST -->
+  <div class="section-card" id="checklist-section">
+    <div class="sc-header">
+      <div>
+        <div class="sc-title">Getting Started Checklist</div>
+        <div class="sc-sub">Complete these steps to start earning</div>
+      </div>
+    </div>
+    <div class="checklist" id="checklist">
+      <div class="check-item done">
+        <div class="check-icon">✓</div>
+        <div class="check-text">
+          <strong>Profile Submitted</strong>
+          <span>Your tutor profile has been successfully submitted</span>
+        </div>
+      </div>
+      <div class="check-item" id="check-verify">
+        <div class="check-icon">2</div>
+        <div class="check-text">
+          <strong>College ID Verification</strong>
+          <span>Send your college ID via WhatsApp to get verified within 24–48 hrs</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">3</div>
+        <div class="check-text">
+          <strong>Go Live on Platform</strong>
+          <span>Once verified, your profile becomes visible to all parents in your area</span>
+        </div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon">4</div>
+        <div class="check-text">
+          <strong>Get Your First Student</strong>
+          <span>Parents will contact you directly on WhatsApp — confirm and start teaching!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK ACTIONS -->
+  <div class="section-card">
+    <div class="sc-header">
+      <div class="sc-title">Quick Actions</div>
+    </div>
+    <div class="qa-grid">
+      <div class="qa-item" onclick="window.open('https://wa.me/919999999999?text=Hi!%20I%20want%20to%20submit%20my%20college%20ID%20for%20verification.','_blank')">
+        <div class="qa-icon">🪪</div>
+        <div class="qa-label">Submit College ID</div>
+        <div class="qa-sub">Send on WhatsApp for fast verification</div>
+      </div>
+      <a href="auth.html" class="qa-item" onclick="localStorage.removeItem('clarasta_user')">
+        <div class="qa-icon">🔄</div>
+        <div class="qa-label">Update Profile</div>
+        <div class="qa-sub">Re-register with new details</div>
+      </a>
+      <div class="qa-item" onclick="window.open('https://wa.me/919999999999','_blank')">
+        <div class="qa-icon">💬</div>
+        <div class="qa-label">Contact Support</div>
+        <div class="qa-sub">WhatsApp us for any queries</div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const API = 'https://clarasta-server.vercel.app';
+
+function getInitials(name) {
+  return name ? name.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase() : '?';
+}
+function formatDate(d) {
+  return new Date(d).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
+}
+function logout() {
+  if(confirm('Are you sure you want to logout?')) {
+    localStorage.removeItem('clarasta_user');
+    window.location.href = 'auth.html';
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const user = JSON.parse(localStorage.getItem('clarasta_user') || 'null');
+  if(!user || user.role !== 'tutor') {
+    window.location.href = 'auth.html';
+    return;
+  }
+
+  const initials = getInitials(user.name);
+
+  // Sidebar
+  document.getElementById('sb-avatar').textContent = initials;
+  document.getElementById('sb-name').textContent = user.name;
+  if(user.verified) {
+    document.getElementById('sb-verified-badge').className = 'sb-verified verified-yes';
+    document.getElementById('sb-verified-badge').textContent = '✅ Verified';
+  }
+
+  // Welcome
+  document.getElementById('welcome-msg').textContent = `Welcome, ${user.name.split(' ')[0]}! 🎓`;
+  document.getElementById('welcome-sub').textContent = `${user.college} · ${user.branch} · ${user.society}`;
+
+  // Verification alert
+  if(user.verified) {
+    const va = document.getElementById('verify-alert');
+    va.className = 'verify-alert verified';
+    va.innerHTML = `<div class="verify-alert-icon">✅</div>
+      <div class="verify-alert-text">
+        <strong>Profile Verified & Live!</strong>
+        <span>Congratulations! Your profile is now visible to parents in ${user.society}. Expect WhatsApp messages from interested parents soon.</span>
+      </div>`;
+    document.getElementById('profile-status-badge').className = 'badge badge-teal';
+    document.getElementById('profile-status-badge').textContent = '✅ Verified & Live';
+    document.getElementById('check-verify').className = 'check-item done';
+    document.getElementById('check-verify').querySelector('.check-icon').textContent = '✓';
+  }
+
+  // Profile
+  document.getElementById('profile-avatar').textContent = initials;
+  document.getElementById('profile-name').textContent = user.name;
+  document.getElementById('profile-college').textContent = `${user.college} · BTech ${user.branch}`;
+  document.getElementById('pi-society').textContent = user.society;
+  document.getElementById('pi-whatsapp').textContent = '+91 ' + user.whatsapp;
+  document.getElementById('pi-date').textContent = user.registeredAt ? formatDate(user.registeredAt) : '—';
+
+  // Subjects chips
+  const subs = Array.isArray(user.subjects) ? user.subjects : (user.subjects||'').split(',');
+  const subContainer = document.getElementById('profile-subjects');
+  subs.forEach(s => {
+    if(!s.trim()) return;
+    const tag = document.createElement('span');
+    tag.className = 'ptag ptag-teal';
+    tag.textContent = s.trim();
+    subContainer.appendChild(tag);
+  });
+  const area = document.createElement('span');
+  area.className = 'ptag ptag-gold';
+  area.textContent = user.society;
+  subContainer.appendChild(area);
+  const branch = document.createElement('span');
+  branch.className = 'ptag ptag-gray';
+  branch.textContent = user.branch;
+  subContainer.appendChild(branch);
+});
+</script>
+</body>
+</html>

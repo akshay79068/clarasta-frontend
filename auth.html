@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Clarasta – Login & Register</title>
+<meta name="description" content="Login or register as a parent or tutor on Clarasta – home tutors you can trust."/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:       #f7f5f0;
+  --bg2:      #efecea;
+  --ink:      #1a1714;
+  --ink2:     #4a4540;
+  --ink3:     #8a837a;
+  --gold:     #c8922a;
+  --gold2:    #e8b04a;
+  --goldbg:   #fdf3e0;
+  --teal:     #2a7a6a;
+  --tealbg:   #e0f2ee;
+  --white:    #ffffff;
+  --border:   #dedad4;
+  --shadow:   0 2px 24px rgba(26,23,20,0.08);
+  --shadow2:  0 8px 48px rgba(26,23,20,0.14);
+  --radius:   16px;
+  --error:    #c0392b;
+  --errorbg:  #fdf0ee;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
+
+/* ── LEFT PANEL ── */
+.auth-left{
+  background:var(--ink);
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  padding:48px;
+  position:relative;
+  overflow:hidden;
+}
+.auth-left::before{
+  content:'';
+  position:absolute;top:-120px;right:-120px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(rgba(200,146,42,0.15),transparent 65%);
+}
+.auth-left::after{
+  content:'';
+  position:absolute;bottom:-80px;left:-80px;
+  width:350px;height:350px;border-radius:50%;
+  background:radial-gradient(rgba(42,122,106,0.12),transparent 65%);
+}
+.al-logo{
+  display:flex;align-items:center;gap:10px;
+  font-family:'DM Serif Display',serif;
+  font-size:1.6rem;color:var(--white);
+  text-decoration:none;
+  position:relative;z-index:1;
+}
+.al-logo-dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--gold);display:inline-block;
+  margin-bottom:2px;
+}
+.al-content{position:relative;z-index:1;}
+.al-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,146,42,0.15);
+  border:1px solid rgba(200,146,42,0.3);
+  border-radius:999px;padding:6px 16px;
+  font-size:0.74rem;font-weight:700;color:var(--gold2);
+  letter-spacing:0.5px;text-transform:uppercase;
+  margin-bottom:24px;
+}
+.al-tag-dot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--gold2);
+  animation:blink 1.8s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.al-headline{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,3.5vw,3rem);
+  line-height:1.15;letter-spacing:-0.5px;
+  color:var(--white);margin-bottom:20px;
+}
+.al-headline em{color:var(--gold2);font-style:italic;}
+.al-desc{
+  font-size:0.95rem;color:rgba(255,255,255,0.55);
+  line-height:1.75;max-width:400px;margin-bottom:36px;
+}
+.al-perks{display:flex;flex-direction:column;gap:12px;}
+.al-perk{
+  display:flex;align-items:center;gap:12px;
+  font-size:0.85rem;color:rgba(255,255,255,0.7);
+}
+.al-perk-icon{
+  width:34px;height:34px;border-radius:10px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.9rem;flex-shrink:0;
+}
+.al-footer{
+  position:relative;z-index:1;
+  font-size:0.78rem;color:rgba(255,255,255,0.3);
+}
+.al-footer a{color:rgba(255,255,255,0.5);text-decoration:none;}
+.al-footer a:hover{color:var(--gold2);}
+
+/* ── RIGHT PANEL ── */
+.auth-right{
+  display:flex;align-items:center;justify-content:center;
+  padding:48px 56px;
+  overflow-y:auto;
+  min-height:100vh;
+}
+.auth-box{width:100%;max-width:440px;}
+.auth-back{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--ink3);font-size:0.82rem;font-weight:600;
+  text-decoration:none;margin-bottom:32px;
+  transition:color 0.2s;
+}
+.auth-back:hover{color:var(--gold);}
+.auth-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;}
+
+/* Role selector */
+.role-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
+.role-btn{
+  padding:14px 16px;border-radius:12px;
+  border:2px solid var(--border);
+  background:var(--white);cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.88rem;font-weight:700;color:var(--ink3);
+  transition:all 0.2s;display:flex;align-items:center;
+  justify-content:center;gap:8px;text-align:center;
+}
+.role-btn:hover{border-color:var(--gold);color:var(--ink);}
+.role-btn.active-parent{
+  border-color:var(--gold);background:var(--goldbg);
+  color:var(--gold);
+}
+.role-btn.active-tutor{
+  border-color:var(--teal);background:var(--tealbg);
+  color:var(--teal);
+}
+.role-emoji{font-size:1.1rem;}
+
+/* Mode tabs */
+.mode-tabs{
+  display:flex;background:var(--bg2);
+  border-radius:12px;padding:4px;margin-bottom:28px;
+}
+.mode-tab{
+  flex:1;padding:10px 16px;border-radius:10px;
+  border:none;background:transparent;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.85rem;font-weight:600;color:var(--ink3);
+  transition:all 0.2s;
+}
+.mode-tab.active{
+  background:var(--white);color:var(--ink);
+  box-shadow:0 2px 8px rgba(26,23,20,0.08);
+}
+
+/* Auth heading */
+.auth-heading{
+  font-family:'DM Serif Display',serif;
+  font-size:1.7rem;color:var(--ink);
+  letter-spacing:-0.3px;margin-bottom:6px;
+}
+.auth-subheading{
+  font-size:0.85rem;color:var(--ink3);
+  line-height:1.6;margin-bottom:28px;
+}
+.auth-subheading span{color:var(--gold);font-weight:700;cursor:pointer;}
+.auth-subheading span:hover{text-decoration:underline;}
+
+/* Form */
+.form-field{margin-bottom:14px;}
+.form-field label{
+  display:block;font-size:0.72rem;font-weight:800;
+  color:var(--ink3);letter-spacing:1px;text-transform:uppercase;
+  margin-bottom:6px;
+}
+.form-field input,
+.form-field select{
+  width:100%;background:var(--bg);
+  border:1.5px solid var(--border);border-radius:10px;
+  padding:13px 16px;
+  color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.9rem;outline:none;transition:all 0.2s;
+  -webkit-appearance:none;appearance:none;
+}
+.form-field input:focus,
+.form-field select:focus{
+  border-color:var(--gold);background:var(--white);
+  box-shadow:0 0 0 3px rgba(200,146,42,0.1);
+}
+.form-field input::placeholder{color:var(--ink3);}
+.form-field.teal-focus input:focus,
+.form-field.teal-focus select:focus{
+  border-color:var(--teal);
+  box-shadow:0 0 0 3px rgba(42,122,106,0.1);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.input-hint{font-size:0.73rem;color:var(--ink3);margin-top:4px;}
+
+/* Subjects multi-select chip input */
+.subjects-chips{
+  display:flex;flex-wrap:wrap;gap:6px;
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:10px;padding:10px 12px;min-height:48px;
+  cursor:text;transition:all 0.2s;
+}
+.subjects-chips:focus-within{
+  border-color:var(--teal);background:var(--white);
+  box-shadow:0 0 0 3px rgba(42,122,106,0.1);
+}
+.chip{
+  display:flex;align-items:center;gap:5px;
+  background:var(--tealbg);color:var(--teal);
+  border-radius:6px;padding:3px 9px;
+  font-size:0.78rem;font-weight:700;
+}
+.chip-remove{
+  cursor:pointer;
+  font-size:0.7rem;opacity:0.7;
+}
+.chip-remove:hover{opacity:1;}
+.subjects-input{
+  border:none;outline:none;background:transparent;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.88rem;color:var(--ink);flex:1;min-width:80px;
+  padding:1px 4px;
+}
+.subjects-input::placeholder{color:var(--ink3);}
+
+/* Submit button */
+.submit-btn{
+  width:100%;padding:14px 24px;border-radius:10px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.95rem;font-weight:700;border:none;cursor:pointer;
+  transition:all 0.22s;letter-spacing:0.1px;
+  margin-top:4px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.submit-btn.parent-btn{
+  background:var(--gold);color:var(--white);
+  box-shadow:0 4px 16px rgba(200,146,42,0.3);
+}
+.submit-btn.parent-btn:hover{background:#b8821a;transform:translateY(-1px);}
+.submit-btn.tutor-btn{
+  background:var(--teal);color:var(--white);
+  box-shadow:0 4px 16px rgba(42,122,106,0.3);
+}
+.submit-btn.tutor-btn:hover{background:#1f5e50;transform:translateY(-1px);}
+.submit-btn:disabled{opacity:0.7;cursor:not-allowed;transform:none!important;}
+
+/* Divider */
+.auth-divider{
+  display:flex;align-items:center;gap:12px;
+  margin:20px 0;color:var(--ink3);font-size:0.78rem;
+}
+.auth-divider::before,.auth-divider::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+
+/* Alert boxes */
+.alert{
+  padding:12px 16px;border-radius:10px;
+  font-size:0.84rem;font-weight:500;
+  margin-bottom:16px;display:none;
+  line-height:1.4;
+}
+.alert.error{background:var(--errorbg);color:var(--error);border:1px solid rgba(192,57,43,0.2);}
+.alert.success{background:var(--tealbg);color:var(--teal);border:1px solid rgba(42,122,106,0.2);}
+.alert.show{display:block;}
+
+/* Loading spinner */
+.spinner{
+  width:18px;height:18px;border:2.5px solid rgba(255,255,255,0.3);
+  border-top-color:var(--white);border-radius:50%;
+  animation:spin 0.7s linear infinite;display:none;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── FORMS CONTAINER ── */
+.forms-container{position:relative;}
+.form-panel{display:none;}
+.form-panel.active{display:block;}
+
+/* Terms */
+.terms-note{
+  font-size:0.74rem;color:var(--ink3);
+  text-align:center;margin-top:14px;line-height:1.5;
+}
+.terms-note a{color:var(--gold);text-decoration:none;}
+.terms-note a:hover{text-decoration:underline;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  body{grid-template-columns:1fr;}
+  .auth-left{display:none;}
+  .auth-right{padding:40px 24px;}
+}
+@media(max-width:480px){
+  .form-row{grid-template-columns:1fr;}
+  .auth-right{padding:32px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- LEFT BRAND PANEL -->
+<div class="auth-left">
+  <a href="index.html" class="al-logo">
+    <div class="al-logo-dot"></div>
+    Clarasta
+  </a>
+
+  <div class="al-content">
+    <div class="al-tag"><div class="al-tag-dot"></div>Crossing Republic · Gaur City · GZB</div>
+    <h1 class="al-headline">Trusted Tutors,<br/><em>Right at Home</em></h1>
+    <p class="al-desc">Join Clarasta's growing community of parents and BTech tutors. Connect directly, no middlemen, no platform fees — ever.</p>
+    <div class="al-perks">
+      <div class="al-perk">
+        <div class="al-perk-icon">✅</div>
+        Every tutor verified with college ID before going live
+      </div>
+      <div class="al-perk">
+        <div class="al-perk-icon">📍</div>
+        Only tutors from your society or nearby areas
+      </div>
+      <div class="al-perk">
+        <div class="al-perk-icon">🆓</div>
+        Free demo class · No platform commission · Direct WhatsApp
+      </div>
+      <div class="al-perk">
+        <div class="al-perk-icon">💰</div>
+        Tutors earn ₹2,000–₹8,000/month teaching 2–4 hours daily
+      </div>
+    </div>
+  </div>
+
+  <div class="al-footer">
+    © 2025 Clarasta · <a href="index.html">Home</a> · <a href="mailto:hello@clarasta.in">Contact</a>
+  </div>
+</div>
+
+<!-- RIGHT FORM PANEL -->
+<div class="auth-right">
+  <div class="auth-box">
+
+    <a href="index.html" class="auth-back">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to Home
+    </a>
+
+    <!-- Role Selector -->
+    <div class="role-selector">
+      <button class="role-btn active-parent" id="role-parent" onclick="setRole('parent')">
+        <span class="role-emoji">👨‍👩‍👧</span> I'm a Parent
+      </button>
+      <button class="role-btn" id="role-tutor" onclick="setRole('tutor')">
+        <span class="role-emoji">🎓</span> I'm a Tutor
+      </button>
+    </div>
+
+    <!-- Mode Tabs (Register / Login) -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" id="tab-register" onclick="setMode('register')">New Registration</button>
+      <button class="mode-tab" id="tab-login" onclick="setMode('login')">Login</button>
+    </div>
+
+    <!-- Alert Box -->
+    <div class="alert error" id="alert-error"></div>
+    <div class="alert success" id="alert-success"></div>
+
+    <!-- ===== PARENT REGISTER ===== -->
+    <div class="form-panel active" id="panel-parent-register">
+      <h2 class="auth-heading">Create your account</h2>
+      <p class="auth-subheading">Register as a parent and find verified tutors near you. Already registered? <span onclick="setMode('login')">Login here</span></p>
+      <form id="form-parent-register" onsubmit="submitParentRegister(event)">
+        <div class="form-field">
+          <label>Full Name</label>
+          <input type="text" id="pr-name" placeholder="Your full name" required/>
+        </div>
+        <div class="form-field">
+          <label>WhatsApp Number</label>
+          <input type="tel" id="pr-whatsapp" placeholder="10-digit number" maxlength="10" required/>
+          <div class="input-hint">We'll use this to notify you of matches</div>
+        </div>
+        <div class="form-field">
+          <label>Society / Locality</label>
+          <select id="pr-society" required>
+            <option value="">Select your society</option>
+            <option>Crossing Republic</option>
+            <option>Gaur City 1</option>
+            <option>Gaur City 2</option>
+            <option>Gaur Siddhartham</option>
+            <option>Vaibhav Khand</option>
+            <option>Indirapuram</option>
+            <option>Raj Nagar Extension</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>Child's Class</label>
+            <select id="pr-class" required>
+              <option value="">Class</option>
+              <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+              <option>Class 4</option><option>Class 5</option><option>Class 6</option>
+              <option>Class 7</option><option>Class 8</option><option>Class 9</option>
+              <option>Class 10</option><option>Class 11</option><option>Class 12</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Subject Needed</label>
+            <select id="pr-subject" required>
+              <option value="">Subject</option>
+              <option>Mathematics</option><option>Physics</option><option>Chemistry</option>
+              <option>Biology</option><option>English</option><option>Hindi</option>
+              <option>Science</option><option>SST</option><option>Computer</option><option>All Subjects</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn parent-btn" id="btn-parent-register">
+          <div class="spinner" id="spin-pr"></div>
+          <span id="btn-pr-text">Register as Parent</span>
+        </button>
+      </form>
+      <p class="terms-note">By registering, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+    </div>
+
+    <!-- ===== PARENT LOGIN ===== -->
+    <div class="form-panel" id="panel-parent-login">
+      <h2 class="auth-heading">Welcome back</h2>
+      <p class="auth-subheading">Enter your registered WhatsApp number to access your parent dashboard. New here? <span onclick="setMode('register')">Register now</span></p>
+      <form id="form-parent-login" onsubmit="submitParentLogin(event)">
+        <div class="form-field">
+          <label>Registered WhatsApp Number</label>
+          <input type="tel" id="pl-whatsapp" placeholder="10-digit number" maxlength="10" required/>
+        </div>
+        <button type="submit" class="submit-btn parent-btn" id="btn-parent-login">
+          <div class="spinner" id="spin-pl"></div>
+          <span id="btn-pl-text">Login to Dashboard →</span>
+        </button>
+      </form>
+      <p class="terms-note">Don't have an account? <a href="#" onclick="setMode('register')">Register for free</a></p>
+    </div>
+
+    <!-- ===== TUTOR REGISTER ===== -->
+    <div class="form-panel" id="panel-tutor-register">
+      <h2 class="auth-heading">Join as a Tutor</h2>
+      <p class="auth-subheading">Create your profile and start earning by teaching nearby students. Already registered? <span onclick="setMode('login')">Login here</span></p>
+      <form id="form-tutor-register" onsubmit="submitTutorRegister(event)">
+        <div class="form-field">
+          <label>Full Name</label>
+          <input type="text" id="tr-name" placeholder="Your full name" required/>
+        </div>
+        <div class="form-field">
+          <label>WhatsApp Number</label>
+          <input type="tel" id="tr-whatsapp" placeholder="10-digit number" maxlength="10" required/>
+        </div>
+        <div class="form-row">
+          <div class="form-field teal-focus">
+            <label>College Name</label>
+            <input type="text" id="tr-college" placeholder="e.g. ABES Engineering" required/>
+          </div>
+          <div class="form-field teal-focus">
+            <label>Branch</label>
+            <select id="tr-branch" required>
+              <option value="">Branch</option>
+              <option>CSE</option><option>IT</option><option>ECE</option>
+              <option>ME</option><option>Civil</option><option>EEE</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-field teal-focus">
+          <label>Society / Area you can teach</label>
+          <select id="tr-society" required>
+            <option value="">Select area</option>
+            <option>Crossing Republic</option>
+            <option>Gaur City 1</option>
+            <option>Gaur City 2</option>
+            <option>Gaur Siddhartham</option>
+            <option>Vaibhav Khand</option>
+            <option>Indirapuram</option>
+            <option>Raj Nagar Extension</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field teal-focus">
+          <label>Subjects you can teach</label>
+          <div class="subjects-chips" id="chips-box" onclick="document.getElementById('chip-input').focus()">
+            <input type="text" id="chip-input" class="subjects-input" placeholder="Type subject, press Enter…" onkeydown="addChip(event)" oninput="showSubjectSuggestions(this.value)"/>
+          </div>
+          <input type="hidden" id="tr-subjects"/>
+          <div id="chip-suggestions" style="display:none;background:var(--white);border:1px solid var(--border);border-radius:10px;margin-top:4px;overflow:hidden;box-shadow:var(--shadow2);position:relative;z-index:10;"></div>
+          <div class="input-hint">Press Enter after each subject (e.g. Maths, Physics, Chemistry)</div>
+        </div>
+        <button type="submit" class="submit-btn tutor-btn" id="btn-tutor-register">
+          <div class="spinner" id="spin-tr"></div>
+          <span id="btn-tr-text">Submit Profile</span>
+        </button>
+      </form>
+      <p class="terms-note">By registering, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+    </div>
+
+    <!-- ===== TUTOR LOGIN ===== -->
+    <div class="form-panel" id="panel-tutor-login">
+      <h2 class="auth-heading">Tutor Login</h2>
+      <p class="auth-subheading">Access your tutor dashboard. New here? <span onclick="setMode('register')">Register your profile</span></p>
+      <form id="form-tutor-login" onsubmit="submitTutorLogin(event)">
+        <div class="form-field teal-focus">
+          <label>Registered WhatsApp Number</label>
+          <input type="tel" id="tl-whatsapp" placeholder="10-digit number" maxlength="10" required/>
+        </div>
+        <button type="submit" class="submit-btn tutor-btn" id="btn-tutor-login">
+          <div class="spinner" id="spin-tl"></div>
+          <span id="btn-tl-text">Login to Dashboard →</span>
+        </button>
+      </form>
+      <p class="terms-note">Don't have an account? <a href="#" onclick="setMode('register')">Register for free</a></p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const API = 'https://clarasta-server.vercel.app';
+let currentRole = 'parent';
+let currentMode = 'register';
+let subjects = [];
+
+// ── ROLE & MODE SWITCHING ──────────────────────
+function setRole(role) {
+  currentRole = role;
+  document.getElementById('role-parent').className = 'role-btn' + (role==='parent'?' active-parent':'');
+  document.getElementById('role-tutor').className = 'role-btn' + (role==='tutor'?' active-tutor':'');
+  showPanel();
+  clearAlerts();
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById('tab-register').className = 'mode-tab' + (mode==='register'?' active':'');
+  document.getElementById('tab-login').className = 'mode-tab' + (mode==='login'?' active':'');
+  showPanel();
+  clearAlerts();
+}
+
+function showPanel() {
+  document.querySelectorAll('.form-panel').forEach(p => p.classList.remove('active'));
+  const id = `panel-${currentRole}-${currentMode}`;
+  const el = document.getElementById(id);
+  if(el) el.classList.add('active');
+}
+
+// ── ALERTS ────────────────────────────────────
+function showError(msg) {
+  const el = document.getElementById('alert-error');
+  el.textContent = msg;
+  el.classList.add('show');
+  document.getElementById('alert-success').classList.remove('show');
+}
+function showSuccess(msg) {
+  const el = document.getElementById('alert-success');
+  el.textContent = msg;
+  el.classList.add('show');
+  document.getElementById('alert-error').classList.remove('show');
+}
+function clearAlerts() {
+  document.getElementById('alert-error').classList.remove('show');
+  document.getElementById('alert-success').classList.remove('show');
+}
+
+function setLoading(spinId, btnTextId, loading) {
+  document.getElementById(spinId).style.display = loading ? 'block' : 'none';
+  const btn = document.getElementById(btnTextId).closest('button');
+  btn.disabled = loading;
+}
+
+// ── PARENT REGISTER ───────────────────────────
+async function submitParentRegister(e) {
+  e.preventDefault();
+  clearAlerts();
+  const name = document.getElementById('pr-name').value.trim();
+  const whatsapp = document.getElementById('pr-whatsapp').value.trim();
+  const society = document.getElementById('pr-society').value;
+  const childClass = document.getElementById('pr-class').value;
+  const subject = document.getElementById('pr-subject').value;
+  if(whatsapp.length !== 10 || !/^\d+$/.test(whatsapp))
+    return showError('Please enter a valid 10-digit WhatsApp number.');
+  setLoading('spin-pr','btn-pr-text',true);
+  try {
+    const res = await fetch(`${API}/api/parent/signup`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name,whatsapp,society,childClass,subject})
+    });
+    const data = await res.json();
+    if(data.success) {
+      const user = {role:'parent',name,whatsapp,society,childClass,subject,id:data.id,registeredAt:new Date().toISOString()};
+      localStorage.setItem('clarasta_user', JSON.stringify(user));
+      showSuccess('Registration successful! Redirecting to your dashboard…');
+      setTimeout(() => window.location.href = 'parent-dashboard.html', 1500);
+    } else {
+      showError(data.message || 'Registration failed. Please try again.');
+    }
+  } catch(err) {
+    showError('Network error. Please check your connection and try again.');
+  }
+  setLoading('spin-pr','btn-pr-text',false);
+}
+
+// ── PARENT LOGIN ──────────────────────────────
+async function submitParentLogin(e) {
+  e.preventDefault();
+  clearAlerts();
+  const whatsapp = document.getElementById('pl-whatsapp').value.trim();
+  if(whatsapp.length !== 10 || !/^\d+$/.test(whatsapp))
+    return showError('Please enter a valid 10-digit WhatsApp number.');
+  setLoading('spin-pl','btn-pl-text',true);
+  const stored = JSON.parse(localStorage.getItem('clarasta_user') || 'null');
+  await new Promise(r => setTimeout(r, 800)); // natural feel
+  if(stored && stored.role === 'parent' && stored.whatsapp === whatsapp) {
+    showSuccess('Login successful! Redirecting…');
+    setTimeout(() => window.location.href = 'parent-dashboard.html', 1200);
+  } else {
+    showError('No parent account found with this number. Please register first.');
+  }
+  setLoading('spin-pl','btn-pl-text',false);
+}
+
+// ── SUBJECTS CHIP INPUT ───────────────────────
+const SUBJECT_LIST = ['Mathematics','Physics','Chemistry','Biology','English','Hindi','Science','SST','Computer Science','Accountancy','Economics'];
+
+function addChip(e) {
+  if(e.key === 'Enter' || e.key === ',') {
+    e.preventDefault();
+    const val = e.target.value.trim();
+    if(val && !subjects.includes(val)) {
+      subjects.push(val);
+      renderChips();
+    }
+    e.target.value = '';
+    document.getElementById('chip-suggestions').style.display = 'none';
+    document.getElementById('tr-subjects').value = subjects.join(',');
+  }
+}
+
+function renderChips() {
+  const box = document.getElementById('chips-box');
+  const input = document.getElementById('chip-input');
+  box.innerHTML = '';
+  subjects.forEach((s,i) => {
+    const chip = document.createElement('span');
+    chip.className = 'chip';
+    chip.innerHTML = `${s}<span class="chip-remove" onclick="removeChip(${i})">✕</span>`;
+    box.appendChild(chip);
+  });
+  box.appendChild(input);
+  document.getElementById('tr-subjects').value = subjects.join(',');
+}
+
+function removeChip(i) {
+  subjects.splice(i,1);
+  renderChips();
+}
+
+function showSubjectSuggestions(val) {
+  const box = document.getElementById('chip-suggestions');
+  if(!val) { box.style.display='none'; return; }
+  const matches = SUBJECT_LIST.filter(s => s.toLowerCase().includes(val.toLowerCase()) && !subjects.includes(s));
+  if(!matches.length) { box.style.display='none'; return; }
+  box.innerHTML = matches.map(s =>
+    `<div style="padding:10px 16px;cursor:pointer;font-size:0.87rem;transition:background 0.15s;"
+      onmousedown="pickSubject('${s}')"
+      onmouseover="this.style.background='var(--bg)'"
+      onmouseout="this.style.background=''">${s}</div>`
+  ).join('');
+  box.style.display = 'block';
+}
+
+function pickSubject(s) {
+  if(!subjects.includes(s)) { subjects.push(s); renderChips(); }
+  document.getElementById('chip-input').value = '';
+  document.getElementById('chip-suggestions').style.display = 'none';
+  document.getElementById('tr-subjects').value = subjects.join(',');
+}
+
+// ── TUTOR REGISTER ────────────────────────────
+async function submitTutorRegister(e) {
+  e.preventDefault();
+  clearAlerts();
+  const name = document.getElementById('tr-name').value.trim();
+  const whatsapp = document.getElementById('tr-whatsapp').value.trim();
+  const college = document.getElementById('tr-college').value.trim();
+  const branch = document.getElementById('tr-branch').value;
+  const society = document.getElementById('tr-society').value;
+  const subjectsVal = document.getElementById('tr-subjects').value;
+  if(whatsapp.length !== 10 || !/^\d+$/.test(whatsapp))
+    return showError('Please enter a valid 10-digit WhatsApp number.');
+  if(!subjectsVal || subjects.length === 0)
+    return showError('Please add at least one subject you can teach.');
+  setLoading('spin-tr','btn-tr-text',true);
+  try {
+    const res = await fetch(`${API}/api/tutor/signup`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name,whatsapp,college,branch,subjects:subjectsVal,society})
+    });
+    const data = await res.json();
+    if(data.success) {
+      const user = {role:'tutor',name,whatsapp,college,branch,subjects:subjects,society,id:data.id,verified:false,registeredAt:new Date().toISOString()};
+      localStorage.setItem('clarasta_user', JSON.stringify(user));
+      showSuccess('Profile submitted! Redirecting to your dashboard…');
+      setTimeout(() => window.location.href = 'tutor-dashboard.html', 1500);
+    } else {
+      showError(data.message || 'Registration failed.');
+    }
+  } catch(err) {
+    showError('Network error. Please check your connection and try again.');
+  }
+  setLoading('spin-tr','btn-tr-text',false);
+}
+
+// ── TUTOR LOGIN ───────────────────────────────
+async function submitTutorLogin(e) {
+  e.preventDefault();
+  clearAlerts();
+  const whatsapp = document.getElementById('tl-whatsapp').value.trim();
+  if(whatsapp.length !== 10 || !/^\d+$/.test(whatsapp))
+    return showError('Please enter a valid 10-digit WhatsApp number.');
+  setLoading('spin-tl','btn-tl-text',true);
+  const stored = JSON.parse(localStorage.getItem('clarasta_user') || 'null');
+  await new Promise(r => setTimeout(r, 800));
+  if(stored && stored.role === 'tutor' && stored.whatsapp === whatsapp) {
+    showSuccess('Login successful! Redirecting…');
+    setTimeout(() => window.location.href = 'tutor-dashboard.html', 1200);
+  } else {
+    showError('No tutor account found with this number. Please register first.');
+  }
+  setLoading('spin-tl','btn-tl-text',false);
+}
+
+// ── INIT: check if already logged in ──────────
+window.addEventListener('DOMContentLoaded', () => {
+  const user = JSON.parse(localStorage.getItem('clarasta_user') || 'null');
+  if(user) {
+    if(user.role === 'parent') window.location.href = 'parent-dashboard.html';
+    else if(user.role === 'tutor') window.location.href = 'tutor-dashboard.html';
+  }
+});
+</script>
+</body>
+</html>
