@@ -38,43 +38,155 @@ body{
 
 /* ── LOGIN OVERLAY ── */
 .login-overlay{
-  position:fixed;inset:0;background:var(--bg);
+  position:fixed;inset:0;
+  background:radial-gradient(ellipse at 20% 50%, rgba(232,168,48,0.08) 0%, transparent 60%),
+             radial-gradient(ellipse at 80% 20%, rgba(58,191,159,0.07) 0%, transparent 55%),
+             var(--bg);
   display:flex;align-items:center;justify-content:center;
-  z-index:9999;padding:20px;
+  z-index:9999;padding:20px;overflow:hidden;
 }
+/* Floating orbs */
+.login-overlay::before,
+.login-overlay::after{
+  content:'';position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;
+}
+.login-overlay::before{
+  width:500px;height:500px;
+  background:rgba(232,168,48,0.06);
+  top:-120px;left:-120px;
+  animation:floatA 8s ease-in-out infinite;
+}
+.login-overlay::after{
+  width:380px;height:380px;
+  background:rgba(58,191,159,0.06);
+  bottom:-80px;right:-80px;
+  animation:floatB 10s ease-in-out infinite;
+}
+@keyframes floatA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,20px) scale(1.05)}}
+@keyframes floatB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-20px,-30px) scale(1.08)}}
+
 .login-box{
-  width:100%;max-width:400px;
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:20px;padding:40px;
+  width:100%;max-width:420px;
+  background:rgba(22,22,28,0.85);
+  border:1px solid rgba(232,168,48,0.15);
+  border-radius:24px;padding:44px 40px;
+  backdrop-filter:blur(24px);
+  box-shadow:0 0 0 1px rgba(255,255,255,0.04),
+             0 32px 80px rgba(0,0,0,0.5),
+             0 0 60px rgba(232,168,48,0.06);
+  animation:loginSlideUp 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  position:relative;z-index:1;
+}
+@keyframes loginSlideUp{
+  from{opacity:0;transform:translateY(30px) scale(0.97)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+/* Shield icon above logo */
+.login-shield{
+  width:52px;height:52px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(232,168,48,0.2),rgba(240,192,96,0.1));
+  border:1px solid rgba(232,168,48,0.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin-bottom:20px;
+  box-shadow:0 4px 20px rgba(232,168,48,0.15);
 }
 .login-logo{
   display:flex;align-items:center;gap:10px;
-  font-family:'DM Serif Display',serif;font-size:1.5rem;
-  color:var(--ink);margin-bottom:8px;
+  font-family:'DM Serif Display',serif;font-size:1.7rem;
+  color:var(--ink);margin-bottom:6px;
 }
-.login-logo-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);}
-.login-sub{font-size:0.82rem;color:var(--ink2);margin-bottom:28px;}
-.login-label{font-size:0.72rem;font-weight:800;color:var(--ink2);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;}
+.login-logo-dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 12px rgba(232,168,48,0.8);
+}
+.login-tagline{
+  font-size:0.8rem;color:var(--ink3);
+  margin-bottom:6px;
+  display:flex;align-items:center;gap:6px;
+}
+.login-tagline::before{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.login-tagline::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.login-sub{font-size:0.83rem;color:var(--ink2);margin-bottom:28px;line-height:1.5;}
+.login-label{
+  font-size:0.69rem;font-weight:800;color:var(--ink2);
+  letter-spacing:1.2px;text-transform:uppercase;
+  margin-bottom:7px;display:block;
+}
+.login-input-wrap{position:relative;margin-bottom:16px;}
 .login-input{
-  width:100%;background:var(--bg3);
-  border:1.5px solid var(--border);border-radius:10px;
-  padding:13px 16px;color:var(--ink);
-  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;
-  outline:none;transition:border-color 0.2s;margin-bottom:14px;
+  width:100%;background:rgba(30,30,38,0.9);
+  border:1.5px solid var(--border);border-radius:12px;
+  padding:14px 48px 14px 16px;color:var(--ink);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.92rem;
+  outline:none;transition:all 0.25s;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,0.3);
 }
-.login-input:focus{border-color:var(--gold);}
+.login-input:focus{
+  border-color:var(--gold);
+  box-shadow:inset 0 1px 3px rgba(0,0,0,0.3), 0 0 0 3px rgba(232,168,48,0.1);
+}
 .login-input::placeholder{color:var(--ink3);}
-.login-btn{
-  width:100%;padding:13px;border-radius:10px;
-  background:var(--gold);color:#111;
-  font-family:'Plus Jakarta Sans',sans-serif;
-  font-size:0.95rem;font-weight:800;border:none;cursor:pointer;
-  transition:all 0.2s;
+.login-eye{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;color:var(--ink3);
+  padding:4px;transition:color 0.2s;
+  display:flex;align-items:center;
 }
-.login-btn:hover{background:var(--gold2);}
+.login-eye:hover{color:var(--gold);}
+.login-eye svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;}
+
+.login-btn{
+  width:100%;padding:14px;border-radius:12px;
+  background:linear-gradient(135deg,#e8a830,#f0c060,#e8a830);
+  background-size:200% 100%;
+  color:#111;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.95rem;font-weight:800;border:none;cursor:pointer;
+  transition:all 0.3s;letter-spacing:0.3px;
+  box-shadow:0 4px 20px rgba(232,168,48,0.35);
+  position:relative;overflow:hidden;
+}
+.login-btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+  transform:translateX(-100%);
+  transition:transform 0.5s;
+}
+.login-btn:hover{
+  background-position:right center;
+  box-shadow:0 6px 28px rgba(232,168,48,0.5);
+  transform:translateY(-1px);
+}
+.login-btn:hover::before{transform:translateX(100%);}
+.login-btn:active{transform:translateY(0);}
+.login-btn.loading{
+  pointer-events:none;opacity:0.8;
+}
+.login-btn .btn-spinner{
+  display:none;width:16px;height:16px;
+  border:2px solid rgba(0,0,0,0.3);border-top-color:#111;
+  border-radius:50%;animation:spin 0.7s linear infinite;
+  vertical-align:middle;margin-right:8px;
+}
+.login-btn.loading .btn-spinner{display:inline-block;}
+.login-btn.loading .btn-text{display:none;}
+
+.login-divider{
+  display:flex;align-items:center;gap:10px;
+  margin:18px 0 0;font-size:0.72rem;color:var(--ink3);
+}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:var(--border);}
+
 .login-error{
-  font-size:0.8rem;color:var(--red);margin-top:10px;
+  font-size:0.8rem;color:var(--red);margin-top:12px;
   display:none;text-align:center;
+  background:var(--redbg);border-radius:8px;
+  padding:8px 12px;border:1px solid rgba(224,90,90,0.2);
 }
 .login-error.show{display:block;}
 
@@ -242,6 +354,73 @@ tbody tr:hover td{background:var(--bg3);}
 .verify-btn:hover{background:var(--teal);color:var(--bg);}
 .verify-btn:disabled{opacity:0.5;cursor:not-allowed;}
 .verify-btn.done{background:var(--tealbg);color:var(--teal);cursor:default;}
+.unverify-btn{
+  padding:6px 14px;border-radius:7px;border:none;
+  background:var(--goldbg);color:var(--gold);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.77rem;font-weight:700;cursor:pointer;transition:all 0.2s;
+  margin-left:4px;
+}
+.unverify-btn:hover{background:var(--gold);color:var(--bg);}
+.del-btn{
+  padding:6px 14px;border-radius:7px;border:none;
+  background:var(--redbg);color:var(--red);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.77rem;font-weight:700;cursor:pointer;transition:all 0.2s;
+  margin-left:4px;
+}
+.del-btn:hover{background:var(--red);color:#fff;}
+.status-select{
+  background:var(--bg3);border:1.5px solid var(--border);
+  border-radius:8px;padding:5px 10px;
+  color:var(--ink);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.78rem;cursor:pointer;outline:none;
+  transition:border-color 0.2s;
+}
+.status-select:focus{border-color:var(--gold);}
+
+/* ── MODAL ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,0.7);
+  display:flex;align-items:center;justify-content:center;
+  z-index:9000;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity 0.2s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal-box{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:20px;padding:32px;width:100%;max-width:420px;
+  transform:translateY(20px);transition:transform 0.2s;
+}
+.modal-overlay.open .modal-box{transform:translateY(0);}
+.modal-title{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--ink);margin-bottom:6px;}
+.modal-sub{font-size:0.82rem;color:var(--ink2);margin-bottom:22px;}
+.modal-label{font-size:0.72rem;font-weight:800;color:var(--ink2);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;display:block;}
+.modal-input{
+  width:100%;background:var(--bg3);border:1.5px solid var(--border);
+  border-radius:10px;padding:11px 14px;color:var(--ink);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;
+  outline:none;transition:border-color 0.2s;margin-bottom:14px;
+}
+.modal-input:focus{border-color:var(--gold);}
+.modal-input::placeholder{color:var(--ink3);}
+.modal-actions{display:flex;gap:10px;margin-top:6px;}
+.modal-confirm{
+  flex:1;padding:12px;border-radius:10px;
+  background:var(--gold);color:#111;
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.9rem;font-weight:800;border:none;cursor:pointer;
+  transition:all 0.2s;
+}
+.modal-confirm:hover{background:var(--gold2);}
+.modal-cancel{
+  padding:12px 20px;border-radius:10px;
+  background:var(--bg3);color:var(--ink2);
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.9rem;font-weight:700;border:1.5px solid var(--border);cursor:pointer;
+  transition:all 0.2s;
+}
+.modal-cancel:hover{border-color:var(--red);color:var(--red);}
 
 /* Search / filter bar */
 .filter-bar{
@@ -290,16 +469,27 @@ tbody tr:hover td{background:var(--bg3);}
 <!-- LOGIN OVERLAY -->
 <div class="login-overlay" id="login-overlay">
   <div class="login-box">
+    <div class="login-shield">🛡️</div>
     <div class="login-logo">
       <div class="login-logo-dot"></div>
       Clarasta
       <span class="sb-admin-badge">ADMIN</span>
     </div>
-    <p class="login-sub">Enter your admin credentials to access the control panel.</p>
-    <label class="login-label" for="admin-key-input">Admin Secret Key</label>
-    <input type="password" class="login-input" id="admin-key-input" placeholder="Enter admin key…" onkeydown="if(event.key==='Enter')adminLogin()"/>
-    <button class="login-btn" onclick="adminLogin()">Access Panel →</button>
-    <div class="login-error" id="login-error">❌ Invalid admin key. Please try again.</div>
+    <div class="login-tagline">Secure Access Portal</div>
+    <p class="login-sub">Apni admin key enter karo — sirf authorized personnel ke liye.</p>
+    <label class="login-label" for="admin-key-input">🔑 Admin Secret Key</label>
+    <div class="login-input-wrap">
+      <input type="password" class="login-input" id="admin-key-input" placeholder="Enter secret key…" onkeydown="if(event.key==='Enter')adminLogin()"/>
+      <button class="login-eye" onclick="toggleEye()" id="eye-btn" title="Show/Hide">
+        <svg id="eye-icon" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      </button>
+    </div>
+    <button class="login-btn" id="login-btn" onclick="adminLogin()">
+      <span class="btn-spinner"></span>
+      <span class="btn-text">Access Panel →</span>
+    </button>
+    <div class="login-error" id="login-error">❌ Invalid key. Dobara try karo.</div>
+    <div class="login-divider">protected by clarasta security</div>
   </div>
 </div>
 
@@ -434,7 +624,7 @@ tbody tr:hover td{background:var(--bg3);}
               <th>Society</th>
               <th>Registered</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody id="tutors-tbody">
@@ -478,10 +668,11 @@ tbody tr:hover td{background:var(--bg3);}
               <th>Subject</th>
               <th>Status</th>
               <th>Registered</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody id="parents-tbody">
-            <tr><td colspan="7" class="tbl-loading"><span class="spinner-inline"></span>Loading parents…</td></tr>
+            <tr><td colspan="8" class="tbl-loading"><span class="spinner-inline"></span>Loading parents…</td></tr>
           </tbody>
         </table>
       </div>
@@ -489,6 +680,22 @@ tbody tr:hover td{background:var(--bg3);}
   </div>
 
 </main>
+
+<!-- ASSIGN TUTOR MODAL -->
+<div class="modal-overlay" id="assign-modal">
+  <div class="modal-box">
+    <div class="modal-title">🎓 Assign Tutor</div>
+    <div class="modal-sub" id="assign-modal-sub">Parent ko tutor assign karo aur status "Matched" kar do.</div>
+    <label class="modal-label" for="assign-tutor-name">Tutor Ka Naam</label>
+    <input type="text" class="modal-input" id="assign-tutor-name" placeholder="e.g. Rahul Sharma"/>
+    <label class="modal-label" for="assign-tutor-wa">Tutor Ka WhatsApp Number</label>
+    <input type="text" class="modal-input" id="assign-tutor-wa" placeholder="e.g. 9876543210"/>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeAssignModal()">Cancel</button>
+      <button class="modal-confirm" onclick="confirmAssign()">✅ Assign & Match</button>
+    </div>
+  </div>
+</div>
 
 <script>
 const API = 'https://clarasta-server.vercel.app';
@@ -513,11 +720,25 @@ function formatDate(d) {
 }
 function colorFor(i){ return COLORS[i % COLORS.length]; }
 
-// ── AUTH ──────────────────────────────────────
+// ── EYE TOGGLE + AUTH ─────────────────────────
+function toggleEye() {
+  const inp = document.getElementById('admin-key-input');
+  const icon = document.getElementById('eye-icon');
+  if (inp.type === 'password') {
+    inp.type = 'text';
+    icon.innerHTML = '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/>';
+  } else {
+    inp.type = 'password';
+    icon.innerHTML = '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>';
+  }
+}
 function adminLogin() {
   const key = document.getElementById('admin-key-input').value.trim();
-  if(!key) return;
+  if (!key) return;
   ADMIN_KEY = key;
+  const btn = document.getElementById('login-btn');
+  if (btn) btn.classList.add('loading');
+  document.getElementById('login-error').classList.remove('show');
   loadDashboard();
 }
 
@@ -528,6 +749,8 @@ function adminLogout() {
   document.getElementById('app-sidebar').style.display = 'none';
   document.getElementById('app-main').style.display = 'none';
   document.getElementById('admin-key-input').value = '';
+  const btn = document.getElementById('login-btn');
+  if (btn) btn.classList.remove('loading');
 }
 
 // ── TABS ──────────────────────────────────────
@@ -551,6 +774,8 @@ async function loadDashboard() {
       document.getElementById('login-overlay').style.display = 'flex';
       document.getElementById('app-sidebar').style.display = 'none';
       document.getElementById('app-main').style.display = 'none';
+      const lb = document.getElementById('login-btn');
+      if (lb) lb.classList.remove('loading');
       return;
     }
     const data = await res.json();
@@ -561,6 +786,8 @@ async function loadDashboard() {
     document.getElementById('login-overlay').style.display = 'none';
     document.getElementById('app-sidebar').style.display = 'flex';
     document.getElementById('app-main').style.display = 'block';
+    const lb = document.getElementById('login-btn');
+    if (lb) lb.classList.remove('loading');
 
     renderStats(data.stats);
     renderRecentParents(data.recentParents.slice(0,5));
@@ -654,10 +881,14 @@ function renderTutorsTable(tutors) {
       <td>${t.verified ?
         '<span class="badge-pill pill-teal">✅ Verified</span>' :
         '<span class="badge-pill pill-gold">⏳ Pending</span>'}</td>
-      <td>${t.verified ?
-        `<button class="verify-btn done" disabled>✓ Verified</button>` :
-        `<button class="verify-btn" id="vbtn-${t._id}" onclick="verifyTutor('${t._id}', this)">Verify</button>`
-      }</td>
+      <td style="white-space:nowrap;">
+        ${t.verified ?
+          `<button class="verify-btn done" disabled>✓ Done</button>
+           <button class="unverify-btn" onclick="unverifyTutor('${t._id}', this)">↩ Unverify</button>` :
+          `<button class="verify-btn" onclick="verifyTutor('${t._id}', this)">✓ Verify</button>`
+        }
+        <button class="del-btn" onclick="deleteTutor('${t._id}', this)">🗑</button>
+      </td>
     </tr>`;
   }).join('');
 }
@@ -673,56 +904,152 @@ function renderParentsTable(parents) {
   }
   tbody.innerHTML = parents.map((p,i) => {
     const c = colorFor(i+2);
+    const statusBadge = {
+      pending:  '<span class="badge-pill pill-gold">⏳ Pending</span>',
+      matched:  '<span class="badge-pill pill-teal">🤝 Matched</span>',
+      active:   '<span class="badge-pill pill-teal" style="background:rgba(58,191,90,0.15);color:#3abf5a;">✅ Active</span>',
+      closed:   '<span class="badge-pill pill-gray">🔒 Closed</span>',
+    };
+    const assignedInfo = p.assignedTutorName ?
+      `<div style="font-size:0.72rem;color:var(--teal);margin-top:2px;">👤 ${p.assignedTutorName}</div>` : '';
     return `<tr data-name="${p.name.toLowerCase()}" data-society="${(p.society||'').toLowerCase()}">
       <td>
         <div style="display:flex;align-items:center;gap:10px;">
           <div class="tbl-avatar" style="background:${c.bg};color:${c.color}">${getInitials(p.name)}</div>
           <div>
             <div class="tbl-name">${p.name}</div>
+            ${assignedInfo}
           </div>
         </div>
       </td>
-      <td><span style="font-size:0.82rem;color:var(--ink2);">+91 ${p.whatsapp||'—'}</span></td>
+      <td>
+        <a href="https://wa.me/91${p.whatsapp}" target="_blank" title="WhatsApp karo" style="color:var(--teal);text-decoration:none;font-size:0.82rem;">📱 ${p.whatsapp||'—'}</a>
+      </td>
       <td><span class="badge-pill pill-gray">📍 ${p.society||'—'}</span></td>
       <td><span class="badge-pill pill-gold">${p.childClass||'—'}</span></td>
       <td style="font-size:0.83rem;">${p.subject||'—'}</td>
-      <td>${p.status==='matched' ?
-        '<span class="badge-pill pill-teal">✅ Matched</span>' :
-        '<span class="badge-pill pill-gold">⏳ Pending</span>'}</td>
+      <td>${statusBadge[p.status] || statusBadge.pending}</td>
       <td style="font-size:0.78rem;color:var(--ink2);">${formatDate(p.createdAt)}</td>
+      <td style="white-space:nowrap;">
+        ${p.status === 'pending' ?
+          `<button class="verify-btn" data-pid="${p._id}" data-pname="${(p.name||'').replace(/"/g,'&quot;')}" onclick="openAssignModal(this.dataset.pid,this.dataset.pname)" style="margin-right:4px;">&#129309; Match</button>` : ''}
+        ${p.status === 'matched' ?
+          `<button class="verify-btn" data-pid="${p._id}" onclick="changeParentStatus(this.dataset.pid,'active',this)" style="background:rgba(58,191,90,0.15);color:#3abf5a;margin-right:4px;">&#9654; Activate</button>` : ''}
+        ${p.status === 'active' ?
+          `<button class="unverify-btn" data-pid="${p._id}" onclick="changeParentStatus(this.dataset.pid,'closed',this)" style="margin-right:4px;">&#128274; Close</button>` : ''}
+        <button class="del-btn" data-pid="${p._id}" onclick="deleteParent(this.dataset.pid,this)">&#128465;</button>
+      </td>
     </tr>`;
   }).join('');
 }
 
-// ── VERIFY ────────────────────────────────────
+// ── VERIFY TUTOR ──────────────────────────────
 async function verifyTutor(id, btn) {
-  btn.disabled = true;
-  btn.textContent = '…';
+  btn.disabled = true; btn.textContent = '…';
   try {
     const res = await fetch(`${API}/api/admin/tutor/${id}/verify`, {
-      method: 'PATCH',
-      headers: { 'x-admin-key': ADMIN_KEY }
+      method: 'PATCH', headers: { 'x-admin-key': ADMIN_KEY }
+    });
+    const data = await res.json();
+    if(data.success) { loadDashboard(); }
+    else { btn.disabled = false; btn.textContent = 'Retry'; }
+  } catch(e) { btn.disabled = false; btn.textContent = 'Retry'; }
+}
+
+// ── UNVERIFY TUTOR ────────────────────────────
+async function unverifyTutor(id, btn) {
+  if(!confirm('Is tutor ko unverify karna chahte ho?')) return;
+  btn.disabled = true; btn.textContent = '…';
+  try {
+    const res = await fetch(`${API}/api/admin/tutor/${id}/unverify`, {
+      method: 'PATCH', headers: { 'x-admin-key': ADMIN_KEY }
+    });
+    const data = await res.json();
+    if(data.success) { loadDashboard(); }
+    else { btn.disabled = false; btn.textContent = '↩ Unverify'; }
+  } catch(e) { btn.disabled = false; btn.textContent = '↩ Unverify'; }
+}
+
+// ── DELETE TUTOR ──────────────────────────────
+async function deleteTutor(id, btn) {
+  if(!confirm('⚠️ Is tutor ko permanently delete karna chahte ho?')) return;
+  btn.disabled = true;
+  try {
+    const res = await fetch(`${API}/api/admin/tutor/${id}`, {
+      method: 'DELETE', headers: { 'x-admin-key': ADMIN_KEY }
     });
     const data = await res.json();
     if(data.success) {
-      btn.className = 'verify-btn done';
-      btn.textContent = '✓ Verified';
-      // Update badge in same row
       const row = btn.closest('tr');
-      if(row) {
-        const statusCell = row.cells[5];
-        statusCell.innerHTML = '<span class="badge-pill pill-teal">✅ Verified</span>';
-      }
-      // Refresh stats
+      if(row) { row.style.opacity='0'; row.style.transition='opacity 0.3s'; setTimeout(()=>row.remove(), 300); }
       loadDashboard();
-    } else {
-      btn.disabled = false;
-      btn.textContent = 'Retry';
-    }
-  } catch(e) {
-    btn.disabled = false;
-    btn.textContent = 'Retry';
-  }
+    } else { btn.disabled = false; }
+  } catch(e) { btn.disabled = false; }
+}
+
+// ── ASSIGN TUTOR MODAL ────────────────────────
+let _assignParentId = '';
+function openAssignModal(parentId, parentName) {
+  _assignParentId = parentId;
+  document.getElementById('assign-modal-sub').textContent = `"${parentName}" ko tutor assign karo`;
+  document.getElementById('assign-tutor-name').value = '';
+  document.getElementById('assign-tutor-wa').value = '';
+  document.getElementById('assign-modal').classList.add('open');
+}
+function closeAssignModal() {
+  document.getElementById('assign-modal').classList.remove('open');
+  _assignParentId = '';
+}
+async function confirmAssign() {
+  const tutorName = document.getElementById('assign-tutor-name').value.trim();
+  const tutorWa   = document.getElementById('assign-tutor-wa').value.trim();
+  if(!tutorName || !tutorWa) { alert('Tutor ka naam aur WhatsApp number dono bharo!'); return; }
+  const btn = document.querySelector('.modal-confirm');
+  btn.disabled = true; btn.textContent = 'Saving…';
+  try {
+    const res = await fetch(`${API}/api/admin/parent/${_assignParentId}/status`, {
+      method: 'PATCH',
+      headers: { 'x-admin-key': ADMIN_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: 'matched', assignedTutorName: tutorName, assignedTutorWhatsapp: tutorWa })
+    });
+    const data = await res.json();
+    if(data.success) { closeAssignModal(); loadDashboard(); }
+    else { alert('Error: ' + data.message); }
+  } catch(e) { alert('Network error!'); }
+  btn.disabled = false; btn.textContent = '✅ Assign & Match';
+}
+
+// ── CHANGE PARENT STATUS ──────────────────────
+async function changeParentStatus(id, newStatus, btn) {
+  if(!confirm(`Status "${newStatus}" karna chahte ho?`)) return;
+  btn.disabled = true;
+  try {
+    const res = await fetch(`${API}/api/admin/parent/${id}/status`, {
+      method: 'PATCH',
+      headers: { 'x-admin-key': ADMIN_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: newStatus })
+    });
+    const data = await res.json();
+    if(data.success) { loadDashboard(); }
+    else { btn.disabled = false; }
+  } catch(e) { btn.disabled = false; }
+}
+
+// ── DELETE PARENT ──────────────────────────────
+async function deleteParent(id, btn) {
+  if(!confirm('⚠️ Is parent request ko permanently delete karna chahte ho?')) return;
+  btn.disabled = true;
+  try {
+    const res = await fetch(`${API}/api/admin/parent/${id}`, {
+      method: 'DELETE', headers: { 'x-admin-key': ADMIN_KEY }
+    });
+    const data = await res.json();
+    if(data.success) {
+      const row = btn.closest('tr');
+      if(row) { row.style.opacity='0'; row.style.transition='opacity 0.3s'; setTimeout(()=>row.remove(), 300); }
+      loadDashboard();
+    } else { btn.disabled = false; }
+  } catch(e) { btn.disabled = false; }
 }
 
 // ── FILTER ────────────────────────────────────
