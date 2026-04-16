@@ -305,9 +305,13 @@ body{
       <span class="sb-nav-icon">🔍</span>
       <span class="sb-nav-label">Find Tutors</span>
     </a>
-    <a class="sb-nav-item" href="index.html#find">
-      <span class="sb-nav-icon">📋</span>
-      <span class="sb-nav-label">My Request</span>
+    <a class="sb-nav-item" href="chat.html">
+      <span class="sb-nav-icon">💬</span>
+      <span class="sb-nav-label">Emergency Chat</span>
+    </a>
+    <a class="sb-nav-item" href="career-guidance.html">
+      <span class="sb-nav-icon">🚀</span>
+      <span class="sb-nav-label">Career Guide</span>
     </a>
     <div class="sb-nav-divider"></div>
     <a class="sb-nav-item" href="index.html">
@@ -429,11 +433,21 @@ body{
         <div class="section-card-title">Quick Actions</div>
       </div>
     </div>
-    <div class="quick-actions">
+    <div class="quick-actions" style="grid-template-columns:repeat(3,1fr);">
       <a href="index.html#find" class="qa-btn">
         <div class="qa-btn-icon">🔍</div>
         <div class="qa-btn-label">Browse Tutors</div>
         <div class="qa-btn-sub">Search by subject</div>
+      </a>
+      <a href="chat.html" class="qa-btn" style="border-color:rgba(229,57,53,0.25);">
+        <div class="qa-btn-icon">⚡</div>
+        <div class="qa-btn-label">Emergency Chat</div>
+        <div class="qa-btn-sub">Doubt solve karo abhi</div>
+      </a>
+      <a href="career-guidance.html" class="qa-btn" style="border-color:rgba(200,146,42,0.25);">
+        <div class="qa-btn-icon">🚀</div>
+        <div class="qa-btn-label">Career Guide</div>
+        <div class="qa-btn-sub">Future planning</div>
       </a>
       <a href="auth.html" class="qa-btn" onclick="localStorage.removeItem('clarasta_user')">
         <div class="qa-btn-icon">🔄</div>
@@ -442,8 +456,8 @@ body{
       </a>
       <div class="qa-btn" onclick="openWA()">
         <div class="qa-btn-icon">💬</div>
-        <div class="qa-btn-label">Contact Support</div>
-        <div class="qa-btn-sub">WhatsApp us now</div>
+        <div class="qa-btn-label">WhatsApp Support</div>
+        <div class="qa-btn-sub">Direct help</div>
       </div>
     </div>
   </div>

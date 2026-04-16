@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Clarasta – Career Guidance | Shape Your Future</title>
+<meta name="description" content="Expert career guidance for Indian students. Explore streams, career paths, entrance exams and book a free 1-on-1 session with a verified tutor."/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#f7f5f0;--bg2:#efecea;--ink:#1a1714;--ink2:#4a4540;--ink3:#8a837a;
+  --gold:#c8922a;--gold2:#e8b04a;--goldbg:#fdf3e0;--goldbrd:rgba(200,146,42,0.22);
+  --teal:#2a7a6a;--teal2:#3aa88e;--tealbg:#e0f2ee;--tealbrd:rgba(42,122,106,0.2);
+  --purple:#6c3ec8;--purplebg:#f0eaff;
+  --blue:#1a6cbf;--bluebg:#e8f2ff;
+  --orange:#d4600a;--orangebg:#fff1e0;
+  --white:#fff;--border:#dedad4;
+  --shadow:0 4px 32px rgba(26,23,20,0.1);
+  --shadow2:0 16px 64px rgba(26,23,20,0.14);
+  --r:18px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 5%;
+  background:rgba(247,245,240,0.88);backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(222,218,212,0.5);
+  transition:all 0.3s;
+}
+nav.scrolled{padding:10px 5%;box-shadow:0 6px 40px rgba(26,23,20,0.08);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px rgba(200,146,42,0.5);}
+.nav-brand{font-family:'DM Serif Display',serif;font-size:1.55rem;color:var(--ink);}
+.nav-brand em{color:var(--gold);font-style:normal;}
+.nav-links{display:flex;gap:22px;list-style:none;}
+.nav-links a{color:var(--ink2);text-decoration:none;font-size:0.85rem;font-weight:600;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--gold);}
+.nav-btns{display:flex;gap:10px;}
+.btn{padding:10px 22px;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:0.84rem;font-weight:700;cursor:pointer;border:none;transition:all 0.22s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+.btn-ghost{background:transparent;border:1.5px solid var(--border);color:var(--ink2);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.btn-gold{background:linear-gradient(135deg,var(--gold),#b8781a);color:var(--white);box-shadow:0 4px 18px rgba(200,146,42,0.3);}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(200,146,42,0.45);}
+.mob-btn{display:none;background:none;border:none;font-size:1.8rem;color:var(--ink);cursor:pointer;}
+@media(max-width:900px){.nav-links,.nav-btns{display:none;}.mob-btn{display:block;}}
+
+/* ── HERO ── */
+.hero{
+  padding:128px 5% 90px;position:relative;overflow:hidden;
+  background:linear-gradient(150deg,#fff9ef 0%,var(--bg) 50%,#edf7f4 100%);
+}
+.hero-orb1{position:absolute;top:-120px;left:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(rgba(200,146,42,0.1),transparent 70%);pointer-events:none;}
+.hero-orb2{position:absolute;bottom:-80px;right:-100px;width:420px;height:420px;border-radius:50%;background:radial-gradient(rgba(42,122,106,0.08),transparent 70%);pointer-events:none;}
+.hero-orb3{position:absolute;top:40%;left:60%;width:300px;height:300px;border-radius:50%;background:radial-gradient(rgba(108,62,200,0.04),transparent 70%);pointer-events:none;}
+.hero-inner{max-width:800px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--goldbg);border:1px solid var(--goldbrd);
+  border-radius:99px;padding:8px 22px;margin-bottom:30px;
+  font-size:0.74rem;font-weight:800;color:var(--gold);letter-spacing:1px;text-transform:uppercase;
+  animation:fadeDown 0.6s ease;
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blinkDot 1.5s infinite;}
+@keyframes blinkDot{0%,100%{opacity:1;}50%{opacity:0.3;}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:none;}}
+.hero h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.4rem,5.5vw,4.2rem);
+  line-height:1.08;letter-spacing:-1.5px;color:var(--ink);
+  margin-bottom:22px;animation:fadeUp 0.7s 0.1s both ease;
+}
+.hero h1 em{color:var(--gold);font-style:italic;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+.hero-sub{font-size:1.08rem;color:var(--ink2);line-height:1.8;margin-bottom:38px;animation:fadeUp 0.7s 0.2s both ease;}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.7s 0.3s both ease;}
+.btn-lg{padding:15px 36px;font-size:0.98rem;border-radius:13px;}
+.btn-teal{background:linear-gradient(135deg,var(--teal),var(--teal2));color:var(--white);box-shadow:0 4px 20px rgba(42,122,106,0.3);}
+.btn-teal:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(42,122,106,0.45);}
+.hero-stats{
+  display:flex;justify-content:center;gap:0;flex-wrap:wrap;margin-top:60px;
+  background:var(--white);border:1px solid var(--border);border-radius:20px;
+  box-shadow:var(--shadow);overflow:hidden;animation:fadeUp 0.7s 0.4s both ease;
+}
+.hs-item{flex:1;min-width:130px;padding:28px 20px;text-align:center;border-right:1px solid var(--border);}
+.hs-item:last-child{border-right:none;}
+.hs-num{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--ink);line-height:1;margin-bottom:5px;}
+.hs-num span{color:var(--gold);}
+.hs-label{font-size:0.75rem;font-weight:600;color:var(--ink3);}
+
+/* ── SHARED SECTION ── */
+section{padding:100px 5%;}
+.sec-inner{max-width:1200px;margin:0 auto;}
+.sec-tag{font-size:0.68rem;font-weight:900;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.sec-tag::after{content:'';flex:1;max-width:40px;height:2px;background:linear-gradient(90deg,var(--gold),transparent);}
+.sec-h2{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.5vw,3rem);line-height:1.12;letter-spacing:-0.5px;margin-bottom:12px;}
+.sec-h2 em{color:var(--gold);font-style:italic;}
+.sec-sub{color:var(--ink2);font-size:0.97rem;line-height:1.8;max-width:560px;margin-bottom:50px;}
+
+/* ── STREAM EXPLORER ── */
+#streams{background:var(--white);}
+.stream-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:40px;background:var(--bg);border-radius:14px;padding:6px;}
+.stab{
+  flex:1;min-width:140px;padding:12px 18px;border-radius:10px;
+  font-size:0.84rem;font-weight:700;cursor:pointer;border:none;
+  font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink2);background:transparent;
+  transition:all 0.22s;text-align:center;
+}
+.stab.active{background:var(--white);color:var(--ink);box-shadow:0 2px 16px rgba(26,23,20,0.08);}
+.stab.active.sci{color:var(--blue);}
+.stab.active.bio{color:var(--teal);}
+.stab.active.com{color:var(--gold);}
+.stab.active.arts{color:var(--purple);}
+
+.spanel{display:none;}
+.spanel.active{display:grid;grid-template-columns:1fr 1fr;gap:28px;animation:streamFade 0.35s ease;}
+@keyframes streamFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.subj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.subj-card{
+  background:var(--bg);border:1.5px solid var(--border);border-radius:13px;padding:16px;
+  transition:all 0.2s;cursor:default;
+}
+.subj-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:rgba(200,146,42,0.25);}
+.subj-icon{font-size:1.4rem;margin-bottom:8px;}
+.subj-name{font-weight:800;font-size:0.86rem;color:var(--ink);margin-bottom:4px;}
+.subj-tip{font-size:0.74rem;color:var(--ink3);line-height:1.5;}
+
+.stream-careers{
+  border-radius:20px;padding:30px;color:var(--white);
+  display:flex;flex-direction:column;justify-content:space-between;
+  background:linear-gradient(145deg,var(--ink),#2a2520);
+  position:relative;overflow:hidden;
+}
+.stream-careers::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(rgba(200,146,42,0.12),transparent 70%);}
+.sc-tag{font-size:0.67rem;font-weight:900;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold2);margin-bottom:12px;}
+.sc-h{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--white);margin-bottom:6px;line-height:1.3;}
+.sc-sub{font-size:0.77rem;color:rgba(255,255,255,0.45);margin-bottom:24px;line-height:1.6;}
+.career-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.cpill{
+  padding:6px 14px;border-radius:8px;font-size:0.75rem;font-weight:700;
+  background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.75);
+  border:1px solid rgba(255,255,255,0.1);transition:all 0.2s;cursor:default;
+}
+.cpill:hover{background:rgba(255,255,255,0.14);color:var(--white);transform:translateY(-1px);}
+
+/* ── CAREER CARDS ── */
+#careers{background:var(--bg);}
+.career-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:20px;}
+.ccard{
+  background:var(--white);border:1.5px solid var(--border);border-radius:22px;padding:28px;
+  transition:all 0.28s;position:relative;overflow:hidden;cursor:default;
+}
+.ccard::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:4px;border-radius:0 0 22px 22px;
+  background:linear-gradient(90deg,var(--teal),var(--teal2));opacity:0;transition:opacity 0.3s;
+}
+.ccard:hover{transform:translateY(-6px);box-shadow:var(--shadow2);border-color:transparent;}
+.ccard:hover::after{opacity:1;}
+.ccard-glow{position:absolute;top:-100px;right:-100px;width:250px;height:250px;border-radius:50%;opacity:0;transition:opacity 0.3s;pointer-events:none;}
+.ccard:hover .ccard-glow{opacity:1;}
+.ccard-icon-wrap{margin-bottom:18px;}
+.ccard-icon{
+  width:56px;height:56px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;font-size:1.9rem;
+}
+.ccard-name{font-family:'DM Serif Display',serif;font-size:1.2rem;color:var(--ink);margin-bottom:6px;letter-spacing:-0.2px;}
+.ccard-desc{font-size:0.81rem;color:var(--ink3);line-height:1.7;margin-bottom:20px;}
+.ccard-divider{height:1px;background:var(--border);margin-bottom:16px;}
+.ccard-meta{display:flex;flex-direction:column;gap:9px;}
+.ccard-row{display:flex;align-items:flex-start;gap:10px;font-size:0.79rem;}
+.ccard-label{color:var(--ink3);font-weight:700;flex-shrink:0;width:72px;padding-top:1px;}
+.ccard-val{color:var(--ink2);}
+.salary-chip{
+  display:inline-flex;align-items:center;
+  background:var(--tealbg);color:var(--teal);border:1px solid var(--tealbrd);
+  padding:3px 10px;border-radius:6px;font-size:0.72rem;font-weight:800;
+}
+.demand-track{height:5px;border-radius:99px;background:var(--bg2);margin-top:6px;overflow:hidden;}
+.demand-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--teal),var(--teal2));transition:width 1.5s ease;}
+
+/* ── BTECH GUIDE ── */
+#btech{background:var(--white);}
+.branch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;}
+.bcard{
+  border:1.5px solid var(--border);border-radius:18px;padding:24px;
+  background:var(--bg);transition:all 0.25s;cursor:default;position:relative;overflow:hidden;
+}
+.bcard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:18px 18px 0 0;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));transform:scaleX(0);transition:transform 0.3s;transform-origin:left;
+}
+.bcard:hover{background:var(--white);box-shadow:var(--shadow);border-color:var(--goldbrd);}
+.bcard:hover::before{transform:scaleX(1);}
+.bcard-icon{font-size:1.9rem;margin-bottom:12px;}
+.bcard-name{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--ink);margin-bottom:2px;}
+.bcard-full{font-size:0.68rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--gold);margin-bottom:10px;}
+.bcard-desc{font-size:0.79rem;color:var(--ink3);line-height:1.65;margin-bottom:14px;}
+.bcard-for{background:var(--goldbg);border-radius:8px;padding:9px 13px;font-size:0.73rem;line-height:1.5;margin-bottom:12px;color:var(--gold);font-weight:700;}
+.bcard-for span{color:var(--ink2);font-weight:500;}
+.bcard-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.bcard-tag{background:var(--bluebg);color:var(--blue);padding:3px 9px;border-radius:5px;font-size:0.68rem;font-weight:700;}
+
+/* ── EXAMS ── */
+#exams{background:var(--bg2);}
+.exams-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px;}
+.ecard{
+  background:var(--white);border:1.5px solid var(--border);border-radius:18px;
+  padding:24px;transition:all 0.25s;position:relative;overflow:hidden;
+}
+.ecard:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--tealbrd);}
+.ecard-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;}
+.ecard-name{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--ink);}
+.ecard-tag{padding:4px 12px;border-radius:6px;font-size:0.67rem;font-weight:900;letter-spacing:0.5px;}
+.tag-e{background:var(--bluebg);color:var(--blue);}
+.tag-m{background:var(--tealbg);color:var(--teal);}
+.tag-l{background:var(--purplebg);color:var(--purple);}
+.tag-g{background:var(--goldbg);color:var(--gold);}
+.tag-a{background:var(--bg2);color:var(--ink2);}
+.ecard-full{font-size:0.74rem;color:var(--ink3);margin-bottom:14px;}
+.ecard-row{display:flex;align-items:flex-start;gap:9px;font-size:0.78rem;color:var(--ink2);margin-bottom:7px;line-height:1.4;}
+.ecard-icon{color:var(--ink3);flex-shrink:0;margin-top:1px;}
+.ecard-tip{
+  margin-top:14px;padding:10px 13px;border-radius:9px;
+  background:linear-gradient(135deg,var(--goldbg),#fff9ef);
+  border:1px solid var(--goldbrd);font-size:0.74rem;color:var(--gold);
+  font-weight:600;line-height:1.55;
+}
+.ecard-tip strong{display:block;margin-bottom:2px;}
+
+/* ── BOOKING ── */
+#booking{
+  background:var(--ink);position:relative;overflow:hidden;
+  padding:100px 5%;
+}
+#booking::before{content:'';position:absolute;top:-150px;right:-150px;width:500px;height:500px;border-radius:50%;background:radial-gradient(rgba(200,146,42,0.08),transparent 70%);pointer-events:none;}
+#booking::after{content:'';position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(rgba(42,122,106,0.06),transparent 70%);pointer-events:none;}
+.booking-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:1;}
+.book-left .sec-tag{color:var(--gold2);}
+.book-left .sec-h2{color:var(--white);}
+.book-left .sec-h2 em{color:var(--gold2);}
+.book-left .sec-sub{color:rgba(255,255,255,0.45);max-width:none;margin-bottom:36px;}
+.bf-list{display:flex;flex-direction:column;gap:16px;}
+.bf-item{display:flex;gap:14px;align-items:flex-start;}
+.bf-ic{
+  width:42px;height:42px;min-width:42px;border-radius:12px;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;
+}
+.bf-text strong{display:block;font-size:0.86rem;font-weight:700;color:var(--white);margin-bottom:3px;}
+.bf-text span{font-size:0.76rem;color:rgba(255,255,255,0.38);line-height:1.6;}
+
+.booking-form-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:24px;padding:36px;
+  backdrop-filter:blur(10px);
+  box-shadow:0 24px 80px rgba(0,0,0,0.3);
+}
+.f-label{font-size:0.68rem;font-weight:800;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;display:block;margin-bottom:6px;}
+.f-ctrl{
+  width:100%;background:rgba(255,255,255,0.07);
+  border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;
+  padding:12px 15px;color:var(--white);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.86rem;
+  outline:none;transition:all 0.2s;margin-bottom:14px;
+}
+.f-ctrl::placeholder{color:rgba(255,255,255,0.28);}
+.f-ctrl:focus{border-color:rgba(200,146,42,0.5);background:rgba(255,255,255,0.1);}
+.f-ctrl option{background:#1a1714;color:var(--white);}
+.f-submit{
+  width:100%;padding:14px;border-radius:11px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold),#b8781a);color:var(--white);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.92rem;font-weight:800;
+  transition:all 0.22s;box-shadow:0 6px 28px rgba(200,146,42,0.4);
+  display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;
+}
+.f-submit:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(200,146,42,0.55);}
+.success-box{display:none;text-align:center;padding:20px 0;}
+.success-icon{font-size:3rem;margin-bottom:12px;}
+.success-box h4{font-family:'DM Serif Display',serif;font-size:1.4rem;color:var(--white);margin-bottom:8px;}
+.success-box p{font-size:0.82rem;color:rgba(255,255,255,0.38);line-height:1.7;}
+
+/* ── FOOTER ── */
+.site-footer{background:var(--bg2);border-top:1px solid var(--border);padding:22px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.ft-links{display:flex;gap:18px;flex-wrap:wrap;}
+.ft-links a{color:var(--ink3);text-decoration:none;font-size:0.8rem;font-weight:600;transition:color 0.2s;}
+.ft-links a:hover{color:var(--gold);}
+.ft-copy{font-size:0.76rem;color:var(--ink3);}
+
+/* ── FLOATING WA ── */
+.wa-fab{
+  position:fixed;bottom:28px;right:28px;z-index:9999;
+  width:58px;height:58px;border-radius:50%;text-decoration:none;
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+  background:linear-gradient(135deg,#25d366,#1aad54);
+  box-shadow:0 6px 28px rgba(37,211,102,0.5);
+  transition:all 0.22s;animation:waFloat 3s ease-in-out infinite;
+}
+.wa-fab:hover{transform:scale(1.12);box-shadow:0 10px 40px rgba(37,211,102,0.65);}
+@keyframes waFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-5px);}}
+
+/* ── REVEAL ANIMATION ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-d1{transition-delay:0.1s;}
+.reveal-d2{transition-delay:0.2s;}
+.reveal-d3{transition-delay:0.3s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .spanel.active{grid-template-columns:1fr;}
+  .booking-grid{grid-template-columns:1fr;gap:40px;}
+}
+@media(max-width:640px){
+  section{padding:72px 5%;}
+  .hero{padding:108px 5% 60px;}
+  .hero-stats{flex-direction:column;}
+  .hs-item{border-right:none;border-bottom:1px solid var(--border);}
+  .hs-item:last-child{border-bottom:none;}
+  .subj-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-dot"></div>
+    <span class="nav-brand">Clar<em>asta</em></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html#find">Find Tutor</a></li>
+    <li><a href="chat.html">⚡ Doubt Chat</a></li>
+    <li><a href="career-guidance.html" class="active">🚀 Career Guide</a></li>
+    <li><a href="support.html">Support</a></li>
+  </ul>
+  <div class="nav-btns">
+    <a href="auth.html" class="btn btn-ghost">Login</a>
+    <a href="auth.html?role=tutor" class="btn btn-gold">Become a Tutor →</a>
+  </div>
+  <button class="mob-btn" onclick="toggleMob()">☰</button>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="top">
+  <div class="hero-orb1"></div><div class="hero-orb2"></div><div class="hero-orb3"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><div class="hero-badge-dot"></div>Free Career Guidance Platform</div>
+    <h1>Shape Your <em>Future</em><br>with the Right Path</h1>
+    <p class="hero-sub">Stream chuno, career explore karo aur ek expert BTech tutor se personalized guidance lo — bilkul free, apni society mein.</p>
+    <div class="hero-ctas">
+      <a href="#booking" class="btn btn-lg btn-gold">📅 Book Free Session</a>
+      <a href="#streams" class="btn btn-lg btn-teal">🔍 Explore Streams</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs-item"><div class="hs-num"><span id="cnt1">0</span>+</div><div class="hs-label">Career Streams</div></div>
+      <div class="hs-item"><div class="hs-num"><span id="cnt2">0</span>+</div><div class="hs-label">Career Paths</div></div>
+      <div class="hs-item"><div class="hs-num"><span id="cnt3">0</span>+</div><div class="hs-label">Entrance Exams</div></div>
+      <div class="hs-item"><div class="hs-num" style="color:var(--teal);">Free</div><div class="hs-label">Guidance Sessions</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── STREAM EXPLORER ── -->
+<section id="streams">
+<div class="sec-inner">
+  <div class="sec-tag reveal">Stream Explorer</div>
+  <h2 class="sec-h2 reveal">Class 10 ke baad <em>kya kare?</em></h2>
+  <p class="sec-sub reveal">Apna stream select karo aur dekhho kaunse careers tumhare liye best hain.</p>
+  <div class="stream-tabs reveal">
+    <button class="stab active sci" onclick="switchS('sci')">🔭 Science (Maths)</button>
+    <button class="stab bio" onclick="switchS('bio')">🧬 Science (Biology)</button>
+    <button class="stab com" onclick="switchS('com')">📈 Commerce</button>
+    <button class="stab arts" onclick="switchS('arts')">🎨 Arts</button>
+  </div>
+
+  <div class="spanel active" id="s-sci">
+    <div class="subj-grid">
+      <div class="subj-card"><div class="subj-icon">📐</div><div class="subj-name">Mathematics</div><div class="subj-tip">JEE ka strongest pillar. Calculus, Algebra, Statistics — har field mein use hota hai.</div></div>
+      <div class="subj-card"><div class="subj-icon">⚡</div><div class="subj-name">Physics</div><div class="subj-tip">Mechanics to Quantum — JEE mein 33% weightage. Concept-based approach chahiye.</div></div>
+      <div class="subj-card"><div class="subj-icon">⚗️</div><div class="subj-name">Chemistry</div><div class="subj-tip">Organic, Inorganic, Physical — scoring subject agar NCERT sahi ho.</div></div>
+      <div class="subj-card"><div class="subj-icon">💻</div><div class="subj-name">Computer Science</div><div class="subj-tip">Programming fundamentals — future ka most powerful career skill.</div></div>
+    </div>
+    <div class="stream-careers">
+      <div><div class="sc-tag">Top Careers After Maths</div><div class="sc-h">Engineering, Tech & Finance ke doors khulte hain 🚀</div><div class="sc-sub">JEE / BITSAT / State CETs se India ke best colleges mein admission</div></div>
+      <div class="career-pills">
+        <span class="cpill">🖥️ Software Engineer</span><span class="cpill">🤖 AI/ML Engineer</span><span class="cpill">📊 Data Scientist</span><span class="cpill">⚙️ Mechanical Eng.</span><span class="cpill">🏗️ Civil Engineer</span><span class="cpill">✈️ Aeronautical</span><span class="cpill">📡 ECE Engineer</span><span class="cpill">🏦 Quant Finance</span><span class="cpill">🎮 Game Developer</span><span class="cpill">🔐 Cybersecurity</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spanel" id="s-bio">
+    <div class="subj-grid">
+      <div class="subj-card"><div class="subj-icon">🧬</div><div class="subj-name">Biology</div><div class="subj-tip">NEET ka core — Botany aur Zoology. 50% marks biology se aate hain.</div></div>
+      <div class="subj-card"><div class="subj-icon">⚗️</div><div class="subj-name">Chemistry</div><div class="subj-tip">Biochemistry, pharmacology ka base. NEET mein 45 questions se 180 marks.</div></div>
+      <div class="subj-card"><div class="subj-icon">⚡</div><div class="subj-name">Physics</div><div class="subj-tip">Medical physics basics. NEET mein 45 questions — numerical approach important.</div></div>
+      <div class="subj-card"><div class="subj-icon">🔬</div><div class="subj-name">Biotechnology</div><div class="subj-tip">Genetic engineering, bioinformatics — India mein tezi se badhta field.</div></div>
+    </div>
+    <div class="stream-careers" style="background:linear-gradient(145deg,#0d2e28,#1a4538);">
+      <div><div class="sc-tag">Top Careers After Biology</div><div class="sc-h">Healthcare, Research aur Life Sciences 🏥</div><div class="sc-sub">NEET / AIIMS / JIPMER se medical colleges mein pravesh</div></div>
+      <div class="career-pills">
+        <span class="cpill">👨‍⚕️ MBBS Doctor</span><span class="cpill">🦷 BDS Dentist</span><span class="cpill">💊 Pharmacist</span><span class="cpill">🩻 Radiologist</span><span class="cpill">🧪 Microbiologist</span><span class="cpill">🌿 BAMS Ayurveda</span><span class="cpill">🔬 Biotechnologist</span><span class="cpill">🐾 Veterinarian</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spanel" id="s-com">
+    <div class="subj-grid">
+      <div class="subj-card"><div class="subj-icon">📊</div><div class="subj-name">Accountancy</div><div class="subj-tip">CA ka foundation. Balance sheets, P&L — har business mein essential.</div></div>
+      <div class="subj-card"><div class="subj-icon">📈</div><div class="subj-name">Economics</div><div class="subj-tip">Micro aur Macro — banking, policy, stock market careers ke liye critical.</div></div>
+      <div class="subj-card"><div class="subj-icon">💼</div><div class="subj-name">Business Studies</div><div class="subj-tip">Management, marketing, entrepreneurship — practical business knowledge.</div></div>
+      <div class="subj-card"><div class="subj-icon">🔢</div><div class="subj-name">Mathematics</div><div class="subj-tip">With Maths: CA, Banking, Actuarial. Also opens engineering doors via MPC.</div></div>
+    </div>
+    <div class="stream-careers" style="background:linear-gradient(145deg,#2c1f05,#4a380a);">
+      <div><div class="sc-tag">Top Careers After Commerce</div><div class="sc-h">Finance, Business aur Entrepreneurship 💼</div><div class="sc-sub">CA / MBA / Company Secretary — India ke highest-paid non-tech careers</div></div>
+      <div class="career-pills">
+        <span class="cpill">🧾 Chartered Accountant</span><span class="cpill">🏦 Investment Banker</span><span class="cpill">📊 Financial Analyst</span><span class="cpill">📱 Digital Marketer</span><span class="cpill">🚀 Entrepreneur</span><span class="cpill">⚖️ Company Secretary</span><span class="cpill">🤝 HR Manager</span><span class="cpill">📡 Brand Manager</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="spanel" id="s-arts">
+    <div class="subj-grid">
+      <div class="subj-card"><div class="subj-icon">📚</div><div class="subj-name">History/Polity</div><div class="subj-tip">UPSC, law ke liye essential. Critical thinking develop karta hai.</div></div>
+      <div class="subj-card"><div class="subj-icon">🧠</div><div class="subj-name">Psychology</div><div class="subj-tip">Fastest growing field — mental health, HR, UX design mein exploding demand.</div></div>
+      <div class="subj-card"><div class="subj-icon">🎭</div><div class="subj-name">Fine Arts / Media</div><div class="subj-tip">Content creation, graphic design, film — digital era mein massive scope.</div></div>
+      <div class="subj-card"><div class="subj-icon">🌍</div><div class="subj-name">Geography/Sociology</div><div class="subj-tip">UPSC optional subjects. Urban planning, NGO, research careers ke liye.</div></div>
+    </div>
+    <div class="stream-careers" style="background:linear-gradient(145deg,#1f1035,#2d1a50);">
+      <div><div class="sc-tag">Top Careers After Arts</div><div class="sc-h">Law, Civil Services aur Creative Fields 🎨</div><div class="sc-sub">CLAT / UPSC / NID — diverse aur fulfilling career paths</div></div>
+      <div class="career-pills">
+        <span class="cpill">⚖️ Lawyer/Advocate</span><span class="cpill">👮 IAS/IPS Officer</span><span class="cpill">📰 Journalist</span><span class="cpill">🎬 Film Director</span><span class="cpill">🧠 Psychologist</span><span class="cpill">✍️ Content Strategist</span><span class="cpill">🎨 UX/UI Designer</span><span class="cpill">🌐 Social Worker</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ── CAREER CARDS ── -->
+<section id="careers">
+<div class="sec-inner">
+  <div class="sec-tag reveal">Career Explorer</div>
+  <h2 class="sec-h2 reveal">Top <em>Career Paths</em> in India 2025</h2>
+  <p class="sec-sub reveal">Salary, scope aur required qualifications ke saath honest career breakdown.</p>
+  <div class="career-grid">
+
+    <div class="ccard reveal">
+      <div class="ccard-glow" style="background:radial-gradient(rgba(26,108,191,0.07),transparent 70%);"></div>
+      <div class="ccard-icon-wrap"><div class="ccard-icon" style="background:var(--bluebg);">🖥️</div></div>
+      <div class="ccard-name">Software Engineer</div>
+      <div class="ccard-desc">India ka #1 dream career. Web apps, mobile, cloud, AI — har tech company mein demand. Remote work opportunities globally.</div>
+      <div class="ccard-divider"></div>
+      <div class="ccard-meta">
+        <div class="ccard-row"><span class="ccard-label">💰 Salary</span><span class="salary-chip">₹6–40+ LPA</span></div>
+        <div class="ccard-row"><span class="ccard-label">📚 Requires</span><span class="ccard-val">Maths, CS, BTech preferred; self-taught also works</span></div>
+        <div class="ccard-row"><span class="ccard-label">📈 Demand</span><div style="flex:1"><div class="demand-track"><div class="demand-fill" data-w="95%"></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="ccard reveal reveal-d1">
+      <div class="ccard-glow" style="background:radial-gradient(rgba(42,122,106,0.07),transparent 70%);"></div>
+      <div class="ccard-icon-wrap"><div class="ccard-icon" style="background:var(--tealbg);">👨‍⚕️</div></div>
+      <div class="ccard-name">MBBS Doctor</div>
+      <div class="ccard-desc">Social status, stability aur seva — doctor banna India mein sabse respected career. NEET qualify karo, 5.5 saal MBBS, lifelong security.</div>
+      <div class="ccard-divider"></div>
+      <div class="ccard-meta">
+        <div class="ccard-row"><span class="ccard-label">💰 Salary</span><span class="salary-chip">₹8–50+ LPA</span></div>
+        <div class="ccard-row"><span class="ccard-label">📚 Requires</span><span class="ccard-val">Biology + Chemistry + Physics, NEET 620+</span></div>
+        <div class="ccard-row"><span class="ccard-label">📈 Demand</span><div style="flex:1"><div class="demand-track"><div class="demand-fill" data-w="90%"></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="ccard reveal reveal-d2">
+      <div class="ccard-glow" style="background:radial-gradient(rgba(200,146,42,0.07),transparent 70%);"></div>
+      <div class="ccard-icon-wrap"><div class="ccard-icon" style="background:var(--goldbg);">🤖</div></div>
+      <div class="ccard-name">AI / Data Scientist</div>
+      <div class="ccard-desc">India ka fastest growing career 2024–2030. Machine learning, GenAI — global companies mein ₹40–80 LPA packages common hote ja rahe hain.</div>
+      <div class="ccard-divider"></div>
+      <div class="ccard-meta">
+        <div class="ccard-row"><span class="ccard-label">💰 Salary</span><span class="salary-chip">₹10–80+ LPA</span></div>
+        <div class="ccard-row"><span class="ccard-label">📚 Requires</span><span class="ccard-val">Maths (Statistics), Python, BTech CS/Data Science</span></div>
+        <div class="ccard-row"><span class="ccard-label">📈 Demand</span><div style="flex:1"><div class="demand-track"><div class="demand-fill" data-w="98%"></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="ccard reveal">
+      <div class="ccard-icon-wrap"><div class="ccard-icon" style="background:var(--goldbg);">🧾</div></div>
+      <div class="ccard-name">Chartered Accountant</div>
+      <div class="ccard-desc">Commerce ka highest honour. India mein sirf ~3.5 lakh CAs hain — demand huge aur salary excellent. Har company hire karti hai.</div>
+      <div class="ccard-divider"></div>
+      <div class="ccard-meta">
+        <div class="ccard-row"><span class="ccard-label">💰 Salary</span><span class="salary-chip">₹7–35 LPA</span></div>
+        <div class="ccard-row"><span class="ccard-label">📚 Requires</span><span class="ccard-val">Accountancy, Maths optional, CA Foundation exam</span></div>
+        <div class="ccard-row"><span class="ccard-label">📈 Demand</span><div style="flex:1"><div class="demand-track"><div class="demand-fill" data-w="85%"></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="ccard reveal reveal-d1">
+      <div class="ccard-icon-wrap"><div class="ccard-icon" style="background:var(--purplebg);">⚖️</div></div>
+      <div class="ccard-name">Lawyer / Advocate</div>
+      <div class="ccard-desc">Corporate law, IP, criminal — India mein legal sector tezi se badh raha hai. Top NLU graduates BigLaw firms mein ₹20–50L package pate hain.</div>
+      <div class="ccard-divider"></div>
+      <div class="ccard-meta">
+        <div class="ccard-row"><span class="ccard-label">💰 Salary</span><span class="salary-chip">₹5–50 LPA</span></div>
+        <div class="ccard-row"><span class="ccard-label">📚 Requires</span><span class="ccard-val">Any stream, CLAT for NLU, 5-year integrated LLB</span></div>
+        <div class="ccard-row"><span class="ccard-label">📈 Demand</span><div style="flex:1"><div class="demand-track"><div class="demand-fill" data-w="80%"></div></div></div></div>
+      </div>
+    </div>
+
+    <div class="ccard reveal reveal-d2">
+      <div class="ccard-icon-wrap"><div class="ccard-icon" style="background:var(--tealbg);">👮</div></div>
+      <div class="ccard-name">IAS / IPS Officer</div>
+      <div class="ccard-desc">India ki most prestigious service. Power, respect, nation-building — UPSC crack karo aur desh ko serve karo. Lifelong perks guaranteed.</div>
+      <div class="ccard-divider"></div>
+      <div class="ccard-meta">
+        <div class="ccard-row"><span class="ccard-label">💰 Salary</span><span class="salary-chip">₹56K–2.5L/month</span></div>
+        <div class="ccard-row"><span class="ccard-label">📚 Requires</span><span class="ccard-val">Any graduation, UPSC Prelims → Mains → Interview</span></div>
+        <div class="ccard-row"><span class="ccard-label">📈 Demand</span><div style="flex:1"><div class="demand-track"><div class="demand-fill" data-w="75%" style="background:linear-gradient(90deg,var(--gold),var(--gold2));"></div></div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ── BTECH BRANCH GUIDE ── -->
+<section id="btech">
+<div class="sec-inner">
+  <div class="sec-tag reveal">BTech Guide</div>
+  <h2 class="sec-h2 reveal">Kaunsa <em>Engineering Branch</em> Choose Karo?</h2>
+  <p class="sec-sub reveal">JEE qualify karne ke baad sabse bada confusion — branch selection. Yahan har branch ka honest breakdown.</p>
+  <div class="branch-grid">
+    <div class="bcard reveal"><div class="bcard-icon">💻</div><div class="bcard-name">CSE</div><div class="bcard-full">Computer Science & Engineering</div><div class="bcard-desc">India ki #1 branch — highest placements, best packages. Software, AI, startup, product companies sab CSE graduates hire karte hain. FAANG companies ka primary target.</div><div class="bcard-for">Best for: <span>Programming lovers, startup dreamers, logical thinkers</span></div><div class="bcard-tags"><span class="bcard-tag">FAANG SDE</span><span class="bcard-tag">ML Engineer</span><span class="bcard-tag">Startup CTO</span><span class="bcard-tag">Product Manager</span></div></div>
+    <div class="bcard reveal reveal-d1"><div class="bcard-icon">📡</div><div class="bcard-name">ECE</div><div class="bcard-full">Electronics & Communication Engineering</div><div class="bcard-desc">Semiconductor revolution ke saath ECE ki demand global ho gayi hai. VLSI, IoT, embedded systems — Samsung, Qualcomm, ISRO sab hire karte hain. India chip manufacturing push ke saath massive growth.</div><div class="bcard-for">Best for: <span>Electronics hobbyists, hardware enthusiasts, VLSI interest</span></div><div class="bcard-tags"><span class="bcard-tag">VLSI Design</span><span class="bcard-tag">ISRO/DRDO</span><span class="bcard-tag">Embedded Sys</span><span class="bcard-tag">5G/IoT</span></div></div>
+    <div class="bcard reveal reveal-d2"><div class="bcard-icon">⚙️</div><div class="bcard-name">Mechanical</div><div class="bcard-full">Mechanical Engineering</div><div class="bcard-desc">EV revolution ke saath completely transformed. Tesla, Tata Motors, BHEL, ISRO — manufacturing, robotics, aerospace mein bade opportunities. Core mechanical aur automation dono mein scope.</div><div class="bcard-for">Best for: <span>Automobile lovers, hands-on makers, EV enthusiasts</span></div><div class="bcard-tags"><span class="bcard-tag">EV Design</span><span class="bcard-tag">Robotics</span><span class="bcard-tag">Aerospace</span><span class="bcard-tag">Manufacturing</span></div></div>
+    <div class="bcard reveal"><div class="bcard-icon">🏗️</div><div class="bcard-name">Civil</div><div class="bcard-full">Civil Engineering</div><div class="bcard-desc">Smart cities, metro rails, highways, airports — infrastructure India ka $1.4 trillion opportunity hai. GATE se PSU jobs (NHAI, PWD, L&T) best path. Government mein highest security.</div><div class="bcard-for">Best for: <span>GATE aspirants, government job seekers, construction interest</span></div><div class="bcard-tags"><span class="bcard-tag">Smart Cities</span><span class="bcard-tag">NHAI/PWD</span><span class="bcard-tag">L&T</span><span class="bcard-tag">Real Estate</span></div></div>
+    <div class="bcard reveal reveal-d1"><div class="bcard-icon">⚡</div><div class="bcard-name">Electrical</div><div class="bcard-full">Electrical Engineering</div><div class="bcard-desc">Renewable energy revolution — solar, EV charging, smart grid — electrical engineers ki global demand exploding hai. GATE se NTPC, Power Grid, PGCIL mein excellent PSU jobs.</div><div class="bcard-for">Best for: <span>Energy sector, PSU aspirants, power systems interest</span></div><div class="bcard-tags"><span class="bcard-tag">NTPC/PGCIL</span><span class="bcard-tag">Solar Energy</span><span class="bcard-tag">EV Infra</span><span class="bcard-tag">Smart Grid</span></div></div>
+    <div class="bcard reveal reveal-d2"><div class="bcard-icon">🧬</div><div class="bcard-name">Biotech / IT</div><div class="bcard-full">Biotechnology / Information Technology</div><div class="bcard-desc">IT — CSE jaisi opportunities with slightly different curriculum. Biotech — pharma, bioinformatics, healthcare tech mein India ki global positioning ke saath massive future growth. Research lovers ke liye paradise.</div><div class="bcard-for">Best for: <span>IT: coders | Biotech: biology + tech hybrid passions</span></div><div class="bcard-tags"><span class="bcard-tag">Bioinformatics</span><span class="bcard-tag">Pharma Tech</span><span class="bcard-tag">IT Services</span><span class="bcard-tag">Research</span></div></div>
+  </div>
+</div>
+</section>
+
+<!-- ── EXAMS ── -->
+<section id="exams">
+<div class="sec-inner">
+  <div class="sec-tag reveal">Exam Guide</div>
+  <h2 class="sec-h2 reveal">Major <em>Entrance Exams</em> — Complete Guide</h2>
+  <p class="sec-sub reveal">Kaunsa exam, kab dena hai, kaise taiyari kare — sabka honest breakdown.</p>
+  <div class="exams-grid">
+    <div class="ecard reveal"><div class="ecard-header"><div class="ecard-name">JEE Main</div><span class="ecard-tag tag-e">Engineering</span></div><div class="ecard-full">Joint Entrance Examination (Main)</div><div class="ecard-row"><span class="ecard-icon">🎯</span>NITs, IIITs, GFTIs + JEE Advanced eligibility</div><div class="ecard-row"><span class="ecard-icon">📅</span>January & April (2 attempts per year)</div><div class="ecard-row"><span class="ecard-icon">📝</span>Maths + Physics + Chemistry — 90 MCQ, 3 hours</div><div class="ecard-row"><span class="ecard-icon">✅</span>Qualifying marks: 85+ percentile for top NITs</div><div class="ecard-tip"><strong>💡 Strategy:</strong> NCERT pehle 2 baar pado. Previous 10 years papers must. Classes 11+12 dono equally important.</div></div>
+    <div class="ecard reveal reveal-d1"><div class="ecard-header"><div class="ecard-name">JEE Advanced</div><span class="ecard-tag tag-e">IITs</span></div><div class="ecard-full">Joint Entrance Examination (Advanced)</div><div class="ecard-row"><span class="ecard-icon">🎯</span>23 IITs — India ka most prestigious engineering exam</div><div class="ecard-row"><span class="ecard-icon">📅</span>May/June (JEE Main top 2.5L hi appear ho sakte hain)</div><div class="ecard-row"><span class="ecard-icon">📝</span>2 Papers × 3 hours — deep concept-based questions</div><div class="ecard-row"><span class="ecard-icon">✅</span>Rank under 5000 chahiye good IIT branch ke liye</div><div class="ecard-tip"><strong>💡 Strategy:</strong> Problem-solving aur deep understanding critical. Mock tests regularly do. 2 saal minimum prep needed.</div></div>
+    <div class="ecard reveal reveal-d2"><div class="ecard-header"><div class="ecard-name">NEET-UG</div><span class="ecard-tag tag-m">Medical</span></div><div class="ecard-full">National Eligibility cum Entrance Test</div><div class="ecard-row"><span class="ecard-icon">🎯</span>MBBS, BDS, BAMS, Nursing — all govt & pvt colleges</div><div class="ecard-row"><span class="ecard-icon">📅</span>May each year — single attempt</div><div class="ecard-row"><span class="ecard-icon">📝</span>Biology (90Q) + Physics (45Q) + Chemistry (45Q) = 720 marks</div><div class="ecard-row"><span class="ecard-icon">✅</span>AIIMS ke liye 650+, Govt college ke liye 550+</div><div class="ecard-tip"><strong>💡 Strategy:</strong> Biology NCERT line-by-line — koi bhi line mat chhodna! Previous year questions most important resource hai.</div></div>
+    <div class="ecard reveal"><div class="ecard-header"><div class="ecard-name">CUET-UG</div><span class="ecard-tag tag-a">All Streams</span></div><div class="ecard-full">Common University Entrance Test</div><div class="ecard-row"><span class="ecard-icon">🎯</span>DU, BHU, JNU aur 250+ central universities</div><div class="ecard-row"><span class="ecard-icon">📅</span>May/June each year</div><div class="ecard-row"><span class="ecard-icon">📝</span>NCERT-based domain subjects + English + GK</div><div class="ecard-row"><span class="ecard-icon">✅</span>DU ke popular courses mein 97–99% percentile needed</div><div class="ecard-tip"><strong>💡 Strategy:</strong> Class 12 NCERT main resource. Speed aur accuracy matter karti hai — time management practice karo.</div></div>
+    <div class="ecard reveal reveal-d1"><div class="ecard-header"><div class="ecard-name">CLAT</div><span class="ecard-tag tag-l">Law</span></div><div class="ecard-full">Common Law Admission Test</div><div class="ecard-row"><span class="ecard-icon">🎯</span>24 National Law Universities (NLUs) — NLSIU, NLU Delhi top hai</div><div class="ecard-row"><span class="ecard-icon">📅</span>December each year</div><div class="ecard-row"><span class="ecard-icon">📝</span>English, GK, Legal Reasoning, Quant, Logical — 120 Qs</div><div class="ecard-row"><span class="ecard-icon">✅</span>Top 5 NLU ke liye 100+ marks out of 120</div><div class="ecard-tip"><strong>💡 Strategy:</strong> Daily newspaper reading must (Hindu/IE). Legal reasoning comprehension based hoti hai — reading speed improve karo.</div></div>
+    <div class="ecard reveal reveal-d2"><div class="ecard-header"><div class="ecard-name">CAT</div><span class="ecard-tag tag-g">MBA</span></div><div class="ecard-full">Common Admission Test</div><div class="ecard-row"><span class="ecard-icon">🎯</span>IIMs aur 1000+ MBA colleges in India</div><div class="ecard-row"><span class="ecard-icon">📅</span>November each year — graduation ke baad dena hoga</div><div class="ecard-row"><span class="ecard-icon">📝</span>VARC + DILR + Quantitative Aptitude — 66 Qs, 2 hours</div><div class="ecard-row"><span class="ecard-icon">✅</span>IIM-A/B/C ke liye 99+ percentile, top IIMs 95+</div><div class="ecard-tip"><strong>💡 Strategy:</strong> Any stream/degree eligible. 2 years of serious prep recommended for IIM. Mocks aur analysis most important.</div></div>
+  </div>
+</div>
+</section>
+
+<!-- ── BOOKING ── -->
+<section id="booking">
+<div class="booking-grid">
+  <div class="book-left">
+    <div class="sec-tag">Book a Session</div>
+    <h2 class="sec-h2">Personal <em>Career Guidance</em> Session</h2>
+    <p class="sec-sub">Apne Clarasta tutor ke saath ek free 1-on-1 career guidance session book karo. Custom roadmap, entrance exam strategy aur honest career advice milega.</p>
+    <div class="bf-list">
+      <div class="bf-item"><div class="bf-ic">🎯</div><div class="bf-text"><strong>Personalized Career Roadmap</strong><span>Tumhare subjects, scores aur interests ke basis par custom plan milega.</span></div></div>
+      <div class="bf-item"><div class="bf-ic">📚</div><div class="bf-text"><strong>Entrance Exam Strategy</strong><span>JEE/NEET/CUET ke liye kab se kaise prepare karna hai — realistic aur proven plan.</span></div></div>
+      <div class="bf-item"><div class="bf-ic">💬</div><div class="bf-text"><strong>Direct WhatsApp Connect</strong><span>Session के baad tutor se directly sawal poochh sakte ho — anytime.</span></div></div>
+      <div class="bf-item"><div class="bf-ic">🆓</div><div class="bf-text"><strong>100% Free, Always</strong><span>Clarasta mein career guidance ke liye koi charge nahi. Ever.</span></div></div>
+    </div>
+  </div>
+  <div class="booking-form-card">
+    <form id="guidanceForm" onsubmit="return false;">
+      <label class="f-label">Your Full Name</label>
+      <input class="f-ctrl" id="g-name" type="text" placeholder="Enter your name" required/>
+      <label class="f-label">WhatsApp Number</label>
+      <input class="f-ctrl" id="g-wa" type="tel" placeholder="10-digit WhatsApp number" maxlength="10" required/>
+      <label class="f-label">Current Class / Year</label>
+      <select class="f-ctrl" id="g-class" required>
+        <option value="">Select your class…</option>
+        <option>Class 9</option><option>Class 10</option>
+        <option>Class 11 (Science-Maths)</option><option>Class 11 (Science-Bio)</option>
+        <option>Class 11 (Commerce)</option><option>Class 11 (Arts)</option>
+        <option>Class 12 (Science-Maths)</option><option>Class 12 (Science-Bio)</option>
+        <option>Class 12 (Commerce)</option><option>Class 12 (Arts)</option>
+        <option>After 12th / Gap Year</option><option>1st Year BTech</option>
+      </select>
+      <label class="f-label">Main Goal / Confusion</label>
+      <select class="f-ctrl" id="g-goal" required>
+        <option value="">What do you need help with?</option>
+        <option>Stream selection after 10th</option>
+        <option>Career path selection after 12th</option>
+        <option>JEE preparation strategy</option>
+        <option>NEET preparation strategy</option>
+        <option>BTech branch selection</option>
+        <option>College selection strategy</option>
+        <option>Career after BTech</option>
+        <option>General career confusion</option>
+      </select>
+      <label class="f-label">Society / Location</label>
+      <input class="f-ctrl" id="g-loc" type="text" placeholder="e.g., Crossing Republic, Gaur City…"/>
+      <button type="button" class="f-submit" onclick="submitForm()">📅 Book Free Guidance Session →</button>
+    </form>
+    <div class="success-box" id="successBox">
+      <div class="success-icon">✅</div>
+      <h4>Session Booked!</h4>
+      <p>Ek verified tutor 2–4 hours mein tumse WhatsApp karega. Ready rehna — apna future start ho raha hai! 🚀</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER NAV -->
+<div class="site-footer">
+  <div class="ft-links">
+    <a href="index.html">🏠 Home</a>
+    <a href="index.html#find">Find Tutor</a>
+    <a href="chat.html">⚡ Doubt Chat</a>
+    <a href="support.html">Support</a>
+    <a href="auth.html">Login</a>
+  </div>
+  <div class="ft-copy">© 2025 Clarasta · Made with ❤️ in Crossing Republic, Ghaziabad</div>
+</div>
+
+<!-- WA Float -->
+<a href="https://wa.me/917906811491?text=Hi%20Clarasta!%20I%20need%20career%20guidance." target="_blank" class="wa-fab" title="Career guidance on WhatsApp">💬</a>
+
+<!-- MOBILE MENU -->
+<div id="mobMenu" style="display:none;position:fixed;top:62px;left:0;right:0;background:rgba(247,245,240,0.97);backdrop-filter:blur(20px);padding:24px 5%;z-index:150;border-bottom:1px solid var(--border);box-shadow:0 12px 40px rgba(26,23,20,0.12);">
+  <ul style="list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:20px;">
+    <li><a href="index.html" style="color:var(--ink2);text-decoration:none;font-weight:700;font-size:1.05rem;">🏠 Home</a></li>
+    <li><a href="index.html#find" style="color:var(--ink2);text-decoration:none;font-weight:700;font-size:1.05rem;">Find Tutor</a></li>
+    <li><a href="chat.html" style="color:var(--ink2);text-decoration:none;font-weight:700;font-size:1.05rem;">⚡ Doubt Chat</a></li>
+    <li><a href="career-guidance.html" style="color:var(--gold);text-decoration:none;font-weight:700;font-size:1.05rem;">🚀 Career Guide</a></li>
+    <li><a href="support.html" style="color:var(--ink2);text-decoration:none;font-weight:700;font-size:1.05rem;">Support</a></li>
+  </ul>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <a href="auth.html" style="display:block;text-align:center;padding:12px;border-radius:10px;background:linear-gradient(135deg,var(--gold),#b8781a);color:white;text-decoration:none;font-weight:700;">Login / Register</a>
+  </div>
+</div>
+
+<script>
+// ── NAV SCROLL ──
+window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',scrollY>40);});
+function toggleMob(){const m=document.getElementById('mobMenu');m.style.display=m.style.display==='flex'?'none':'flex';m.style.flexDirection='column';}
+
+// ── STREAM TABS ──
+function switchS(id){
+  const map={sci:0,bio:1,com:2,arts:3};
+  document.querySelectorAll('.stab').forEach((t,i)=>{t.classList.toggle('active',i===map[id]);});
+  document.querySelectorAll('.spanel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('s-'+id).classList.add('active');
+}
+
+// ── COUNTER ANIMATION ──
+function animCount(el,target,dur){
+  let start=0,step=dur/target;
+  const inc=()=>{start++;el.textContent=start;if(start<target)setTimeout(inc,step);};
+  setTimeout(inc,step);
+}
+
+// ── DEMAND BARS (animate on scroll) ──
+const barObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.demand-fill').forEach(b=>{
+        setTimeout(()=>{b.style.width=b.dataset.w;},200);
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.ccard').forEach(c=>barObs.observe(c));
+
+// ── REVEAL ON SCROLL ──
+const revObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// ── HERO COUNTERS ──
+const heroObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      animCount(document.getElementById('cnt1'),6,600);
+      animCount(document.getElementById('cnt2'),20,400);
+      animCount(document.getElementById('cnt3'),8,600);
+      heroObs.disconnect();
+    }
+  });
+},{threshold:0.5});
+heroObs.observe(document.querySelector('.hero-stats'));
+
+// ── BOOKING FORM ──
+function submitForm(){
+  const name=document.getElementById('g-name').value.trim();
+  const wa=document.getElementById('g-wa').value.trim();
+  const cls=document.getElementById('g-class').value;
+  const goal=document.getElementById('g-goal').value;
+  const loc=document.getElementById('g-loc').value.trim();
+  if(!name||!wa||!cls||!goal){alert('Please fill all required fields!');return;}
+  if(wa.length!==10||!/^\d+$/.test(wa)){alert('Valid 10-digit WhatsApp number daalo!');return;}
+  const stored=JSON.parse(localStorage.getItem('clarasta_guidance')||'[]');
+  stored.push({name,wa,cls,goal,loc,ts:new Date().toISOString()});
+  localStorage.setItem('clarasta_guidance',JSON.stringify(stored));
+  document.getElementById('guidanceForm').style.display='none';
+  document.getElementById('successBox').style.display='block';
+  const msg=encodeURIComponent(`Hi Clarasta! 🚀\n\nCareer Guidance Request:\nName: ${name}\nClass: ${cls}\nGoal: ${goal}\nLocation: ${loc||'Not specified'}\nWhatsApp: +91${wa}\n\nPlease connect me with a tutor for career guidance. Thank you!`);
+  setTimeout(()=>window.open('https://wa.me/917906811491?text='+msg,'_blank'),1200);
+}
+</script>
+</body>
+</html>

@@ -2275,8 +2275,70 @@
       transform: translateY(0);
     }
 
+    /* ── MOBILE MENU ──────────────────────── */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 73px;
+      left: 0;
+      right: 0;
+      background: rgba(247, 245, 240, 0.98);
+      backdrop-filter: blur(24px);
+      padding: 24px 5%;
+      box-shadow: 0 12px 30px rgba(26, 23, 20, 0.15);
+      z-index: 150;
+      flex-direction: column;
+      gap: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu.active {
+      display: flex;
+    }
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-nav-links a {
+      color: var(--ink2);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .mobile-nav-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .mobile-nav-btns .btn {
+      text-align: center;
+      justify-content: center;
+      width: 100%;
+    }
+
     /* ── RESPONSIVE ───────────────────────── */
+    @media(max-width:1024px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
     @media(max-width:900px) {
+      .nav-btns {
+        display: none;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
       .hero {
         grid-template-columns: 1fr;
         padding-top: 120px;
@@ -2314,10 +2376,6 @@
     }
 
     @media(max-width:640px) {
-      .nav-links {
-        display: none;
-      }
-
       .stat {
         border-right: none;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -2346,7 +2404,8 @@
       <li><a href="#mission">Our Mission</a></li>
       <li><a href="#find">Find Tutor</a></li>
       <li><a href="#how">How it Works</a></li>
-      <li><a href="#join">Join</a></li>
+      <li><a href="chat.html">⚡ Doubt Chat</a></li>
+      <li><a href="career-guidance.html">🚀 Career Guide</a></li>
       <li><a href="support.html">Support</a></li>
     </ul>
     <div class="nav-btns">
@@ -2355,7 +2414,27 @@
         style="border-color:var(--gold);color:var(--gold);background:var(--goldbg);">For Parents</a>
       <a href="auth.html?role=tutor" class="btn btn-gold">Become a Tutor →</a>
     </div>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('active')">☰</button>
   </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul class="mobile-nav-links">
+      <li><a href="#mission" onclick="document.getElementById('mobileMenu').classList.remove('active')">Our Mission</a></li>
+      <li><a href="#find" onclick="document.getElementById('mobileMenu').classList.remove('active')">Find Tutor</a></li>
+      <li><a href="#how" onclick="document.getElementById('mobileMenu').classList.remove('active')">How it Works</a></li>
+      <li><a href="#join" onclick="document.getElementById('mobileMenu').classList.remove('active')">Join</a></li>
+      <li><a href="chat.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">⚡ Doubt Chat</a></li>
+      <li><a href="career-guidance.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">🚀 Career Guide</a></li>
+      <li><a href="support.html" onclick="document.getElementById('mobileMenu').classList.remove('active')">Support</a></li>
+    </ul>
+    <div class="mobile-nav-btns">
+      <a href="auth.html" class="btn btn-ghost">Login</a>
+      <a href="auth.html?role=parent" class="btn btn-ghost"
+        style="border-color:var(--gold);color:var(--gold);background:var(--goldbg);">For Parents</a>
+      <a href="auth.html?role=tutor" class="btn btn-gold">Become a Tutor →</a>
+    </div>
+  </div>
 
   <!-- HERO -->
   <section class="hero">
@@ -2996,6 +3075,8 @@
           <li><a href="#find">Find Tutors</a></li>
           <li><a href="#join">Become a Tutor</a></li>
           <li><a href="#how">How it Works</a></li>
+          <li><a href="chat.html">⚡ Emergency Chat</a></li>
+          <li><a href="career-guidance.html">🚀 Career Guide</a></li>
           <li><a href="auth.html">Login / Register</a></li>
           <li><a href="admin.html">Admin Panel</a></li>
         </ul>

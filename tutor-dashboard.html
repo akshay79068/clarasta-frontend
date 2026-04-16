@@ -258,6 +258,14 @@ body{
       <span class="sb-nav-icon">👤</span>
       <span>My Profile</span>
     </a>
+    <a class="sb-nav-item" href="chat.html">
+      <span class="sb-nav-icon">⚡</span>
+      <span>Emergency Chat</span>
+    </a>
+    <a class="sb-nav-item" href="career-guidance.html">
+      <span class="sb-nav-icon">🚀</span>
+      <span>Career Guide</span>
+    </a>
     <a class="sb-nav-item" href="#checklist-section">
       <span class="sb-nav-icon">✅</span>
       <span>Checklist</span>
@@ -428,13 +436,23 @@ body{
     <div class="sc-header">
       <div class="sc-title">Quick Actions</div>
     </div>
-    <div class="qa-grid">
-      <div class="qa-item" onclick="window.open('https://wa.me/919999999999?text=Hi!%20I%20want%20to%20submit%20my%20college%20ID%20for%20verification.','_blank')">
+    <div class="qa-grid" style="grid-template-columns:repeat(3,1fr);">
+      <div class="qa-item" onclick="window.open('https://wa.me/917906811491?text=Hi!%20I%20want%20to%20submit%20my%20college%20ID%20for%20verification.','_blank')">
         <div class="qa-icon">🪪</div>
         <div class="qa-label">Submit College ID</div>
-        <div class="qa-sub">Send on WhatsApp for fast verification</div>
+        <div class="qa-sub">Fast verification</div>
       </div>
-      <a href="auth.html" class="qa-item" onclick="localStorage.removeItem('clarasta_user')">
+      <a href="chat.html" class="qa-item" style="border-color:rgba(229,57,53,0.25);text-decoration:none;">
+        <div class="qa-icon">⚡</div>
+        <div class="qa-label">Emergency Chat</div>
+        <div class="qa-sub">Doubt solve karo</div>
+      </a>
+      <a href="career-guidance.html" class="qa-item" style="border-color:rgba(200,146,42,0.25);text-decoration:none;">
+        <div class="qa-icon">🚀</div>
+        <div class="qa-label">Career Guide</div>
+        <div class="qa-sub">Future planning</div>
+      </a>
+      <a href="auth.html" class="qa-item" onclick="localStorage.removeItem('clarasta_user')" style="text-decoration:none;">
         <div class="qa-icon">🔄</div>
         <div class="qa-label">Update Profile</div>
         <div class="qa-sub">Re-register with new details</div>
@@ -442,7 +460,7 @@ body{
       <div class="qa-item" onclick="window.open('https://wa.me/917906811491','_blank')">
         <div class="qa-icon">💬</div>
         <div class="qa-label">Contact Support</div>
-        <div class="qa-sub">WhatsApp us for any queries</div>
+        <div class="qa-sub">WhatsApp the team</div>
       </div>
     </div>
   </div>

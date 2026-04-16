@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Clarasta – Emergency Doubt Chat ⚡</title>
+<meta name="description" content="Instant doubt solving chat between students and their Clarasta tutors."/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0d0b08;--bg2:#131009;--card:#18140f;--card2:#1e1912;
+  --ink:#f7f4ef;--ink2:#b8b0a5;--ink3:#6e675f;
+  --gold:#c8922a;--gold2:#e8b04a;--goldbg:rgba(200,146,42,0.12);--goldglow:rgba(200,146,42,0.25);
+  --teal:#2a7a6a;--teal2:#3aa88e;--tealbg:rgba(42,122,106,0.15);--tealglow:rgba(42,122,106,0.3);
+  --red:#e53935;--redbg:rgba(229,57,53,0.12);--redglow:rgba(229,57,53,0.25);
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.05);
+  --shadow:0 4px 32px rgba(0,0,0,0.4);--shadow2:0 12px 60px rgba(0,0,0,0.6);
+  --glow-gold:0 0 30px rgba(200,146,42,0.2);--glow-teal:0 0 30px rgba(42,122,106,0.2);
+  --radius:14px;--white:#ffffff;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  background:var(--bg);color:var(--ink);
+  display:flex;flex-direction:column;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 20% 10%,rgba(200,146,42,0.04) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 90%,rgba(42,122,106,0.04) 0%,transparent 60%);
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+
+/* ─── NAV ─── */
+.top-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:62px;min-height:62px;flex-shrink:0;
+  background:rgba(13,11,8,0.9);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  position:relative;z-index:50;
+}
+.top-nav::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(200,146,42,0.3),transparent);
+}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.nav-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);}
+.nav-brand-name{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--ink);letter-spacing:-0.3px;}
+.nav-brand-sep{width:1px;height:20px;background:var(--border);}
+.nav-brand-page{font-size:0.8rem;color:var(--ink3);font-weight:600;letter-spacing:0.3px;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-live-pill{
+  display:flex;align-items:center;gap:6px;
+  background:var(--redbg);border:1px solid var(--redglow);
+  color:#ff6b6b;padding:5px 13px;border-radius:99px;
+  font-size:0.72rem;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;
+  animation:pulseRed 2.5s ease-in-out infinite;
+}
+.nav-live-dot{width:6px;height:6px;border-radius:50%;background:#ff5555;animation:blinkDot 1.5s infinite;}
+@keyframes blinkDot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
+@keyframes pulseRed{0%,100%{box-shadow:0 0 0 0 rgba(229,57,53,0.3);}50%{box-shadow:0 0 0 6px rgba(229,57,53,0);}}
+.nav-back-btn{
+  display:flex;align-items:center;gap:6px;
+  color:var(--ink2);text-decoration:none;font-size:0.8rem;font-weight:600;
+  padding:7px 14px;border-radius:8px;border:1px solid var(--border);
+  transition:all 0.2s;background:var(--card);
+}
+.nav-back-btn:hover{border-color:rgba(200,146,42,0.3);color:var(--gold);}
+
+/* ─── LAYOUT ─── */
+.app-layout{display:flex;flex:1;overflow:hidden;}
+
+/* ─── SIDEBAR ─── */
+.sidebar{
+  width:310px;min-width:310px;
+  display:flex;flex-direction:column;
+  background:var(--card);
+  border-right:1px solid var(--border);
+  position:relative;
+}
+.sidebar::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:200px;
+  background:radial-gradient(ellipse at 50% 0%,rgba(200,146,42,0.06),transparent 70%);
+  pointer-events:none;
+}
+.sb-header{padding:20px 20px 14px;border-bottom:1px solid var(--border);}
+.sb-header-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.sb-title{font-family:'DM Serif Display',serif;font-size:1.05rem;color:var(--ink);display:flex;align-items:center;gap:8px;}
+.sb-user-chip{
+  display:flex;align-items:center;gap:6px;
+  background:var(--tealbg);border:1px solid var(--tealbg);border-radius:8px;
+  padding:4px 10px;font-size:0.72rem;font-weight:700;color:var(--teal2);
+}
+.sb-search{position:relative;}
+.sb-search input{
+  width:100%;background:var(--card2);border:1px solid var(--border);
+  border-radius:10px;padding:10px 14px 10px 36px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;color:var(--ink);
+  outline:none;transition:border-color 0.2s;
+}
+.sb-search input::placeholder{color:var(--ink3);}
+.sb-search input:focus{border-color:rgba(200,146,42,0.3);}
+.sb-search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:0.85rem;}
+
+.contacts{flex:1;overflow-y:auto;padding:6px;}
+.contact{
+  display:flex;align-items:center;gap:11px;padding:11px 12px;
+  border-radius:12px;cursor:pointer;transition:all 0.18s;
+  position:relative;margin-bottom:2px;
+}
+.contact:hover{background:var(--card2);}
+.contact.active{
+  background:linear-gradient(135deg,rgba(42,122,106,0.15),rgba(42,122,106,0.05));
+  border:1px solid rgba(42,122,106,0.2);
+}
+.contact.active::before{
+  content:'';position:absolute;left:0;top:8px;bottom:8px;
+  width:3px;border-radius:0 3px 3px 0;background:var(--teal2);
+}
+.c-av{
+  width:44px;height:44px;min-width:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:0.88rem;color:var(--white);
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  flex-shrink:0;position:relative;
+}
+.c-av.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));}
+.c-av-online{
+  position:absolute;bottom:1px;right:1px;
+  width:11px;height:11px;border-radius:50%;background:#4dbb9f;
+  border:2px solid var(--card);
+}
+.c-info{flex:1;min-width:0;}
+.c-name{font-weight:700;font-size:0.84rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;display:flex;align-items:center;gap:6px;}
+.c-preview{font-size:0.74rem;color:var(--ink3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.4;}
+.c-meta{display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0;}
+.c-time{font-size:0.65rem;color:var(--ink3);}
+.c-unread{
+  min-width:20px;height:20px;border-radius:10px;
+  background:var(--teal2);color:var(--white);
+  font-size:0.62rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 5px;
+}
+.urgent-pip{
+  font-size:0.62rem;font-weight:800;color:var(--red);
+  background:var(--redbg);border:1px solid rgba(229,57,53,0.2);
+  padding:2px 6px;border-radius:4px;white-space:nowrap;
+}
+
+.sb-new-btn{
+  margin:12px;padding:13px;border-radius:12px;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--white);border:none;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.84rem;font-weight:700;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all 0.2s;box-shadow:0 4px 20px rgba(42,122,106,0.3);
+}
+.sb-new-btn:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(42,122,106,0.45);}
+
+/* ─── MAIN CHAT ─── */
+.chat-main{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg);}
+
+/* Chat top bar */
+.chat-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;flex-shrink:0;
+  background:rgba(13,11,8,0.5);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.chat-topbar-left{display:flex;align-items:center;gap:12px;}
+.chat-avatar{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:0.85rem;color:var(--white);
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  position:relative;
+}
+.chat-avatar-online{
+  position:absolute;bottom:0;right:0;
+  width:10px;height:10px;border-radius:50%;background:#4dbb9f;
+  border:2px solid var(--bg);box-shadow:0 0 6px rgba(77,187,159,0.6);
+}
+.chat-info h3{font-size:0.9rem;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.chat-status{display:flex;align-items:center;gap:5px;font-size:0.72rem;color:var(--teal2);font-weight:600;}
+.chat-status-dot{width:6px;height:6px;border-radius:50%;background:var(--teal2);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.chat-topbar-right{display:flex;gap:8px;}
+.tb-action{
+  padding:7px 14px;border-radius:8px;
+  font-size:0.76rem;font-weight:700;cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.2s;
+  display:flex;align-items:center;gap:5px;
+}
+.tb-urgent{
+  background:var(--redbg);border:1px solid rgba(229,57,53,0.3);
+  color:#ff7070;
+}
+.tb-urgent:hover{background:rgba(229,57,53,0.2);border-color:rgba(229,57,53,0.5);}
+.tb-wa{
+  background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.25);
+  color:#4dbb80;
+}
+.tb-wa:hover{background:rgba(37,211,102,0.18);}
+
+/* Messages area */
+.messages-area{
+  flex:1;overflow-y:auto;
+  padding:24px;display:flex;flex-direction:column;gap:4px;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%,rgba(42,122,106,0.03),transparent),
+    radial-gradient(ellipse 60% 40% at 0% 100%,rgba(200,146,42,0.02),transparent);
+}
+.msg-date{
+  text-align:center;margin:16px 0 12px;position:relative;
+}
+.msg-date span{
+  font-size:0.68rem;font-weight:700;color:var(--ink3);
+  background:var(--card);padding:4px 12px;border-radius:99px;
+  border:1px solid var(--border);letter-spacing:0.3px;
+}
+
+.msg-row{display:flex;gap:8px;max-width:74%;align-items:flex-end;margin-bottom:8px;}
+.msg-row.me{align-self:flex-end;flex-direction:row-reverse;}
+.msg-row.them{align-self:flex-start;}
+.msg-row.me + .msg-row.me,
+.msg-row.them + .msg-row.them{margin-top:-4px;}
+
+.msg-av-sm{
+  width:28px;height:28px;min-width:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:0.62rem;color:var(--white);
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  flex-shrink:0;align-self:flex-end;
+}
+.msg-av-sm.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));}
+
+.msg-content{display:flex;flex-direction:column;}
+.msg-sender{font-size:0.68rem;font-weight:700;color:var(--ink3);margin-bottom:4px;padding:0 4px;}
+
+.bubble{
+  padding:10px 14px;border-radius:16px;
+  font-size:0.86rem;line-height:1.6;
+  position:relative;animation:popIn 0.22s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes popIn{from{opacity:0;transform:scale(0.88);}to{opacity:1;transform:scale(1);}}
+.msg-row.me .bubble{
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--white);border-bottom-right-radius:4px;
+  box-shadow:0 4px 20px rgba(42,122,106,0.3);
+}
+.msg-row.them .bubble{
+  background:var(--card2);color:var(--ink);
+  border:1px solid var(--border);border-bottom-left-radius:4px;
+}
+.bubble.urgent-bubble{
+  background:linear-gradient(135deg,rgba(229,57,53,0.15),rgba(229,57,53,0.08))!important;
+  border:1px solid rgba(229,57,53,0.35)!important;
+  color:var(--ink)!important;
+}
+.urgent-label{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:0.67rem;font-weight:800;color:var(--red);
+  background:rgba(229,57,53,0.12);padding:2px 7px;border-radius:4px;
+  margin-bottom:6px;
+}
+.bubble-footer{
+  display:flex;align-items:center;justify-content:flex-end;gap:4px;
+  margin-top:5px;
+}
+.bubble-time{font-size:0.62rem;opacity:0.6;}
+.bubble-tick{font-size:0.65rem;opacity:0.7;}
+
+/* Typing indicator */
+.typing-wrap{display:flex;gap:8px;align-items:flex-end;align-self:flex-start;margin-bottom:8px;}
+.typing-bubble{
+  background:var(--card2);border:1px solid var(--border);
+  border-radius:16px;border-bottom-left-radius:4px;
+  padding:12px 16px;display:flex;gap:4px;align-items:center;
+}
+.typing-dot{
+  width:7px;height:7px;border-radius:50%;background:var(--ink3);
+  animation:typeBounce 1.4s ease-in-out infinite;
+}
+.typing-dot:nth-child(2){animation-delay:0.2s;}
+.typing-dot:nth-child(3){animation-delay:0.4s;}
+@keyframes typeBounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-6px);}}
+
+/* Empty/Welcome state */
+.chat-welcome{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:48px;text-align:center;
+  background:
+    radial-gradient(ellipse 60% 40% at 50% 40%,rgba(42,122,106,0.05),transparent);
+}
+.welcome-icon{
+  width:80px;height:80px;border-radius:24px;
+  background:linear-gradient(135deg,var(--tealbg),rgba(42,122,106,0.2));
+  border:1px solid rgba(42,122,106,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.4rem;margin-bottom:20px;
+  box-shadow:0 0 40px rgba(42,122,106,0.15);
+}
+.welcome-icon-pulse{animation:welcomePulse 3s ease-in-out infinite;}
+@keyframes welcomePulse{0%,100%{box-shadow:0 0 40px rgba(42,122,106,0.15);}50%{box-shadow:0 0 60px rgba(42,122,106,0.3);}}
+.chat-welcome h2{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--ink);margin-bottom:10px;letter-spacing:-0.3px;}
+.chat-welcome p{font-size:0.88rem;color:var(--ink3);line-height:1.8;max-width:360px;margin-bottom:24px;}
+.welcome-start-btn{
+  padding:13px 28px;border-radius:12px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.88rem;font-weight:700;transition:all 0.2s;
+  box-shadow:0 4px 20px rgba(42,122,106,0.35);
+  display:flex;align-items:center;gap:8px;
+}
+.welcome-start-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(42,122,106,0.5);}
+
+/* Input zone */
+.input-zone{
+  padding:14px 20px;
+  background:rgba(13,11,8,0.7);backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);flex-shrink:0;
+}
+.quick-btns{display:flex;gap:7px;margin-bottom:10px;flex-wrap:wrap;}
+.quick-btn{
+  padding:5px 11px;border-radius:7px;border:1px solid var(--border);
+  background:var(--card2);cursor:pointer;
+  font-size:0.73rem;font-weight:600;color:var(--ink2);
+  font-family:'Plus Jakarta Sans',sans-serif;transition:all 0.18s;
+  display:flex;align-items:center;gap:4px;
+}
+.quick-btn:hover{border-color:rgba(42,122,106,0.4);color:var(--teal2);}
+.quick-btn.urgent-q{border-color:rgba(229,57,53,0.3);color:#ff7070;}
+.quick-btn.urgent-q:hover{background:var(--redbg);}
+.quick-btn.urgent-q.urgent-active{background:var(--red);color:var(--white);border-color:var(--red);}
+.input-row{display:flex;gap:10px;align-items:flex-end;}
+.msg-input{
+  flex:1;background:var(--card2);border:1px solid var(--border);
+  border-radius:12px;padding:12px 16px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.88rem;color:var(--ink);
+  outline:none;resize:none;min-height:46px;max-height:130px;line-height:1.55;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.msg-input:focus{border-color:rgba(42,122,106,0.4);box-shadow:0 0 0 3px rgba(42,122,106,0.08);}
+.msg-input::placeholder{color:var(--ink3);}
+.send-btn{
+  width:46px;height:46px;min-width:46px;border-radius:12px;border:none;cursor:pointer;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--white);font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;box-shadow:0 4px 16px rgba(42,122,106,0.35);
+}
+.send-btn:hover{transform:scale(1.06);box-shadow:0 6px 24px rgba(42,122,106,0.5);}
+.send-btn:active{transform:scale(0.96);}
+
+/* ─── LOGIN GATE ─── */
+.login-screen{
+  flex:1;display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 20%,rgba(200,146,42,0.05),transparent),
+    radial-gradient(ellipse 60% 70% at 70% 80%,rgba(42,122,106,0.05),transparent);
+}
+.login-card{
+  background:var(--card);border:1px solid var(--border);border-radius:24px;
+  padding:44px 40px;max-width:420px;width:100%;
+  box-shadow:var(--shadow2);
+  position:relative;overflow:hidden;
+}
+.login-card::before{
+  content:'';position:absolute;top:-80px;right:-80px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(rgba(200,146,42,0.1),transparent 70%);
+}
+.login-card::after{
+  content:'';position:absolute;bottom:-60px;left:-60px;
+  width:160px;height:160px;border-radius:50%;
+  background:radial-gradient(rgba(42,122,106,0.08),transparent 70%);
+}
+.login-icon{
+  width:64px;height:64px;border-radius:18px;margin:0 auto 20px;
+  background:linear-gradient(135deg,var(--tealbg),rgba(42,122,106,0.2));
+  border:1px solid rgba(42,122,106,0.3);
+  display:flex;align-items:center;justify-content:center;font-size:1.9rem;
+  box-shadow:0 0 30px rgba(42,122,106,0.2);
+}
+.login-card h2{
+  font-family:'DM Serif Display',serif;font-size:1.7rem;color:var(--ink);
+  text-align:center;margin-bottom:8px;letter-spacing:-0.3px;
+}
+.login-card p{font-size:0.83rem;color:var(--ink3);text-align:center;line-height:1.75;margin-bottom:24px;}
+.role-pills{display:flex;gap:8px;margin-bottom:18px;}
+.role-pill{
+  flex:1;padding:10px;border-radius:10px;
+  border:1px solid var(--border);background:var(--card2);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:0.82rem;font-weight:700;
+  color:var(--ink2);cursor:pointer;text-align:center;transition:all 0.2s;
+}
+.role-pill.active{
+  border-color:rgba(42,122,106,0.5);
+  background:linear-gradient(135deg,rgba(42,122,106,0.2),rgba(42,122,106,0.08));
+  color:var(--teal2);
+}
+.l-input{
+  width:100%;background:var(--card2);border:1px solid var(--border);border-radius:10px;
+  padding:12px 16px;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.88rem;color:var(--ink);outline:none;margin-bottom:11px;
+  transition:border-color 0.2s,box-shadow 0.2s;
+}
+.l-input:focus{border-color:rgba(42,122,106,0.4);box-shadow:0 0 0 3px rgba(42,122,106,0.08);}
+.l-input::placeholder{color:var(--ink3);}
+.l-btn{
+  width:100%;padding:13px;border-radius:10px;border:none;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.9rem;font-weight:700;cursor:pointer;transition:all 0.22s;
+  box-shadow:0 4px 20px rgba(42,122,106,0.35);margin-top:4px;
+}
+.l-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(42,122,106,0.5);}
+
+/* ─── MODAL ─── */
+.modal-bg{
+  position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:999;
+  display:none;align-items:center;justify-content:center;padding:20px;
+  backdrop-filter:blur(6px);
+}
+.modal-bg.show{display:flex;}
+.modal-box{
+  background:var(--card);border:1px solid var(--border);border-radius:22px;
+  padding:36px;max-width:400px;width:100%;position:relative;
+  box-shadow:var(--shadow2);animation:slideUP 0.28s cubic-bezier(0.34,1.4,0.64,1);
+}
+@keyframes slideUP{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+.modal-close{
+  position:absolute;top:14px;right:14px;background:var(--card2);
+  border:1px solid var(--border);border-radius:8px;padding:5px 10px;
+  cursor:pointer;font-size:0.8rem;font-family:'Plus Jakarta Sans',sans-serif;color:var(--ink3);
+  transition:all 0.2s;
+}
+.modal-close:hover{color:var(--red);}
+.modal-box h3{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--ink);margin-bottom:6px;}
+.modal-box p{font-size:0.8rem;color:var(--ink3);margin-bottom:20px;line-height:1.6;}
+.m-input{
+  width:100%;background:var(--card2);border:1px solid var(--border);border-radius:10px;
+  padding:11px 15px;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.88rem;color:var(--ink);outline:none;margin-bottom:10px;
+  transition:border-color 0.2s;
+}
+.m-input:focus{border-color:rgba(42,122,106,0.4);}
+.m-input::placeholder{color:var(--ink3);}
+.m-btn{
+  width:100%;padding:13px;border-radius:10px;border:none;
+  background:linear-gradient(135deg,var(--teal),var(--teal2));
+  color:var(--white);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:0.88rem;font-weight:700;cursor:pointer;transition:all 0.2s;
+  box-shadow:0 4px 16px rgba(42,122,106,0.35);
+}
+.m-btn:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(42,122,106,0.5);}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:768px){
+  .sidebar{
+    width:100%;position:fixed;top:62px;bottom:0;left:0;z-index:20;
+    transform:translateX(-100%);transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .sidebar.open{transform:none;}
+  .mobile-back-btn{
+    display:flex;align-items:center;gap:5px;background:none;border:none;
+    color:var(--ink3);font-size:0.82rem;font-weight:600;cursor:pointer;
+    font-family:'Plus Jakarta Sans',sans-serif;padding:0;margin-right:6px;
+  }
+}
+@media(min-width:769px){.mobile-back-btn{display:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="mobile-back-btn" onclick="showSidebar()">← Chats</button>
+    <a href="index.html" class="nav-brand">
+      <div class="nav-dot"></div>
+      <span class="nav-brand-name">Clarasta</span>
+    </a>
+    <div class="nav-brand-sep"></div>
+    <span class="nav-brand-page">Emergency Doubt Chat</span>
+  </div>
+  <div class="nav-right">
+    <div class="nav-live-pill"><div class="nav-live-dot"></div>Live</div>
+    <a href="index.html" class="nav-back-btn">← Home</a>
+  </div>
+</nav>
+
+<!-- LOGIN GATE -->
+<div class="login-screen" id="loginGate">
+  <div class="login-card">
+    <div class="login-icon">⚡</div>
+    <h2>Emergency Doubt Chat</h2>
+    <p>Apne tutor se seedha doubt solve karo — kisi bhi waqt, kisi bhi subject par. Instant responses, no waiting.</p>
+    <div class="role-pills">
+      <div class="role-pill active" id="rParent" onclick="setRole('parent')">👨‍👩‍👧 Parent / Student</div>
+      <div class="role-pill" id="rTutor" onclick="setRole('tutor')">🎓 Tutor</div>
+    </div>
+    <input class="l-input" id="lgWa" type="tel" placeholder="WhatsApp Number (10 digits)" maxlength="10"/>
+    <input class="l-input" id="lgName" type="text" placeholder="Your Name (for display)"/>
+    <button class="l-btn" onclick="chatLogin()">Enter Chat Space →</button>
+  </div>
+</div>
+
+<!-- CHAT APP -->
+<div class="app-layout" id="chatApp" style="display:none;flex:1;overflow:hidden;">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebarEl">
+    <div class="sb-header">
+      <div class="sb-header-row">
+        <div class="sb-title">💬 Chats</div>
+        <div class="sb-user-chip" id="sbUserChip">—</div>
+      </div>
+      <div class="sb-search">
+        <span class="sb-search-icon">🔍</span>
+        <input placeholder="Search contacts..." id="contactSearch" oninput="filterC(this.value)"/>
+      </div>
+    </div>
+    <div class="contacts" id="contactsList"></div>
+    <button class="sb-new-btn" onclick="openModal()">+ New Chat Session</button>
+  </div>
+
+  <!-- MAIN CHAT -->
+  <div class="chat-main">
+
+    <!-- Welcome state -->
+    <div class="chat-welcome" id="welcomeState">
+      <div class="welcome-icon welcome-icon-pulse">⚡</div>
+      <h2>Emergency Doubt Solver</h2>
+      <p>Koi bhi doubt — Maths, Physics, Chemistry — apne tutor ko abhi message karo. Left mein contact select karo ya new session start karo.</p>
+      <button class="welcome-start-btn" onclick="openModal()">+ Start Emergency Session</button>
+    </div>
+
+    <!-- Active chat -->
+    <div id="activeChat" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
+      <div class="chat-topbar" id="chatTopbar">
+        <div class="chat-topbar-left">
+          <div class="chat-avatar" id="chatAv">?<div class="chat-avatar-online"></div></div>
+          <div class="chat-info">
+            <h3 id="chatName">—</h3>
+            <div class="chat-status"><div class="chat-status-dot"></div>Online · Doubt mode</div>
+          </div>
+        </div>
+        <div class="chat-topbar-right">
+          <button class="tb-action tb-urgent" onclick="flagUrgent()">🚨 Mark Urgent</button>
+          <button class="tb-action tb-wa" onclick="goWA()">📱 WhatsApp</button>
+        </div>
+      </div>
+
+      <div class="messages-area" id="messagesArea"></div>
+
+      <div class="input-zone">
+        <div class="quick-btns">
+          <button class="quick-btn urgent-q" id="urgentQBtn" onclick="toggleUrgent()">⚡ Mark Urgent</button>
+          <button class="quick-btn" onclick="qMsg('Please explain this step again 🙏')">🔁 Explain Again</button>
+          <button class="quick-btn" onclick="qMsg('Can we schedule a call? 📞')">📞 Request Call</button>
+          <button class="quick-btn" onclick="qMsg('Thank you! Got it ✅')">✅ Got It!</button>
+        </div>
+        <div class="input-row">
+          <textarea class="msg-input" id="msgInput" placeholder="Type your doubt here… (Shift+Enter = new line)" rows="1"
+            onkeydown="handleKey(event)" oninput="autoSize(this)"></textarea>
+          <button class="send-btn" onclick="sendMsg()">➤</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEW CHAT MODAL -->
+<div class="modal-bg" id="modalBg">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕ Close</button>
+    <h3>New Chat Session</h3>
+    <p>Apne tutor ya student ka WhatsApp number enter karo aur doubt solving start karo.</p>
+    <input class="m-input" id="mWa" type="tel" placeholder="Their WhatsApp Number (10 digits)" maxlength="10"/>
+    <input class="m-input" id="mName" type="text" placeholder="Their Name"/>
+    <select class="m-input" id="mSubject">
+      <option value="">Subject (optional)</option>
+      <option>Mathematics</option><option>Physics</option><option>Chemistry</option>
+      <option>Computer Science</option><option>English</option><option>Biology</option>
+    </select>
+    <button class="m-btn" onclick="startChat()">Start Session →</button>
+  </div>
+</div>
+
+<script>
+const API = 'https://clarasta-server.vercel.app';
+let me = null, activeRoom = null, allChats = [], isUrgent = false, pollTimer = null;
+
+const DEMO = [
+  {roomId:'demo-arjun',partnerName:'Arjun Kumar',partnerWa:'9876543210',partnerRole:'tutor',
+   lastMsg:'LIATE rule follow karo — algebraic functions pehle u banate hain.',
+   lastTime:new Date(Date.now()-3*60000).toISOString(),unread:2,urgent:false},
+  {roomId:'demo-priya',partnerName:'Priya Sharma',partnerWa:'9876500001',partnerRole:'tutor',
+   lastMsg:'Newton 3rd law — action = reaction, direction opposite.',
+   lastTime:new Date(Date.now()-18*60000).toISOString(),unread:0,urgent:true}
+];
+const DEMO_MSGS = {
+  'demo-arjun':[
+    {id:'a1',sender:'9876543210',senderName:'Arjun Kumar',text:'Namaste! Koi doubt hai? Main yahan hoon 👋',time:new Date(Date.now()-30*60000).toISOString(),urgent:false},
+    {id:'a2',sender:'me',senderName:'Me',text:'Haan bhaiya, integration by parts nahi ho raha.\n∫x²·sin(x)dx solve karna hai.',time:new Date(Date.now()-25*60000).toISOString(),urgent:true},
+    {id:'a3',sender:'9876543210',senderName:'Arjun Kumar',text:'Acha! Yeh IBP se hoga.\n\nFormula: ∫u·dv = u·v − ∫v·du\n\nAb LIATE rule use karo:\nL – Log | I – Inverse trig | A – Algebraic | T – Trig | E – Exponential\n\nJo pehle hai wo u banao. Yahan x² algebraic hai, sin(x) trig — toh u = x², dv = sin(x)dx',time:new Date(Date.now()-20*60000).toISOString(),urgent:false},
+    {id:'a4',sender:'me',senderName:'Me',text:'Okay toh du = 2x·dx aur v = −cos(x) hoga?',time:new Date(Date.now()-15*60000).toISOString(),urgent:false},
+    {id:'a5',sender:'9876543210',senderName:'Arjun Kumar',text:'Bilkul sahi! 🎯\n\n∫x²·sin(x)dx = −x²cos(x) + 2∫x·cos(x)dx\n\nAb inner integral pe phir se IBP apply karo!\nu = x, dv = cos(x)dx → du = dx, v = sin(x)',time:new Date(Date.now()-12*60000).toISOString(),urgent:false},
+    {id:'a6',sender:'me',senderName:'Me',text:'Got it! Final answer = −x²cos(x) + 2x·sin(x) + 2cos(x) + C?',time:new Date(Date.now()-8*60000).toISOString(),urgent:false},
+    {id:'a7',sender:'9876543210',senderName:'Arjun Kumar',text:'100% correct! Well done 🔥 Integration mein step-by-step socho, kabhi mistake nahi hogi.',time:new Date(Date.now()-3*60000).toISOString(),urgent:false},
+  ],
+  'demo-priya':[
+    {id:'p1',sender:'me',senderName:'Me',text:'Urgent doubt! Newton 3rd law exam mein apply nahi hota.',time:new Date(Date.now()-20*60000).toISOString(),urgent:true},
+    {id:'p2',sender:'9876500001',senderName:'Priya Sharma',text:'Don\'t worry! Simple example:\n\nJab tum wall ko push karte ho — wall bhi tumhe UTNI HI force se push karta hai. Isliye haath dard hota hai.\n\nFormula: F_action = −F_reaction\n\nDirection opposite hota hai, magnitude same.',time:new Date(Date.now()-15*60000).toISOString(),urgent:false},
+  ]
+};
+
+function setRole(r){ window._r=r; document.getElementById('rParent').classList.toggle('active',r==='parent'); document.getElementById('rTutor').classList.toggle('active',r==='tutor'); }
+window._r='parent';
+
+function chatLogin(){
+  const wa=document.getElementById('lgWa').value.trim();
+  const name=document.getElementById('lgName').value.trim();
+  if(wa.length!==10||!/^\d+$/.test(wa)){alert('Valid 10-digit number daalo!');return;}
+  if(!name){alert('Naam daalo!');return;}
+  me={wa,name,role:window._r};
+  localStorage.setItem('clarasta_chat_me',JSON.stringify(me));
+  boot();
+}
+function boot(){
+  document.getElementById('loginGate').style.display='none';
+  document.getElementById('chatApp').style.display='flex';
+  document.getElementById('sbUserChip').textContent=me.name.split(' ')[0];
+  const stored=JSON.parse(localStorage.getItem('c_chats_'+me.wa)||'[]');
+  allChats=[...DEMO,...stored.filter(s=>!DEMO.find(d=>d.roomId===s.roomId))];
+  renderContacts();
+}
+function renderContacts(f=''){
+  const filtered=allChats.filter(c=>!f||c.partnerName.toLowerCase().includes(f.toLowerCase()));
+  document.getElementById('contactsList').innerHTML=filtered.map(c=>{
+    const ini=initials(c.partnerName),active=c.roomId===activeRoom;
+    const gold=c.partnerRole!=='tutor';
+    return `<div class="contact${active?' active':''}" onclick="openRoom('${c.roomId}')">
+      <div class="c-av${gold?' gold':''}">${ini}<div class="c-av-online"></div></div>
+      <div class="c-info">
+        <div class="c-name">${c.partnerName}${c.urgent?'<span class="urgent-pip">⚡ URG</span>':''}</div>
+        <div class="c-preview">${c.lastMsg||'Tap to chat'}</div>
+      </div>
+      <div class="c-meta">
+        <span class="c-time">${relTime(c.lastTime)}</span>
+        ${c.unread?`<div class="c-unread">${c.unread}</div>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+function filterC(v){renderContacts(v);}
+
+function openRoom(roomId){
+  activeRoom=roomId;
+  const c=allChats.find(x=>x.roomId===roomId);
+  if(!c)return;
+  c.unread=0;
+  const ini=initials(c.partnerName),gold=c.partnerRole!=='tutor';
+  document.getElementById('chatAv').textContent=ini;
+  document.getElementById('chatAv').style.background=gold?'linear-gradient(135deg,#c8922a,#e8b04a)':'linear-gradient(135deg,#2a7a6a,#3aa88e)';
+  document.getElementById('chatAv').innerHTML=ini+'<div class="chat-avatar-online"></div>';
+  document.getElementById('chatName').textContent=c.partnerName;
+  document.getElementById('welcomeState').style.display='none';
+  const ac=document.getElementById('activeChat');
+  ac.style.display='flex';ac.style.flex='1';
+  renderMsgs(roomId);
+  if(pollTimer)clearInterval(pollTimer);
+  pollTimer=setInterval(()=>renderMsgs(roomId),3500);
+  renderContacts();
+  document.getElementById('sidebarEl').classList.remove('open');
+}
+function renderMsgs(roomId){
+  const stored=JSON.parse(localStorage.getItem('c_msgs_'+roomId)||'[]');
+  const demo=DEMO_MSGS[roomId]||[];
+  const all=[...demo,...stored.filter(s=>!demo.find(d=>d.id===s.id))].sort((a,b)=>new Date(a.time)-new Date(b.time));
+  let html='',lastD='';
+  all.forEach(m=>{
+    const d=new Date(m.time);
+    const ds=d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+    const todayStr=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+    if(ds!==lastD){html+=`<div class="msg-date"><span>${ds===todayStr?'Today':ds}</span></div>`;lastD=ds;}
+    const isMe=m.sender==='me'||m.sender===me.wa;
+    const ini=initials(m.senderName);
+    const t=d.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+    const gold=!isMe&&m.senderRole!=='tutor';
+    html+=`<div class="msg-row ${isMe?'me':'them'}">
+      <div class="msg-av-sm${gold?' gold':''}">${ini}</div>
+      <div class="msg-content">
+        ${!isMe?`<div class="msg-sender">${m.senderName}</div>`:''}
+        <div class="bubble${m.urgent?' urgent-bubble':''}">
+          ${m.urgent?'<div class="urgent-label">⚡ URGENT</div>':''}
+          ${esc(m.text).replace(/\n/g,'<br>')}
+          <div class="bubble-footer">
+            <span class="bubble-time">${t}</span>
+            ${isMe?'<span class="bubble-tick">✓✓</span>':''}
+          </div>
+        </div>
+      </div>
+    </div>`;
+  });
+  const w=document.getElementById('messagesArea');
+  w.innerHTML=html;w.scrollTop=w.scrollHeight;
+}
+function sendMsg(){
+  const input=document.getElementById('msgInput');
+  const text=input.value.trim();
+  if(!text||!activeRoom)return;
+  const msg={id:'m'+Date.now(),sender:me.wa,senderName:me.name,senderRole:me.role,text,time:new Date().toISOString(),urgent:isUrgent};
+  const k='c_msgs_'+activeRoom;
+  const ex=JSON.parse(localStorage.getItem(k)||'[]');
+  ex.push(msg);localStorage.setItem(k,JSON.stringify(ex));
+  const c=allChats.find(x=>x.roomId===activeRoom);
+  if(c){c.lastMsg=(isUrgent?'⚡ ':'')+(text.length>40?text.slice(0,40)+'…':text);c.lastTime=msg.time;}
+  input.value='';autoSize(input);
+  if(isUrgent){isUrgent=false;document.getElementById('urgentQBtn').classList.remove('urgent-active');}
+  renderMsgs(activeRoom);renderContacts();
+}
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}}
+function autoSize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,130)+'px';}
+function toggleUrgent(){isUrgent=!isUrgent;document.getElementById('urgentQBtn').classList.toggle('urgent-active',isUrgent);}
+function flagUrgent(){const c=allChats.find(x=>x.roomId===activeRoom);if(c){c.urgent=true;renderContacts();}alert('Session marked urgent! 🚨');}
+function goWA(){const c=allChats.find(x=>x.roomId===activeRoom);if(c)window.open('https://wa.me/91'+c.partnerWa+'?text=Hi!%20I%20have%20an%20urgent%20doubt.','_blank');}
+function qMsg(t){const i=document.getElementById('msgInput');i.value=t;i.focus();autoSize(i);}
+function openModal(){document.getElementById('modalBg').classList.add('show');}
+function closeModal(){document.getElementById('modalBg').classList.remove('show');}
+function startChat(){
+  const wa=document.getElementById('mWa').value.trim();
+  const name=document.getElementById('mName').value.trim()||'Contact '+wa.slice(-4);
+  if(wa.length!==10){alert('Valid 10-digit number!');return;}
+  const roomId='r-'+me.wa+'-'+wa;
+  if(!allChats.find(c=>c.roomId===roomId)){
+    const nc={roomId,partnerName:name,partnerWa:wa,partnerRole:'tutor',lastMsg:'Chat started',lastTime:new Date().toISOString(),unread:0,urgent:false};
+    allChats.push(nc);
+    const k='c_chats_'+me.wa;
+    const ex=JSON.parse(localStorage.getItem(k)||'[]');
+    ex.push(nc);localStorage.setItem(k,JSON.stringify(ex));
+  }
+  closeModal();renderContacts();openRoom(roomId);
+}
+function showSidebar(){document.getElementById('sidebarEl').classList.add('open');}
+function initials(n){return n?n.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase():'?';}
+function relTime(iso){const d=new Date(iso),now=new Date(),m=Math.round((now-d)/60000);if(m<1)return'now';if(m<60)return m+'m';if(m<1440)return Math.round(m/60)+'h';return d.toLocaleDateString('en-IN',{day:'numeric',month:'short'});}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+window.addEventListener('DOMContentLoaded',()=>{
+  const main=JSON.parse(localStorage.getItem('clarasta_user')||'null');
+  const chat=JSON.parse(localStorage.getItem('clarasta_chat_me')||'null');
+  if(main&&main.whatsapp){me={wa:main.whatsapp,name:main.name,role:main.role};boot();return;}
+  if(chat&&chat.wa){me=chat;boot();return;}
+  document.getElementById('loginGate').style.display='flex';
+});
+</script>
+</body>
+</html>
